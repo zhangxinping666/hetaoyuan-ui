@@ -1,0 +1,133 @@
+<div id="huilong" class="page active">
+    
+    <div class="hero-section relative h-64 overflow-hidden">
+        <div class="hero-media absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+                 class="w-full h-full object-cover filter brightness-75"
+                 alt="回龙天路背景"
+                 onerror="this.src='https://via.placeholder.com/800x600/3E4E5E/FFFFFF?text=回龙天路'">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+        </div>
+
+        <div class="absolute top-0 left-0 w-full p-4 z-20 flex items-center">
+            <button type="button" class="text-white text-xl drop-shadow-md" onclick="goBack()" aria-label="返回">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+
+        <div class="absolute inset-0 flex flex-col items-center justify-center z-10 text-white">
+            <h1 class="text-3xl font-serif tracking-widest font-bold mb-2 text-shadow">回龙 · 天路</h1>
+            <p class="text-xs opacity-80 mb-4 tracking-wider">当代愚公移山精神</p>
+            <button type="button" class="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md border border-white/50 flex items-center justify-center hover:bg-white/40 transition-all" onclick="playVideo()" aria-label="播放视频">
+                <i class="fas fa-play text-white ml-1"></i>
+            </button>
+        </div>
+    </div>
+
+    <main class="pb-20 bg-stone-50">
+        
+        <section class="section-dark py-8 px-4 bg-[#E8E6E1]">
+            <div class="section-header mb-6">
+                <h2 class="text-2xl font-serif text-[#3E3E3E] border-l-4 border-[#8B4513] pl-3">峥嵘岁月</h2>
+                <p class="text-xs text-gray-500 mt-1 pl-4">1993 - 2000</p>
+            </div>
+
+            <div class="timeline timeline--stone pl-2">
+                <div class="timeline-item pb-8 relative border-l-2 border-dashed border-gray-400 pl-6 ml-2">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-gray-500 border-2 border-[#E8E6E1]"></div>
+                    
+                    <div class="card-history bg-white p-3 shadow-sm rotate-1 transform border border-gray-200" onclick="showDetail('old-village')">
+                        <div class="h-32 overflow-hidden mb-2 grayscale">
+                            <img src="https://images.unsplash.com/photo-1583037189850-1921ae7c6c22?w=400&h=300&fit=crop" class="w-full h-full object-cover" alt="昔日贫困山村" onerror="this.src='https://via.placeholder.com/400x300/8B7355/FFFFFF?text=昔日回龙'">
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-gray-800">昔日回龙</h3>
+                        <p class="text-xs text-gray-600 mt-1 leading-relaxed">曾经山高路远，与世隔绝。八百壮士，誓要换了人间。</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item pb-4 relative border-l-2 border-dashed border-gray-400 pl-6 ml-2">
+                    <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#C04851] border-2 border-[#E8E6E1]"></div>
+                    
+                    <div class="card-history bg-white p-3 shadow-md -rotate-1 transform border border-gray-200" onclick="showDetail('road-building')">
+                        <div class="h-36 overflow-hidden mb-2 relative">
+                            <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=400&h=300&fit=crop" class="w-full h-full object-cover" alt="开山修路" onerror="this.src='https://via.placeholder.com/400x300/C04851/FFFFFF?text=开山修路'">
+                            <div class="absolute bottom-0 right-0 bg-[#C04851] text-white text-xs px-2 py-1">S型隧道奇迹</div>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg text-[#C04851]">开山修路</h3>
+                        <p class="text-xs text-gray-600 mt-1 leading-relaxed">三十六勇士绑绳下崖，历时三年，凿通天路。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-light py-8 pl-4 bg-white rounded-t-3xl -mt-4 relative shadow-inner z-10">
+            <div class="section-header pr-4 mb-4 flex justify-between items-end">
+                <div>
+                    <h2 class="text-2xl font-serif text-[#3E3E3E] border-l-4 border-green-700 pl-3">回龙新村</h2>
+                    <p class="text-xs text-green-700 mt-1 pl-4">绿水青山就是金山银山</p>
+                </div>
+                <button type="button" class="text-xs border border-gray-300 rounded-full px-3 py-1 text-gray-500" aria-label="查看全景">
+                    查看全景
+                </button>
+            </div>
+
+            <div class="gallery-scroll flex overflow-x-auto gap-4 pb-4 pr-4 hide-scrollbar">
+                <div class="gallery-item w-48 flex-shrink-0" onclick="showDetail('new-village')">
+                    <div class="h-32 rounded-xl overflow-hidden shadow-sm relative">
+                        <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?w=400&h=300&fit=crop" class="w-full h-full object-cover" alt="新村别墅" onerror="this.src='https://via.placeholder.com/400x300/4CAF50/FFFFFF?text=生态别墅群'">
+                    </div>
+                    <span class="text-sm font-bold mt-2 block text-gray-700">生态别墅群</span>
+                </div>
+                <div class="gallery-item w-48 flex-shrink-0">
+                    <div class="h-32 rounded-xl overflow-hidden shadow-sm relative">
+                        <img src="https://images.unsplash.com/photo-1528127269322-539801943592?w=400&h=300&fit=crop" class="w-full h-full object-cover" alt="游客如织" onerror="this.src='https://via.placeholder.com/400x300/2196F3/FFFFFF?text=红色旅游热'">
+                    </div>
+                    <span class="text-sm font-bold mt-2 block text-gray-700">红色旅游热</span>
+                </div>
+                <div class="gallery-item w-48 flex-shrink-0">
+                    <div class="h-32 rounded-xl overflow-hidden shadow-sm relative">
+                        <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=400&h=300&fit=crop" class="w-full h-full object-cover" alt="丰收果园" onerror="this.src='https://via.placeholder.com/400x300/FF9800/FFFFFF?text=产业致富'">
+                    </div>
+                    <span class="text-sm font-bold mt-2 block text-gray-700">产业致富</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-honor px-4 py-8 bg-stone-50">
+            <div class="honor-container bg-[#C04851] rounded-xl p-1 shadow-lg transform hover:scale-[1.01] transition-transform">
+                <div class="honor-inner bg-[#FFFBF0] rounded-lg p-6 border-2 border-[#C04851] border-dashed relative overflow-hidden">
+                    <div class="absolute -right-4 -bottom-4 opacity-10 text-8xl text-[#C04851]">
+                        <i class="fas fa-medal"></i>
+                    </div>
+
+                    <h2 class="text-center font-serif font-bold text-xl text-[#C04851] mb-6 tracking-widest">—— 荣誉榜 ——</h2>
+
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-yellow-600 text-xl mr-3 mt-1"><i class="fas fa-award"></i></span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">全国文明村镇</h4>
+                                <p class="text-xs text-gray-500">国家级荣誉认证</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-600 text-xl mr-3 mt-1"><i class="fas fa-star"></i></span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">感动中国人物 - 张荣锁</h4>
+                                <p class="text-xs text-gray-500">回龙村党支部书记</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-yellow-600 text-xl mr-3 mt-1"><i class="fas fa-map-marked-alt"></i></span>
+                            <div>
+                                <h4 class="font-bold text-gray-800">红色旅游经典景区</h4>
+                                <p class="text-xs text-gray-500">党性教育基地</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>

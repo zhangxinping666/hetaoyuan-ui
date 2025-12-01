@@ -1,0 +1,97 @@
+<!-- 关山篇页面 -->
+<div id="guanshan" class="page active">
+    <!-- 1. 入画 - 沉浸式开篇 -->
+    <div class="guanshan-hero">
+        <div class="guanshan-hero__bg">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&h=800&fit=crop" alt="关山云海">
+        </div>
+        <div class="guanshan-hero__content">
+            <h1 class="guanshan-hero__title">
+                <span class="guanshan-hero__char">关</span>
+                <span class="guanshan-hero__char">山</span>
+            </h1>
+            <div class="guanshan-hero__seal">
+                <span>半坡</span>
+            </div>
+        </div>
+        <button type="button" class="guanshan-hero__intro-btn" onclick="showGuanshanIntro()" aria-label="景区简介">
+            <i class="fas fa-info-circle mr-2"></i>
+            景区简介
+        </button>
+        <button type="button" class="guanshan-hero__back" onclick="goBack()" aria-label="返回">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+    </div>
+
+    <!-- 主体内容 -->
+    <main class="guanshan-main">
+        <!-- 2. 仁山智水 - 太极双切 -->
+        <section class="nature-section">
+            <div class="nature-toggle">
+                <button type="button" class="nature-toggle__btn active" data-tab="mountain" onclick="switchNature('mountain')">
+                    <span class="nature-toggle__text">仁者乐山</span>
+                    <div class="nature-toggle__brush"></div>
+                </button>
+                <button type="button" class="nature-toggle__btn" data-tab="water" onclick="switchNature('water')">
+                    <span class="nature-toggle__text">智者乐水</span>
+                    <div class="nature-toggle__brush"></div>
+                </button>
+            </div>
+
+            <!-- 观山内容 -->
+            <div class="nature-content active" id="mountain-content">
+                <div class="mountain-grid" id="mountain-grid">
+                    <!-- 由 JavaScript 动态生成 -->
+                </div>
+            </div>
+
+            <!-- 观水内容 -->
+            <div class="nature-content" id="water-content">
+                <div class="water-grid" id="water-grid">
+                    <!-- 由 JavaScript 动态生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 大千世界 - Bento Grid -->
+        <section class="discovery-section">
+            <div class="section-header">
+                <div class="section-header__bar"></div>
+                <h2 class="section-header__title">观天下</h2>
+            </div>
+            <div class="bento-grid" id="bento-grid">
+                <!-- 由 JavaScript 动态生成 -->
+            </div>
+        </section>
+
+        <!-- 4. 四季流转 - 色彩条 -->
+        <section class="seasons-section">
+            <div class="section-header">
+                <div class="section-header__bar"></div>
+                <h2 class="section-header__title">四季流转</h2>
+            </div>
+            <div class="seasons-grid" id="seasons-grid">
+                <!-- 由 JavaScript 动态生成 -->
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- 景区简介弹窗 -->
+<div id="guanshan-intro-modal" class="guanshan-modal" onclick="closeGuanshanIntro()">
+    <div class="guanshan-modal__content" onclick="event.stopPropagation()">
+        <div class="guanshan-modal__header">
+            <h2 class="guanshan-modal__title">关山景区简介</h2>
+            <button type="button" class="guanshan-modal__close" onclick="closeGuanshanIntro()" aria-label="关闭">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="guanshan-modal__body">
+            <p>关山国家地质公园位于太行山南麓，以其独特的地质地貌和秀美的自然风光闻名遐迩。</p>
+            <p>景区内山峦叠嶂，峰回路转，既有北方山川的雄浑壮阔，又兼具南方山水的秀美灵动。</p>
+            <p>春观山花烂漫，夏赏飞瀑流泉，秋看层林尽染，冬览雪挂雾凇，四季皆有胜景。</p>
+            <p>这里不仅是自然的博物馆，更是历史的见证者，承载着深厚的文化底蕴和红色记忆。</p>
+        </div>
+    </div>
+</div>
+

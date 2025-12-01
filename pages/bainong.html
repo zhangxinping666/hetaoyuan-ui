@@ -1,0 +1,103 @@
+<!-- 百农篇页面 -->
+<div id="bainong" class="page active">
+    <!-- 顶部导航栏 -->
+    <div class="page-header">
+        <button type="button" class="page-header__back" onclick="goBack()" aria-label="返回">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="page-header__title">百农篇</h1>
+        <div class="page-header__placeholder"></div>
+    </div>
+
+    <!-- 主体内容 -->
+    <main class="pb-20 px-4">
+        <!-- 模块 A：百农精神 - 地标巡礼（时间轴） -->
+        <section class="mt-4">
+            <div class="section-header">
+                <div class="section-header__bar"></div>
+                <h2 class="section-header__title">百农精神</h2>
+            </div>
+            <p class="section-subtitle">地标巡礼</p>
+
+            <!-- 时间轴 -->
+            <div class="timeline">
+                <!-- 志气林 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card" onclick="showLandmarkDetail('zhiqilin')">
+                        <div class="timeline-card__image">
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop" alt="志气林">
+                        </div>
+                        <div class="timeline-card__content">
+                            <h3 class="timeline-card__title">志气林</h3>
+                            <p class="timeline-card__desc">十年树木，百年树人。那片见证誓言的树林。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 志气楼 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card" onclick="showLandmarkDetail('zhiqilou')">
+                        <div class="timeline-card__image">
+                            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=200&fit=crop" alt="志气楼">
+                        </div>
+                        <div class="timeline-card__content">
+                            <h3 class="timeline-card__title">志气楼</h3>
+                            <p class="timeline-card__desc">砖瓦之间，铭刻着先辈的汗水。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 展览馆 -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card" onclick="showLandmarkDetail('zhanlanguan')">
+                        <div class="timeline-card__image">
+                            <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=400&h=200&fit=crop" alt="展览馆">
+                        </div>
+                        <div class="timeline-card__content">
+                            <h3 class="timeline-card__title">展览馆</h3>
+                            <p class="timeline-card__desc">历史的见证，荣耀的传承。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模块 B：百农校友 - 桃李芬芳（头像墙） -->
+        <section class="mt-6">
+            <div class="section-header">
+                <div class="section-header__bar"></div>
+                <h2 class="section-header__title">百农校友</h2>
+            </div>
+            <p class="section-subtitle">桃李芬芳</p>
+
+            <!-- 头像墙容器 -->
+            <div class="alumni-wall">
+                <!-- 梅花背景装饰 -->
+                <div class="alumni-wall__bg"></div>
+                
+                <!-- 头像滚动区 -->
+                <div class="alumni-wall__scroll" id="alumni-scroll">
+                    <!-- 由 JavaScript 动态生成 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 模块 C：教研风采 - 书卷清单（折叠列表） -->
+        <section class="mt-6 mb-6">
+            <div class="section-header">
+                <div class="section-header__bar"></div>
+                <h2 class="section-header__title">教研风采</h2>
+            </div>
+            <p class="section-subtitle">书卷清单</p>
+
+            <!-- 竹简列表 -->
+            <div class="bamboo-list" id="bamboo-list">
+                <!-- 由 JavaScript 动态生成 -->
+            </div>
+        </section>
+    </main>
+</div>
+

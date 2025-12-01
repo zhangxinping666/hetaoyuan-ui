@@ -5,6 +5,176 @@
     --primary-color: #3E4E5E;  /* 墨蓝色 */
     --accent-color: #C04851;   /* 朱砂红 */
     --bg-color: #F7F4ED;       /* 米纸色 */
+
+    /* 窗棂组件颜色 */
+    --ink-blue: #3E4E5E;
+    --rice-paper: #F7F4ED;
+    --cinnabar: #C04851;
+    --wood-frame: #4A3B32;
+}
+
+/* ========== 首页头部主题 ========== */
+.home-header {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+}
+
+.home-header__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.home-header__bg img {
+    filter: brightness(0.7);
+}
+
+.home-header__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.home-header__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.15em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+}
+
+.home-header__subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    letter-spacing: 0.3em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* ========== 通用板块标题样式 ========== */
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.section-header__bar {
+    width: 3px;
+    height: 16px;
+    background-color: var(--cinnabar);
+    border-radius: 2px;
+    margin-right: 8px;
+}
+
+.section-header__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-blue);
+    flex: 1;
+}
+
+.section-header__link {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: var(--cinnabar);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.section-header__link:hover {
+    background: rgba(192, 72, 81, 0.1);
+    transform: translateX(-2px);
+}
+
+/* ========== 经典展示 - 雅致留白 ========== */
+
+/* 2x2 Grid 布局 - 去掉深色底座 */
+.lattice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 12px; /* 增加间隙，让图片独立呼吸 */
+}
+
+/* 单个卡片 - 独立圆角矩形 */
+.lattice-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 12px; /* 圆角矩形 */
+    border: 1px solid rgba(192, 72, 81, 0.15); /* 极细淡金色边框 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.lattice-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 底图 */
+.lattice-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 遮罩层 - 轻微暗化 */
+.lattice-card__mask {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+}
+
+/* 文字内容层 - 底部白底 */
+.lattice-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(
+        to top,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 255, 255, 0.85) 70%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    padding: 12px 8px 8px;
+    display: flex;
+    justify-content: center;
+}
+
+/* 标题 - 横排文字 */
+.lattice-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-blue);
+    letter-spacing: 0.05em;
+}
+
+/* 移除印章装饰 */
+.lattice-card__seal {
+    display: none;
 }
 
 /* 手机框架 */
@@ -97,7 +267,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* 底部导航 */
+/* 底部导航 - 六边形中心凸起 */
 .bottom-nav {
     position: absolute;
     bottom: 0;
@@ -114,15 +284,43 @@
 
 .nav-item {
     transition: all 0.3s ease;
+    position: relative;
 }
 
-.nav-item.active {
+/* 中间按钮特殊处理 - 六边形凸起 */
+.nav-item.center-nav {
+    margin-top: -20px; /* 向上凸起 */
+}
+
+.nav-item.center-nav .hexagon-icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, var(--cinnabar), #A03841);
+    clip-path: polygon(
+        30% 0%, 70% 0%,
+        100% 30%, 100% 70%,
+        70% 100%, 30% 100%,
+        0% 70%, 0% 30%
+    ); /* 六边形裁剪 */
+    box-shadow: 0 4px 12px rgba(192, 72, 81, 0.4);
+}
+
+.nav-item.center-nav .hexagon-icon i {
+    color: white !important;
+    font-size: 20px;
+}
+
+.nav-item.center-nav span {
+    color: var(--cinnabar);
+    font-weight: 700;
+}
+
+.nav-item.active:not(.center-nav) {
     color: #C04851 !important;
-    transform: scale(1.1);
 }
 
-.nav-item.active i,
-.nav-item.active div {
+.nav-item.active:not(.center-nav) i,
+.nav-item.active:not(.center-nav) div {
     color: #C04851 !important;
 }
 
@@ -134,6 +332,7 @@
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    transition: all 0.3s ease;
 }
 
 /* 原型导航样式 */
@@ -179,3 +378,2234 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+/* ========== 探讨沟通 - 画卷横展组件 ========== */
+
+/* 组件容器 - 水墨山水背景 */
+.discussion-scroll {
+    position: relative;
+    padding: 16px 0;
+    margin: 0 -16px; /* 突破父容器padding，让背景延伸到边缘 */
+    overflow: visible;
+}
+
+/* 水墨山水背景层 - 视差效果 */
+.discussion-scroll__bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(
+        to top,
+        rgba(62, 78, 94, 0.08) 0%,
+        rgba(247, 244, 237, 0) 100%
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* 山峦剪影 - SVG 内联背景 */
+.discussion-scroll__bg::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80' preserveAspectRatio='none'%3E%3Cpath d='M0,80 L0,60 Q20,40 40,55 Q60,70 80,50 Q100,30 120,45 Q140,60 160,40 Q180,20 200,35 Q220,50 240,30 Q260,10 280,25 Q300,40 320,20 Q340,0 360,15 Q380,30 400,10 L400,80 Z' fill='%233E4E5E' opacity='0.06'/%3E%3Cpath d='M0,80 L0,70 Q30,55 60,65 Q90,75 120,60 Q150,45 180,55 Q210,65 240,50 Q270,35 300,45 Q330,55 360,40 Q390,25 400,35 L400,80 Z' fill='%233E4E5E' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200% 100%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+}
+
+/* 板块标题 */
+.discussion-scroll__header {
+    display: flex;
+    align-items: center;
+    padding: 0 16px; /* 恢复内边距，补偿父容器的负边距 */
+    margin-bottom: 12px;
+}
+
+.discussion-scroll__title-bar {
+    width: 3px;
+    height: 16px;
+    background-color: var(--cinnabar);
+    border-radius: 2px;
+    margin-right: 8px;
+}
+
+.discussion-scroll__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-blue);
+}
+
+/* 横向滚动容器 */
+.discussion-scroll__track {
+    display: flex;
+    gap: 12px;
+    padding: 0 16px; /* 恢复内边距，让卡片不贴边 */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    z-index: 1;
+}
+
+/* 隐藏滚动条 */
+.discussion-scroll__track::-webkit-scrollbar {
+    display: none;
+}
+
+.discussion-scroll__track {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* 单个卡片 - 画卷 */
+.scroll-card {
+    flex: 0 0 82%;
+    min-width: 82%;
+    scroll-snap-align: start;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FDFCFA 100%);
+    border-radius: 12px;
+    box-shadow:
+        0 4px 16px rgba(62, 78, 94, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scroll-card:active {
+    transform: scale(0.98);
+}
+
+/* 最后一张卡片右侧留白 */
+.scroll-card:last-child {
+    margin-right: 16px;
+}
+
+/* 卡片内容布局 - 左图右文 */
+.scroll-card__inner {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 14px;
+}
+
+/* 圆形图片容器 - 宣纸晕染效果 */
+.scroll-card__image-wrap {
+    flex-shrink: 0;
+    width: 72px;
+    height: 72px;
+    position: relative;
+}
+
+.scroll-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    /* 羽化边缘效果 */
+    mask-image: radial-gradient(
+        circle at center,
+        #000 55%,
+        rgba(0, 0, 0, 0.8) 70%,
+        rgba(0, 0, 0, 0.3) 85%,
+        transparent 100%
+    );
+    -webkit-mask-image: radial-gradient(
+        circle at center,
+        #000 55%,
+        rgba(0, 0, 0, 0.8) 70%,
+        rgba(0, 0, 0, 0.3) 85%,
+        transparent 100%
+    );
+}
+
+/* 圆形装饰边框 */
+.scroll-card__image-wrap::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(62, 78, 94, 0.1);
+    pointer-events: none;
+}
+
+/* 文字内容区 */
+.scroll-card__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.scroll-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-blue);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scroll-card__desc {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #7A8A9A;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* 音频波纹动画 - SVG */
+.audio-wave {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 12px;
+}
+
+.audio-wave__bar {
+    width: 2px;
+    background-color: var(--cinnabar);
+    border-radius: 1px;
+    animation: audioWave 1.2s ease-in-out infinite;
+}
+
+.audio-wave__bar:nth-child(1) {
+    height: 4px;
+    animation-delay: 0s;
+}
+
+.audio-wave__bar:nth-child(2) {
+    height: 8px;
+    animation-delay: 0.2s;
+}
+
+.audio-wave__bar:nth-child(3) {
+    height: 6px;
+    animation-delay: 0.4s;
+}
+
+.audio-wave__bar:nth-child(4) {
+    height: 10px;
+    animation-delay: 0.6s;
+}
+
+@keyframes audioWave {
+    0%, 100% {
+        transform: scaleY(0.5);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+/* ========== 服务百宝格 - 微浮雕效果 ========== */
+
+/* 百宝格容器 - 去掉网格线 */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px; /* 增加间距，让方块独立 */
+}
+
+/* 单个格子 - 浅米色小方块 */
+.service-grid__item {
+    position: relative;
+    background: #FFFFFF; /* 白色方块 */
+    padding: 14px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    min-height: 85px;
+    border-radius: 10px; /* 圆角 */
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.04); /* 微浮雕阴影 */
+}
+
+.service-grid__item:active {
+    transform: translateY(2px) scale(0.97);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.1),
+        0 0px 1px rgba(0, 0, 0, 0.06);
+}
+
+/* 图标容器 - 实心图标 */
+.service-grid__icon {
+    width: 28px;
+    height: 28px;
+    color: var(--cinnabar); /* 朱砂红 */
+}
+
+.service-grid__icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    fill: currentColor; /* 改为实心 */
+    stroke-width: 0;
+}
+
+/* 文字标签 */
+.service-grid__label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* 热门标签 - 右上角 */
+.service-grid__hot-badge {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background-color: var(--cinnabar);
+    color: white;
+    font-size: 9px;
+    padding: 2px 5px;
+    border-radius: 6px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* ========== 页面顶部导航栏 ========== */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.page-header__back {
+    background: none;
+    border: none;
+    color: var(--ink-blue);
+    font-size: 18px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.page-header__back:hover {
+    background: rgba(62, 78, 94, 0.1);
+}
+
+.page-header__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink-blue);
+    letter-spacing: 0.1em;
+}
+
+.page-header__placeholder {
+    width: 36px;
+}
+
+.section-subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 0.2em;
+}
+
+/* ========== 模块 A：时间轴 - 地标巡礼 ========== */
+.timeline {
+    position: relative;
+    padding-left: 24px;
+}
+
+/* 时间轴主线 */
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--cinnabar);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* 时间轴圆点 */
+.timeline-dot {
+    position: absolute;
+    left: -20px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--cinnabar);
+    background: white;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* 时间轴卡片 */
+.timeline-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.timeline-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(192, 72, 81, 0.15);
+}
+
+.timeline-card__image {
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+}
+
+.timeline-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.timeline-card:hover .timeline-card__image img {
+    transform: scale(1.05);
+}
+
+.timeline-card__content {
+    padding: 12px 16px;
+}
+
+.timeline-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-blue);
+    margin-bottom: 6px;
+}
+
+.timeline-card__desc {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ========== 模块 B：头像墙 - 桃李芬芳 ========== */
+.alumni-wall {
+    position: relative;
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+/* 梅花背景装饰 */
+.alumni-wall__bg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80'%3E%3Cpath d='M0 60 Q50 50 100 55 T200 60 T300 55 T400 60' stroke='%23C04851' stroke-width='2' fill='none' opacity='0.15'/%3E%3Ccircle cx='80' cy='45' r='4' fill='%23C04851' opacity='0.2'/%3E%3Ccircle cx='180' cy='50' r='4' fill='%23C04851' opacity='0.2'/%3E%3Ccircle cx='280' cy='48' r='4' fill='%23C04851' opacity='0.2'/%3E%3C/svg%3E");
+    background-size: cover;
+    pointer-events: none;
+}
+
+.alumni-wall__scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    padding: 8px 0 16px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.alumni-wall__scroll::-webkit-scrollbar {
+    display: none;
+}
+
+/* 校友头像项 */
+.alumni-item {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    scroll-snap-align: start;
+}
+
+.alumni-item__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E8E4DC, #F7F4ED);
+    border: 2px solid var(--cinnabar);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.alumni-item__avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(192, 72, 81, 0.3);
+}
+
+.alumni-item__avatar i {
+    font-size: 28px;
+    color: var(--cinnabar);
+    opacity: 0.6;
+}
+
+.alumni-item__name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12px;
+    color: var(--ink-blue);
+    text-align: center;
+}
+
+/* 查看全部按钮 */
+.alumni-item--more {
+    cursor: pointer;
+}
+
+.alumni-item--more .alumni-item__avatar {
+    background: var(--cinnabar);
+}
+
+.alumni-item--more .alumni-item__avatar i {
+    color: white;
+    opacity: 1;
+}
+
+/* ========== 模块 C：竹简列表 - 书卷清单 ========== */
+.bamboo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bamboo-item {
+    background: rgba(247, 244, 237, 0.5);
+    border: 1px solid rgba(192, 72, 81, 0.15);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bamboo-item:hover {
+    background: rgba(247, 244, 237, 0.9);
+    border-color: var(--cinnabar);
+    transform: translateX(4px);
+}
+
+.bamboo-item__icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cinnabar);
+    font-size: 20px;
+}
+
+.bamboo-item__content {
+    flex: 1;
+}
+
+.bamboo-item__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-blue);
+    margin-bottom: 2px;
+}
+
+.bamboo-item__subtitle {
+    font-size: 12px;
+    color: #999;
+}
+
+.bamboo-item__arrow {
+    color: #ccc;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.bamboo-item:hover .bamboo-item__arrow {
+    color: var(--cinnabar);
+    transform: translateX(4px);
+}
+
+/* ========== 关山篇 - 入画（沉浸式开篇） ========== */
+.guanshan-hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    max-height: 500px;
+    overflow: hidden;
+}
+
+.guanshan-hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.guanshan-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.75);
+}
+
+.guanshan-hero__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.guanshan-hero__title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    writing-mode: vertical-rl;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.guanshan-hero__char {
+    font-size: 72px;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.1em;
+}
+
+.guanshan-hero__seal {
+    position: absolute;
+    bottom: 120px;
+    right: 60px;
+    width: 60px;
+    height: 60px;
+    background: var(--cinnabar);
+    border: none; /* 去掉白边 */
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(5deg);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    /* 正片叠底效果，让印章与背景融合 */
+    mix-blend-mode: multiply;
+    opacity: 0.9;
+}
+
+.guanshan-hero__seal span {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.2em;
+}
+
+.guanshan-hero__intro-btn {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 24px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.guanshan-hero__intro-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.guanshan-hero__back {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.guanshan-hero__back:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.guanshan-main {
+    padding: 20px 16px 80px;
+    background: var(--rice-paper);
+}
+
+/* ========== 关山篇 - 仁山智水（太极双切） ========== */
+.nature-section {
+    margin-bottom: 32px;
+}
+
+.nature-toggle {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.nature-toggle__btn {
+    flex: 1;
+    max-width: 160px;
+    background: transparent; /* 去掉背景 */
+    border: none; /* 去掉边框 */
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible; /* 允许墨迹下划线溢出 */
+}
+
+.nature-toggle__btn.active {
+    background: transparent;
+}
+
+.nature-toggle__text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink-blue);
+    display: block;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.nature-toggle__btn.active .nature-toggle__text {
+    color: var(--cinnabar); /* 选中时文字变朱砂红 */
+}
+
+.nature-toggle__brush {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 4px;
+    background: var(--cinnabar);
+    border-radius: 2px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* 墨迹效果 - 不规则边缘 */
+    filter: blur(0.5px);
+    opacity: 0.85;
+}
+
+.nature-toggle__btn.active .nature-toggle__brush {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.nature-content {
+    display: none;
+}
+
+.nature-content.active {
+    display: block;
+}
+
+/* 观山 - 竖向瀑布流 */
+.mountain-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.mountain-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mountain-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(192, 72, 81, 0.15);
+}
+
+.mountain-card__image {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+}
+
+.mountain-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.mountain-card:hover .mountain-card__image img {
+    transform: scale(1.1);
+}
+
+.mountain-card__title {
+    padding: 12px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-blue);
+    text-align: center;
+}
+
+/* 观水 - 横向宽卡片 */
+.water-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.water-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.water-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 16px rgba(62, 78, 94, 0.15);
+}
+
+.water-card__image {
+    width: 100%;
+    height: 140px;
+    overflow: hidden;
+}
+
+.water-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.water-card:hover .water-card__image img {
+    transform: scale(1.05);
+}
+
+.water-card__title {
+    padding: 12px 16px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-blue);
+}
+
+/* ========== 关山篇 - 大千世界（Bento Grid） ========== */
+.discovery-section {
+    margin-bottom: 32px;
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 85px; /* 增加行高，确保对齐 */
+    gap: 10px;
+}
+
+/* 大格 - 2x2 */
+.bento-item--large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* 中格 - 1x1 */
+.bento-item--medium {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+/* 长条格 - 2x1（横跨2列，占1行） */
+.bento-item--wide {
+    grid-column: span 2;
+    grid-row: span 1;
+}
+
+.bento-item {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bento-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(192, 72, 81, 0.2);
+    z-index: 1;
+}
+
+.bento-item__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.bento-item__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+/* 添加底部渐变蒙层，提升文字可读性 */
+.bento-item__bg::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+    pointer-events: none;
+}
+
+/* 文化类长条 - 书法底纹 */
+.bento-item--culture .bento-item__bg {
+    background: linear-gradient(135deg, rgba(247, 244, 237, 0.95), rgba(232, 228, 220, 0.95));
+}
+
+.bento-item--culture .bento-item__bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Ctext x='10' y='50' font-family='serif' font-size='60' fill='%233E4E5E' opacity='0.05'%3E诗%3C/text%3E%3Ctext x='80' y='80' font-family='serif' font-size='40' fill='%233E4E5E' opacity='0.05'%3E词%3C/text%3E%3C/svg%3E");
+    background-size: cover;
+    z-index: 0;
+}
+
+/* 文化类不需要底部渐变蒙层 */
+.bento-item--culture .bento-item__bg::after {
+    display: none;
+}
+
+.bento-item__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    z-index: 1;
+}
+
+.bento-item__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bento-item--culture .bento-item__title {
+    color: var(--ink-blue);
+    text-shadow: none;
+}
+
+/* ========== 关山篇 - 四季流转（色彩条） ========== */
+.seasons-section {
+    margin-bottom: 20px;
+}
+
+.seasons-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.season-card {
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.season-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.season-card__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.season-card__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 四季色调叠加 */
+.season-card--spring .season-card__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255, 182, 193, 0.3), rgba(144, 238, 144, 0.3));
+}
+
+.season-card--summer .season-card__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 191, 255, 0.3), rgba(34, 139, 34, 0.3));
+}
+
+.season-card--autumn .season-card__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.3), rgba(255, 69, 0, 0.3));
+}
+
+.season-card--winter .season-card__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(240, 248, 255, 0.4), rgba(192, 192, 192, 0.4));
+}
+
+.season-card__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.season-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 0.2em;
+}
+
+/* ========== 关山篇 - 简介弹窗 ========== */
+.guanshan-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.guanshan-modal.active {
+    display: flex;
+}
+
+.guanshan-modal__content {
+    background: var(--rice-paper);
+    width: 90%;
+    max-width: 500px;
+    max-height: 70vh;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.guanshan-modal__header {
+    background: linear-gradient(135deg, var(--ink-blue), #2a3a4a);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.guanshan-modal__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.1em;
+}
+
+.guanshan-modal__close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.guanshan-modal__close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.guanshan-modal__body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(70vh - 64px);
+}
+
+.guanshan-modal__body p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 12px;
+    text-indent: 2em;
+}
+
+/* ========== 抗战篇 - 红色档案室风格 ========== */
+
+/* 顶部导航 */
+.kz-header {
+    position: relative;
+    background: #F3F0E6;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #D4C4B7;
+}
+
+.kz-back-btn {
+    position: absolute;
+    left: 16px;
+    width: 36px;
+    height: 36px;
+    border: 2px solid #8B0000;
+    border-radius: 50%;
+    background: transparent;
+    color: #8B0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.kz-back-btn:hover {
+    background: #8B0000;
+    color: white;
+}
+
+.kz-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #2D3436;
+    letter-spacing: 0.3em;
+}
+
+/* 五角星水印 */
+.kz-star-watermark {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    font-size: 80px;
+    color: #8B0000;
+    opacity: 0.08;
+    pointer-events: none;
+}
+
+/* 主体内容 */
+.kz-main {
+    background: #F3F0E6;
+    padding: 20px 16px 100px;
+    min-height: 100vh;
+}
+
+/* 核心人物区 */
+.kz-hero {
+    margin-bottom: 32px;
+}
+
+.kz-hero__container {
+    display: flex;
+    gap: 16px;
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.1);
+    border: 1px solid #D4C4B7;
+}
+
+/* 老照片样式 */
+.kz-photo {
+    flex-shrink: 0;
+    width: 120px;
+    height: 160px;
+    background: white;
+    padding: 8px;
+    border: 3px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: rotate(-2deg);
+    transition: transform 0.3s ease;
+}
+
+.kz-photo:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.kz-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: sepia(0.5) grayscale(0.3);
+}
+
+.kz-hero__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.kz-badge {
+    display: inline-block;
+    align-self: flex-start;
+    background: #8B0000;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 12px;
+    letter-spacing: 0.1em;
+}
+
+.kz-hero__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #2D3436;
+    margin: 0;
+}
+
+.kz-hero__desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #2D3436;
+    margin: 0;
+}
+
+.kz-hero__btn {
+    align-self: flex-start;
+    background: transparent;
+    border: 1px solid #8B0000;
+    color: #8B0000;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 4px;
+}
+
+.kz-hero__btn:hover {
+    background: #8B0000;
+    color: white;
+}
+
+/* 历史回廊 - 对比网格 */
+.kz-contrast {
+    margin-bottom: 32px;
+}
+
+.kz-contrast__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.kz-card {
+    position: relative;
+    height: 160px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.kz-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* 卡片A - 侵略铁证（深色） */
+.kz-card--dark {
+    background: #2D3436;
+}
+
+.kz-card--dark .kz-card__bg {
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.03) 10px,
+        rgba(255, 255, 255, 0.03) 20px
+    );
+    opacity: 0.5;
+}
+
+.kz-card--dark .kz-card__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: white;
+}
+
+.kz-card--dark .kz-card__icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    color: #FFD700;
+}
+
+.kz-card--dark .kz-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.kz-card--dark .kz-card__subtitle {
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+/* 卡片B - 抗战故事（浅色） */
+.kz-card--light {
+    background: white;
+    border: 1px solid #D4C4B7;
+}
+
+.kz-card--light .kz-card__corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 30px 30px 0;
+    border-color: transparent #8B0000 transparent transparent;
+}
+
+.kz-card--light .kz-card__content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #2D3436;
+}
+
+.kz-card--light .kz-card__icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    color: #8B0000;
+}
+
+.kz-card--light .kz-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.kz-card--light .kz-card__subtitle {
+    font-size: 11px;
+    color: #666;
+}
+
+/* 章节标题 */
+.kz-section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.kz-section-header__line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #D4C4B7, transparent);
+}
+
+.kz-section-header__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #8B0000;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+}
+
+/* 文物陈列 - 红色遗珍 */
+.kz-relics {
+    margin-bottom: 32px;
+}
+
+.kz-relics__scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.kz-relics__scroll::-webkit-scrollbar {
+    height: 4px;
+}
+
+.kz-relics__scroll::-webkit-scrollbar-track {
+    background: #D4C4B7;
+    border-radius: 2px;
+}
+
+.kz-relics__scroll::-webkit-scrollbar-thumb {
+    background: #8B0000;
+    border-radius: 2px;
+}
+
+.kz-relic-card {
+    flex-shrink: 0;
+    width: 140px;
+    background: white;
+    border: 1px solid #D4C4B7;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.kz-relic-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(139, 0, 0, 0.15);
+}
+
+.kz-relic-card__icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    background: #F3F0E6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #8B0000;
+}
+
+.kz-relic-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2D3436;
+    margin-bottom: 4px;
+}
+
+.kz-relic-card__desc {
+    font-size: 11px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* 红色之声 - 历史回声 */
+.kz-media {
+    margin-bottom: 32px;
+}
+
+.kz-media__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.kz-media-item {
+    background: white;
+    border: 1px solid #D4C4B7;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.kz-media-item:hover {
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.15);
+    transform: translateX(4px);
+}
+
+.kz-media-item__icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #8B0000, #A52A2A);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(139, 0, 0, 0.3);
+}
+
+.kz-media-item__content {
+    flex: 1;
+}
+
+.kz-media-item__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #2D3436;
+    margin-bottom: 4px;
+}
+
+.kz-media-item__subtitle {
+    font-size: 12px;
+    color: #666;
+}
+
+.kz-media-item__play {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: #8B0000;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.kz-media-item__play:hover {
+    background: #A52A2A;
+    transform: scale(1.1);
+}
+
+/* 底部栏 */
+.kz-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #F3F0E6;
+    padding: 12px 16px;
+    border-top: 2px solid #8B0000;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.kz-footer__btn {
+    width: 100%;
+    background: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 24px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(139, 0, 0, 0.3);
+}
+
+.kz-footer__btn:hover {
+    background: #A52A2A;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(139, 0, 0, 0.4);
+}
+
+.kz-footer__btn:active {
+    transform: translateY(0);
+}
+
+/* ========== 半坡餐饮 - Neo-Chinese Dining ========== */
+
+/* Hero Section */
+.bd-hero {
+    position: relative;
+    height: 280px;
+    overflow: hidden;
+}
+
+.bd-hero__bg {
+    position: absolute;
+    inset: 0;
+}
+
+.bd-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bd-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+}
+
+.bd-hero__content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.bd-back-btn {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.2);
+    /* backdrop-filter: blur(10px); */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bd-back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.bd-hero__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.bd-hero__subtitle {
+    font-size: 14px;
+    letter-spacing: 0.2em;
+    opacity: 0.95;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Main Content */
+.bd-main {
+    background: #FAFAF5;
+    padding: 24px 16px 100px;
+    min-height: 100vh;
+}
+
+/* Section Headers */
+.bd-section-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bd-section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #5D4037;
+    margin-bottom: 6px;
+}
+
+.bd-section-subtitle {
+    font-size: 13px;
+    color: #827717;
+    letter-spacing: 0.1em;
+}
+
+/* Cultural Wisdom Section */
+.bd-wisdom {
+    margin-bottom: 40px;
+}
+
+.bd-wisdom__scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.bd-wisdom__scroll::-webkit-scrollbar {
+    height: 4px;
+}
+
+.bd-wisdom__scroll::-webkit-scrollbar-track {
+    background: #E0E0E0;
+    border-radius: 2px;
+}
+
+.bd-wisdom__scroll::-webkit-scrollbar-thumb {
+    background: #D84315;
+    border-radius: 2px;
+}
+
+.bd-wisdom-card {
+    flex-shrink: 0;
+    width: 160px;
+    background: linear-gradient(135deg, #F5E6D3, #E8D5C4);
+    border: 2px solid #5D4037;
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(93, 64, 55, 0.15);
+    position: relative;
+}
+
+.bd-wisdom-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(93, 64, 55, 0.05) 2px,
+        rgba(93, 64, 55, 0.05) 4px
+    );
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.bd-wisdom-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(216, 67, 21, 0.25);
+}
+
+.bd-wisdom-card__icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 12px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #D84315;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bd-wisdom-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5D4037;
+    margin-bottom: 6px;
+}
+
+.bd-wisdom-card__tag {
+    display: inline-block;
+    background: #827717;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    letter-spacing: 0.05em;
+}
+
+/* Culinary Gallery */
+.bd-gallery {
+    margin-bottom: 40px;
+}
+
+.bd-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.bd-dish-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bd-dish-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(216, 67, 21, 0.3);
+}
+
+.bd-dish-card__img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.bd-dish-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.bd-dish-card__name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+}
+
+.bd-dish-card__like {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bd-dish-card__like:hover {
+    background: #D84315;
+    transform: scale(1.1);
+}
+
+/* Cooking School */
+.bd-school {
+    margin-bottom: 40px;
+}
+
+.bd-school__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.bd-video-card {
+    background: white;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bd-video-card:hover {
+    box-shadow: 0 6px 16px rgba(216, 67, 21, 0.2);
+    transform: translateX(4px);
+}
+
+.bd-video-card__thumbnail {
+    position: relative;
+    flex-shrink: 0;
+    width: 120px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bd-video-card__thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bd-video-card__play {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bd-video-card__play-icon {
+    width: 40px;
+    height: 40px;
+    background: #D84315;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+}
+
+.bd-video-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bd-video-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5D4037;
+    margin-bottom: 6px;
+}
+
+.bd-video-card__duration {
+    font-size: 12px;
+    color: #827717;
+}
+
+/* Environment Showcase */
+.bd-environment {
+    margin-bottom: 40px;
+}
+
+.bd-carousel {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.bd-carousel::-webkit-scrollbar {
+    height: 4px;
+}
+
+.bd-carousel::-webkit-scrollbar-track {
+    background: #E0E0E0;
+    border-radius: 2px;
+}
+
+.bd-carousel::-webkit-scrollbar-thumb {
+    background: #D84315;
+    border-radius: 2px;
+}
+
+.bd-env-card {
+    flex-shrink: 0;
+    width: 280px;
+    scroll-snap-align: start;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+}
+
+.bd-env-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(216, 67, 21, 0.25);
+}
+
+.bd-env-card__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.bd-env-card__caption {
+    background: white;
+    padding: 12px;
+    text-align: center;
+}
+
+.bd-env-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #5D4037;
+}
+
+/* Floating Footer */
+.bd-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(250, 250, 245, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 12px 16px;
+    border-top: 1px solid rgba(93, 64, 55, 0.1);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    z-index: 100;
+}
+
+.bd-footer__btn {
+    width: 100%;
+    background: linear-gradient(135deg, #D84315, #FF6F3C);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 32px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(216, 67, 21, 0.4);
+}
+
+.bd-footer__btn:hover {
+    background: linear-gradient(135deg, #FF6F3C, #D84315);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(216, 67, 21, 0.5);
+}
+
+.bd-footer__btn:active {
+    transform: translateY(0);
+}
+
+/* ========== 半坡等闲弹窗 ========== */
+.banpo-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.banpo-modal.active {
+    display: flex;
+}
+
+.banpo-modal__content {
+    background: var(--rice-paper);
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.banpo-modal__header {
+    background: linear-gradient(135deg, var(--cinnabar), #A03841);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.banpo-modal__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.2em;
+}
+
+.banpo-modal__close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.banpo-modal__close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.banpo-modal__body {
+    padding: 24px 20px;
+    overflow-y: auto;
+    max-height: calc(80vh - 64px);
+}
+
+.banpo-modal__subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: var(--ink-blue);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 0.3em;
+}
+
+.banpo-modal__text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    line-height: 2;
+    color: #333;
+    text-align: justify;
+}
+
+.banpo-modal__text p {
+    margin-bottom: 12px;
+    text-indent: 2em;
+}
+
+.banpo-modal__text p.banpo-modal__center {
+    text-align: center;
+    text-indent: 0;
+    font-weight: 600;
+    color: var(--cinnabar);
+    margin: 16px 0;
+}
+
+/* 卡片角标装饰 */
+.scroll-card__badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 2px 6px;
+    background: rgba(192, 72, 81, 0.1);
+    border-radius: 4px;
+    font-size: 10px;
+    color: var(--cinnabar);
+    font-family: 'Noto Serif SC', serif;
+}

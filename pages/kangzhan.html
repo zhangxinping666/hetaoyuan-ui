@@ -1,0 +1,99 @@
+<!-- 抗战篇 - 红色档案室风格 -->
+<div id="kangzhan" class="page active">
+  <!-- 顶部导航 -->
+  <header class="kz-header">
+    <button type="button" class="kz-back-btn" onclick="goBack()" aria-label="返回">
+      <i class="fas fa-arrow-left"></i>
+    </button>
+    <h1 class="kz-title">抗战篇</h1>
+    <!-- 五角星水印 -->
+    <div class="kz-star-watermark">
+      <i class="fas fa-star"></i>
+    </div>
+  </header>
+
+  <!-- 主体内容 -->
+  <main class="kz-main">
+    <!-- 核心人物区 - 耿风全家庭 -->
+    <section class="kz-hero">
+      <div class="kz-hero__container">
+        <!-- 老照片 -->
+        <div class="kz-photo">
+          <img src="https://images.unsplash.com/photo-1611329857570-f02f340e7378?w=300&h=400&fit=crop" alt="耿风全家庭"
+            onerror="this.src='https://via.placeholder.com/300x400/8B0000/FFFFFF?text=耿风全家庭'">
+        </div>
+        <!-- 文字内容 -->
+        <div class="kz-hero__content">
+          <div class="kz-badge">抗战英雄</div>
+          <h2 class="kz-hero__title">耿风全家庭</h2>
+          <p class="kz-hero__desc">
+            一门忠烈，满门英雄。耿风全一家八口人，七人参加抗日，五人壮烈牺牲。
+            他们用鲜血和生命诠释了中华民族不屈的抗战精神。
+          </p>
+          <button type="button" class="kz-hero__btn" onclick="showHeroDetail('gengfengquan')" aria-label="了解更多">
+            了解更多 <i class="fas fa-chevron-right ml-1"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 历史回廊 - 对比网格 -->
+    <section class="kz-contrast">
+      <div class="kz-contrast__grid">
+        <!-- 卡片A - 侵略铁证 -->
+        <div class="kz-card kz-card--dark" onclick="showSection('evidence')">
+          <div class="kz-card__bg"></div>
+          <div class="kz-card__content">
+            <i class="fas fa-exclamation-triangle kz-card__icon"></i>
+            <h3 class="kz-card__title">侵略铁证</h3>
+            <p class="kz-card__subtitle">历史不容忘却</p>
+          </div>
+        </div>
+
+        <!-- 卡片B - 抗战故事 -->
+        <div class="kz-card kz-card--light" onclick="showSection('stories')">
+          <div class="kz-card__corner"></div>
+          <div class="kz-card__content">
+            <i class="fas fa-book-open kz-card__icon"></i>
+            <h3 class="kz-card__title">抗战故事</h3>
+            <p class="kz-card__subtitle">英雄的赞歌</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 文物陈列 - 红色遗珍 -->
+    <section class="kz-relics">
+      <div class="kz-section-header">
+        <div class="kz-section-header__line"></div>
+        <h2 class="kz-section-header__title">红色遗珍</h2>
+        <div class="kz-section-header__line"></div>
+      </div>
+
+      <div class="kz-relics__scroll" id="relics-scroll">
+        <!-- 由 JavaScript 动态生成 -->
+      </div>
+    </section>
+
+    <!-- 红色之声 - 历史回声 -->
+    <section class="kz-media">
+      <div class="kz-section-header">
+        <div class="kz-section-header__line"></div>
+        <h2 class="kz-section-header__title">历史回声</h2>
+        <div class="kz-section-header__line"></div>
+      </div>
+
+      <div class="kz-media__list" id="media-list">
+        <!-- 由 JavaScript 动态生成 -->
+      </div>
+    </section>
+  </main>
+
+  <!-- 底部栏 -->
+  <footer class="kz-footer">
+    <button type="button" class="kz-footer__btn" onclick="bookVisit()" aria-label="预约参观">
+      <i class="fas fa-ticket-alt mr-2"></i>
+      预约现场参观学习
+    </button>
+  </footer>
+</div>
