@@ -422,6 +422,7 @@
 .discussion-scroll__header {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0 16px; /* 恢复内边距，补偿父容器的负边距 */
     margin-bottom: 12px;
 }
@@ -439,14 +440,42 @@
     font-size: 16px;
     font-weight: 700;
     color: var(--ink-blue);
+    flex: 1;
+}
+
+/* 滑动指示器 */
+.discussion-scroll__indicators {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.discussion-scroll__indicator {
+    width: 6px;
+    height: 6px;
+    background: rgba(62, 78, 94, 0.2);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.discussion-scroll__indicator:hover {
+    background: rgba(62, 78, 94, 0.4);
+}
+
+.discussion-scroll__indicator--active {
+    width: 20px;
+    border-radius: 3px;
+    background: var(--cinnabar);
 }
 
 /* 横向滚动容器 */
 .discussion-scroll__track {
     display: flex;
     gap: 12px;
-    padding: 0 16px; /* 恢复内边距，让卡片不贴边 */
-    overflow-x: auto;
+    padding: 0 16px 12px 16px; /* 底部留出滚动条空间 */
+    overflow-x: scroll; /* 强制显示滚动条 */
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
@@ -454,14 +483,32 @@
     z-index: 1;
 }
 
-/* 隐藏滚动条 */
+/* 自定义滚动条样式 - 水墨风格 */
 .discussion-scroll__track::-webkit-scrollbar {
-    display: none;
+    height: 2px; /* 极细的滚动条 */
 }
 
+.discussion-scroll__track::-webkit-scrollbar-track {
+    background: rgba(62, 78, 94, 0.05); /* 极淡的墨色轨道 */
+    border-radius: 1px;
+}
+
+.discussion-scroll__track::-webkit-scrollbar-thumb {
+    background: var(--cinnabar); /* 纯色砖红 */
+    border-radius: 1px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.6;
+}
+
+.discussion-scroll__track::-webkit-scrollbar-thumb:hover {
+    opacity: 1; /* 悬停时完全不透明 */
+    transform: scaleY(1.5); /* 悬停时高度增加 */
+}
+
+/* Firefox 滚动条样式 */
 .discussion-scroll__track {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(192, 72, 81, 0.6) rgba(62, 78, 94, 0.05);
 }
 
 /* 单个卡片 - 画卷 */
@@ -476,7 +523,18 @@
         0 1px 3px rgba(0, 0, 0, 0.04);
     overflow: hidden;
     position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.scroll-card[onclick] {
+    cursor: pointer;
+}
+
+.scroll-card[onclick]:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(62, 78, 94, 0.12),
+        0 2px 6px rgba(0, 0, 0, 0.06);
 }
 
 .scroll-card:active {
@@ -2282,7 +2340,7 @@
 
 .bd-dish-card__like {
     background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    /* backdrop-filter: blur(10px); */
     border: none;
     border-radius: 50%;
     width: 32px;
@@ -2609,3 +2667,677 @@
     color: var(--cinnabar);
     font-family: 'Noto Serif SC', serif;
 }
+
+/* ========================================
+   半坡讲谈 - 掌上书院
+   数字雅集设计系统
+======================================== */
+
+/* 中国传统色彩变量 */
+:root {
+    --bt-paper: #F9F7F2;           /* 米白宣纸 */
+    --bt-walnut: #4A3B32;          /* 胡桃木色 */
+    --bt-medical-green: #7CB342;   /* 草本绿 */
+    --bt-medical-yellow: #FFF9C4;  /* 药纸黄 */
+    --bt-ink-black: #2C2C2C;       /* 墨黑 */
+    --bt-warm-orange: #FF8A65;     /* 暖橙（茶话会） */
+    --bt-garden-green: #A5D6A7;    /* 田园绿 */
+}
+
+/* 页面容器 */
+.bt-page {
+    min-height: 100vh;
+    background: var(--bt-paper);
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(192, 72, 81, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(124, 179, 66, 0.02) 0%, transparent 50%);
+    padding-bottom: 80px;
+}
+
+/* ========== 顶部导航 ========== */
+.bt-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, var(--bt-walnut) 0%, #5D4E42 100%);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bt-back {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bt-back:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.bt-back svg {
+    width: 20px;
+    height: 20px;
+}
+
+.bt-header__title {
+    flex: 1;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+.bt-header__subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 1px;
+}
+
+/* ========== 每日一签 ========== */
+.bt-daily-wisdom {
+    margin: 20px 16px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #FDFCFA 100%);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow:
+        0 4px 16px rgba(62, 78, 94, 0.08),
+        0 1px 3px rgba(0, 0, 0, 0.04);
+    position: relative;
+    overflow: hidden;
+}
+
+.bt-daily-wisdom::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(192, 72, 81, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.bt-wisdom__container {
+    position: relative;
+    z-index: 1;
+}
+
+.bt-wisdom__date {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: var(--bt-walnut);
+    margin-bottom: 12px;
+    opacity: 0.7;
+}
+
+.bt-wisdom__text {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--bt-ink-black);
+    margin-bottom: 12px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bt-wisdom__text.bt-wisdom--reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bt-wisdom__source {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12px;
+    color: var(--bt-walnut);
+    opacity: 0.6;
+    text-align: right;
+}
+
+/* ========== 书院导航 ========== */
+.bt-academy {
+    padding: 0 16px;
+}
+
+/* ========== 板块通用样式 ========== */
+.bt-section {
+    margin-bottom: 32px;
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.bt-section__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(62, 78, 94, 0.08);
+}
+
+.bt-section__icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.bt-section__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.bt-section__title-group {
+    flex: 1;
+}
+
+.bt-section__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    letter-spacing: 1px;
+}
+
+.bt-section__subtitle {
+    font-size: 12px;
+    margin: 0;
+    opacity: 0.6;
+}
+
+.bt-section__more {
+    padding: 6px 12px;
+    border: 1px solid rgba(62, 78, 94, 0.2);
+    background: transparent;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--bt-walnut);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.bt-section__more:hover {
+    background: rgba(62, 78, 94, 0.05);
+    border-color: var(--bt-walnut);
+}
+
+
+/* ========== 杏林馆 - 医学讲座 ========== */
+.bt-section--medical .bt-section__icon {
+    background: linear-gradient(135deg, var(--bt-medical-green) 0%, #689F38 100%);
+    color: white;
+}
+
+.bt-section--medical .bt-section__title {
+    color: var(--bt-medical-green);
+}
+
+.bt-video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bt-video-card {
+    display: flex;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    padding: 8px;
+    margin: -8px;
+}
+
+.bt-video-card:hover {
+    background: rgba(124, 179, 66, 0.05);
+}
+
+.bt-video-card:active {
+    transform: scale(0.98);
+}
+
+.bt-video-card__thumbnail {
+    position: relative;
+    width: 140px;
+    height: 100px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.bt-video-card__thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bt-video-card__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.bt-video-card:hover .bt-video-card__play {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.bt-video-card__duration {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.bt-video-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.bt-video-card__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--bt-ink-black);
+    font-family: 'Noto Serif SC', serif;
+}
+
+.bt-video-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    font-size: 12px;
+}
+
+.bt-video-card__tag {
+    background: var(--bt-medical-yellow);
+    color: var(--bt-medical-green);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.bt-video-card__lecturer,
+.bt-video-card__views {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* ========== 墨香阁 - 书画课堂 ========== */
+.bt-section--arts .bt-section__icon {
+    background: linear-gradient(135deg, #5D4E42 0%, var(--bt-walnut) 100%);
+    color: white;
+}
+
+.bt-section--arts .bt-section__title {
+    color: var(--bt-walnut);
+}
+
+.bt-scroll-container {
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+.bt-artwork-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.bt-artwork-scroll::-webkit-scrollbar {
+    height: 3px;
+}
+
+.bt-artwork-scroll::-webkit-scrollbar-track {
+    background: rgba(62, 78, 94, 0.05);
+    border-radius: 1.5px;
+}
+
+.bt-artwork-scroll::-webkit-scrollbar-thumb {
+    background: var(--bt-walnut);
+    border-radius: 1.5px;
+    opacity: 0.6;
+}
+
+.bt-artwork-card {
+    flex: 0 0 160px;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bt-artwork-card:hover {
+    transform: translateY(-4px);
+}
+
+.bt-artwork-card__image {
+    width: 160px;
+    height: 220px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f0f0f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 8px;
+}
+
+.bt-artwork-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bt-artwork-card__info {
+    padding: 0 4px;
+}
+
+.bt-artwork-card__type {
+    display: inline-block;
+    font-size: 10px;
+    color: var(--bt-walnut);
+    background: rgba(74, 59, 50, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+}
+
+.bt-artwork-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: var(--bt-ink-black);
+}
+
+.bt-artwork-card__author {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+/* ========== 百草园 - 种植栽培 ========== */
+.bt-section--garden .bt-section__icon {
+    background: linear-gradient(135deg, var(--bt-garden-green) 0%, #81C784 100%);
+    color: white;
+}
+
+.bt-section--garden .bt-section__title {
+    color: var(--bt-garden-green);
+}
+
+.bt-garden-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.bt-plant-card {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F9FBF9 100%);
+    border: 2px solid rgba(165, 214, 167, 0.3);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.bt-plant-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--plant-color, #A5D6A7) 0%, transparent 70%);
+    opacity: 0.1;
+    transition: all 0.3s ease;
+}
+
+.bt-plant-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-color: var(--plant-color, #A5D6A7);
+}
+
+.bt-plant-card:hover::before {
+    opacity: 0.15;
+}
+
+.bt-plant-card:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+.bt-plant-card__icon {
+    font-size: 48px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.bt-plant-card__name {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--bt-ink-black);
+}
+
+.bt-plant-card__meta {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+}
+
+.bt-plant-card__category,
+.bt-plant-card__difficulty {
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.05);
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* ========== 茶话会 - 畅谈互动 ========== */
+.bt-section--chat .bt-section__icon {
+    background: linear-gradient(135deg, var(--bt-warm-orange) 0%, #FF7043 100%);
+    color: white;
+}
+
+.bt-section--chat .bt-section__title {
+    color: var(--bt-warm-orange);
+}
+
+.bt-topic-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.bt-topic-card {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: linear-gradient(135deg, #FFF9F5 0%, #FFFFFF 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 138, 101, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.bt-topic-card:hover {
+    background: linear-gradient(135deg, #FFF5F0 0%, #FFFFFF 100%);
+    border-color: rgba(255, 138, 101, 0.3);
+    box-shadow: 0 4px 12px rgba(255, 138, 101, 0.1);
+}
+
+.bt-topic-card:active {
+    transform: scale(0.98);
+}
+
+.bt-topic-card__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 2px solid rgba(255, 138, 101, 0.2);
+}
+
+.bt-topic-card__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.bt-topic-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.bt-topic-card__author {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--bt-ink-black);
+    font-family: 'Noto Serif SC', serif;
+}
+
+.bt-topic-card__time {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.bt-topic-card__title {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 6px 0;
+    color: var(--bt-ink-black);
+}
+
+.bt-topic-card__excerpt {
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 0 12px 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.bt-topic-card__footer {
+    display: flex;
+    gap: 16px;
+}
+
+.bt-topic-card__action {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.bt-topic-card__action svg {
+    width: 16px;
+    height: 16px;
+}
+
+.bt-topic-card__action--like:hover {
+    background: rgba(255, 138, 101, 0.1);
+    color: var(--bt-warm-orange);
+}
+
+.bt-topic-card__action--comment:hover {
+    background: rgba(62, 78, 94, 0.1);
+    color: var(--bt-ink-black);
+}
+
+/* ========== 发起话题悬浮按钮 ========== */
+.bt-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: auto;
+    height: 56px;
+    padding: 0 24px;
+    background: linear-gradient(135deg, var(--bt-warm-orange) 0%, #FF7043 100%);
+    border: none;
+    border-radius: 28px;
+    box-shadow:
+        0 4px 12px rgba(255, 138, 101, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Noto Serif SC', serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bt-fab:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 6px 16px rgba(255, 138, 101, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bt-fab:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.bt-fab svg {
+    width: 20px;
+    height: 20px;
+}
+

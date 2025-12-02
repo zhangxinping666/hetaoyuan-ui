@@ -9,9 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=20251202005">
 </head>
 <body class="bg-gray-100 p-8">
+    <!-- 开发提示：如果样式没更新，请按 Ctrl+Shift+R 硬刷新 -->
     <!-- 原型导航 -->
     <div class="flex flex-wrap justify-center items-start gap-8">
 
@@ -135,12 +136,16 @@
                             <div class="discussion-scroll__header">
                                 <div class="discussion-scroll__title-bar"></div>
                                 <h2 class="discussion-scroll__title">探讨沟通</h2>
+                                <!-- 滑动指示器 -->
+                                <div class="discussion-scroll__indicators" id="scroll-indicators">
+                                    <!-- 由 JavaScript 动态生成 -->
+                                </div>
                             </div>
 
                             <!-- 横向滚动轨道 -->
                             <div class="discussion-scroll__track">
                                 <!-- 卡片1: 半坡餐饮 -->
-                                <article class="scroll-card">
+                                <article class="scroll-card" onclick="openBanpoDining()" style="cursor: pointer;">
                                     <span class="scroll-card__badge">养生</span>
                                     <div class="scroll-card__inner">
                                         <div class="scroll-card__image-wrap">
@@ -157,7 +162,7 @@
                                 </article>
 
                                 <!-- 卡片2: 半坡讲谈 -->
-                                <article class="scroll-card">
+                                <article class="scroll-card" onclick="openBanpoTalks()">
                                     <span class="scroll-card__badge">讲座</span>
                                     <div class="scroll-card__inner">
                                         <div class="scroll-card__image-wrap">
@@ -345,6 +350,6 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script src="js/main.js?v=20251202004"></script>
 </body>
 </html>

@@ -210,12 +210,20 @@ function renderServiceGrid() {
 function handleServiceClick(serviceId) {
     console.log('点击服务:', serviceId);
 
-    // 一桌餐 -> 半坡餐饮页面
-    if (serviceId === 'one-table') {
-        loadSubPage('banpo-dining');
-    } else {
-        alert('该服务页面开发中: ' + serviceId);
-    }
+    // 所有服务都显示开发中提示
+    alert('该服务页面开发中: ' + serviceId);
+}
+
+// 打开半坡餐饮详情页
+function openBanpoDining() {
+    console.log('🍽️ 打开半坡餐饮详情页');
+    loadSubPage('banpo-dining');
+}
+
+// 打开半坡讲谈详情页
+function openBanpoTalks() {
+    console.log('🏛️ 打开半坡讲谈详情页');
+    loadSubPage('banpo-talks');
 }
 
 // ========== 半坡等闲弹窗控制 ==========
@@ -873,6 +881,132 @@ function makeReservation() {
     alert('预订功能开发中，敬请期待！\n请拨打电话：0371-1234567');
 }
 
+// ========== 探讨沟通滑动模块 ==========
+function initDiscussionScroll() {
+    const track = document.querySelector('.discussion-scroll__track');
+    const cards = document.querySelectorAll('.scroll-card');
+    const indicatorsContainer = document.getElementById('scroll-indicators');
+
+    if (!track || cards.length === 0) return;
+
+    let currentIndex = 0;
+
+    // 创建指示器
+    function createIndicators() {
+        if (!indicatorsContainer) return;
+
+        indicatorsContainer.innerHTML = Array.from(cards).map((_, index) => `
+            <div class="discussion-scroll__indicator ${index === 0 ? 'discussion-scroll__indicator--active' : ''}"
+                 data-index="${index}"></div>
+        `).join('');
+
+        // 添加指示器点击事件
+        indicatorsContainer.querySelectorAll('.discussion-scroll__indicator').forEach((indicator, index) => {
+            indicator.addEventListener('click', () => scrollToCard(index));
+        });
+    }
+
+    // 更新指示器状态
+    function updateIndicators(index) {
+        if (!indicatorsContainer) return;
+
+        indicatorsContainer.querySelectorAll('.discussion-scroll__indicator').forEach((indicator, i) => {
+            if (i === index) {
+                indicator.classList.add('discussion-scroll__indicator--active');
+            } else {
+                indicator.classList.remove('discussion-scroll__indicator--active');
+            }
+        });
+    }
+
+    // 滚动到指定卡片
+    function scrollToCard(index) {
+        if (index < 0 || index >= cards.length) return;
+
+        currentIndex = index;
+        const card = cards[index];
+        const cardLeft = card.offsetLeft;
+        const trackPadding = 16; // 左侧 padding
+
+        track.scrollTo({
+            left: cardLeft - trackPadding,
+            behavior: 'smooth'
+        });
+
+        updateIndicators(index);
+    }
+
+    // 监听滚动事件，更新当前索引
+    let scrollTimeout;
+    track.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            const trackLeft = track.scrollLeft;
+            const trackPadding = 16;
+
+            // 找到最接近的卡片
+            let closestIndex = 0;
+            let minDistance = Infinity;
+
+            cards.forEach((card, index) => {
+                const cardLeft = card.offsetLeft - trackPadding;
+                const distance = Math.abs(trackLeft - cardLeft);
+
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    closestIndex = index;
+                }
+            });
+
+            if (closestIndex !== currentIndex) {
+                currentIndex = closestIndex;
+                updateIndicators(currentIndex);
+            }
+        }, 100);
+    });
+
+    // 初始化
+    createIndicators();
+
+    // 触摸滑动支持
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartTime = 0;
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartTime = Date.now();
+    });
+
+    track.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const touchDuration = Date.now() - touchStartTime;
+
+        // 如果是快速点击（小于 200ms 且移动距离小于 10px），不处理滑动
+        const distance = Math.abs(touchEndX - touchStartX);
+        if (touchDuration < 200 && distance < 10) {
+            return; // 让点击事件正常触发
+        }
+
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0 && currentIndex < cards.length - 1) {
+                // 向左滑动
+                scrollToCard(currentIndex + 1);
+            } else if (diff < 0 && currentIndex > 0) {
+                // 向右滑动
+                scrollToCard(currentIndex - 1);
+            }
+        }
+    }
+}
+
 // 应用初始化：在所有页面内容加载完成后，执行默认页面展示与基础状态更新
 function initializeApp() {
     // 防重复初始化
@@ -899,6 +1033,9 @@ function initializeApp() {
             if (typeof updateTime === "function") {
                 updateTime();
             }
+
+            // 初始化探讨沟通滑动模块
+            initDiscussionScroll();
 
             window.__appInitialized = true;
             return;
@@ -1032,6 +1169,8 @@ document.addEventListener("DOMContentLoaded", function () {
     window.handleCategoryClick = handleCategoryClick;
     window.loadSubPage = loadSubPage;
     window.goBack = goBack;
+    window.openBanpoDining = openBanpoDining;
+    window.openBanpoTalks = openBanpoTalks;
 
     // 百农篇函数
     window.showLandmarkDetail = showLandmarkDetail;

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>半坡讲谈 - 掌上书院</title>
+    <link rel="stylesheet" href="../css/styles.css?v=20251202005">
+</head>
+<body>
+    <!-- 半坡讲谈页面 -->
+    <div class="bt-page">
+        <!-- 顶部导航 -->
+        <header class="bt-header">
+            <button title="button" class="bt-back" onclick="goBack()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <h1 class="bt-header__title">半坡讲谈</h1>
+            <div class="bt-header__subtitle">掌上书院</div>
+        </header>
+
+        <!-- 每日一签 -->
+        <section class="bt-daily-wisdom">
+            <div class="bt-wisdom__container">
+                <div class="bt-wisdom__date" id="daily-date"></div>
+                <div class="bt-wisdom__text" id="daily-wisdom">
+                    学而时习之，不亦说乎
+                </div>
+                <div class="bt-wisdom__source">—— 《论语·学而》</div>
+            </div>
+        </section>
+
+        <!-- 四大板块导航 -->
+        <nav class="bt-academy">
+            <!-- 杏林馆 · 医学讲座 -->
+            <section class="bt-section bt-section--medical">
+                <div class="bt-section__header">
+                    <div class="bt-section__icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M24 8L28 16L36 18L30 26L32 36L24 32L16 36L18 26L12 18L20 16L24 8Z" 
+                                  fill="currentColor" opacity="0.2"/>
+                            <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="bt-section__title-group">
+                        <h2 class="bt-section__title">杏林馆</h2>
+                        <p class="bt-section__subtitle">医学讲座</p>
+                    </div>
+                    <button class="bt-section__more" onclick="showAllVideos()">
+                        更多 →
+                    </button>
+                </div>
+
+                <!-- 视频列表 -->
+                <div class="bt-video-list" id="video-list">
+                    <!-- 视频卡片将由 JS 动态生成 -->
+                </div>
+            </section>
+
+            <!-- 墨香阁 · 书画课堂 -->
+            <section class="bt-section bt-section--arts">
+                <div class="bt-section__header">
+                    <div class="bt-section__icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M12 8L36 8L36 40L12 40Z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M18 16L30 16M18 24L30 24M18 32L26 32" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="bt-section__title-group">
+                        <h2 class="bt-section__title">墨香阁</h2>
+                        <p class="bt-section__subtitle">书画课堂</p>
+                    </div>
+                    <button class="bt-section__more" onclick="showAllArtworks()">
+                        更多 →
+                    </button>
+                </div>
+
+                <!-- 横向画卷滚动 -->
+                <div class="bt-scroll-container">
+                    <div class="bt-artwork-scroll" id="artwork-scroll">
+                        <!-- 作品卡片将由 JS 动态生成 -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 百草园 · 种植栽培 -->
+            <section class="bt-section bt-section--garden">
+                <div class="bt-section__header">
+                    <div class="bt-section__icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M24 12C24 12 18 18 18 24C18 28 20 32 24 32C28 32 30 28 30 24C30 18 24 12 24 12Z" 
+                                  stroke="currentColor" stroke-width="2"/>
+                            <path d="M24 32L24 40M20 40L28 40" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="bt-section__title-group">
+                        <h2 class="bt-section__title">百草园</h2>
+                        <p class="bt-section__subtitle">种植栽培</p>
+                    </div>
+                    <button class="bt-section__more" onclick="showAllPlants()">
+                        更多 →
+                    </button>
+                </div>
+
+                <!-- 双列宫格 -->
+                <div class="bt-garden-grid" id="garden-grid">
+                    <!-- 植物卡片将由 JS 动态生成 -->
+                </div>
+            </section>
+
+            <!-- 茶话会 · 畅谈互动 -->
+            <section class="bt-section bt-section--chat">
+                <div class="bt-section__header">
+                    <div class="bt-section__icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="20" r="8" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 36C12 30 16 26 24 26C32 26 36 30 36 36" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="bt-section__title-group">
+                        <h2 class="bt-section__title">茶话会</h2>
+                        <p class="bt-section__subtitle">畅谈互动</p>
+                    </div>
+                    <button class="bt-section__more" onclick="showAllTopics()">
+                        更多 →
+                    </button>
+                </div>
+
+                <!-- 话题流 -->
+                <div class="bt-topic-list" id="topic-list">
+                    <!-- 话题卡片将由 JS 动态生成 -->
+                </div>
+            </section>
+        </nav>
+
+        <!-- 发起话题悬浮按钮 -->
+        <button class="bt-fab" onclick="createNewTopic()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 5v14M5 12h14"/>
+            </svg>
+            <span>提笔写字</span>
+        </button>
+    </div>
+
+    <script src="../js/banpo-talks.js?v=20251202001"></script>
+</body>
+</html>
+
