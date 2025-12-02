@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文艺创作 - 数字书房</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="lc-page">
+    <!-- 顶部导航 -->
+    <header class="lc-header">
+        <button title="返回" class="lc-back" onclick="goBack()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <div class="lc-header__title-group">
+            <h1 class="lc-header__title">文艺创作</h1>
+            <p class="lc-header__subtitle">数字书房</p>
+        </div>
+    </header>
+
+    <!-- 每日一赏 -->
+    <section class="lc-daily-feature">
+        <div class="lc-daily__container">
+            <div class="lc-daily__date" id="lc-daily-date">十二月初二</div>
+            <div class="lc-daily__artwork">
+                <img src="https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?w=600" 
+                     alt="每日精选"
+                     onerror="this.src='https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=600'">
+            </div>
+            <div class="lc-daily__seal">
+                <svg viewBox="0 0 60 60" class="lc-seal">
+                    <circle cx="30" cy="30" r="28" fill="#C04851" opacity="0.9"/>
+                    <text x="30" y="38" text-anchor="middle" fill="white" font-size="16" font-family="'Noto Serif SC', serif">精选</text>
+                </svg>
+            </div>
+            <p class="lc-daily__caption">《兰亭序》临摹 · 王羲之</p>
+        </div>
+    </section>
+
+    <!-- 阅 · 经典与文学 -->
+    <section class="lc-section lc-section--reading">
+        <div class="lc-section__header">
+            <h2 class="lc-section__title">阅 · 经典与文学</h2>
+            <div class="lc-tabs">
+                <button class="lc-tab lc-tab--active" onclick="switchReadingTab('classic')">追古</button>
+                <button class="lc-tab" onclick="switchReadingTab('modern')">抚今</button>
+            </div>
+        </div>
+
+        <!-- 经典名篇 -->
+        <div class="lc-reading-content" id="classic-content">
+            <div class="lc-book-list" id="classic-books"></div>
+        </div>
+
+        <!-- 文学创作 -->
+        <div class="lc-reading-content lc-reading-content--hidden" id="modern-content">
+            <div class="lc-creation-grid" id="modern-creations"></div>
+        </div>
+    </section>
+
+    <!-- 观 · 书画展览 -->
+    <section class="lc-section lc-section--gallery">
+        <div class="lc-section__header">
+            <h2 class="lc-section__title">观 · 书画展览</h2>
+            <button class="lc-section__more" onclick="showAllGallery()">更多 →</button>
+        </div>
+        <div class="lc-scroll-container">
+            <div class="lc-gallery-scroll" id="gallery-scroll"></div>
+        </div>
+    </section>
+
+    <!-- 听 · 有声欣赏 -->
+    <section class="lc-section lc-section--audio">
+        <div class="lc-section__header">
+            <h2 class="lc-section__title">听 · 有声欣赏</h2>
+        </div>
+        <div class="lc-audio-player" id="audio-player"></div>
+    </section>
+
+    <!-- 悬浮创作按钮 -->
+    <button class="lc-fab" onclick="showCreateMenu()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+        </svg>
+        <span>我要创作</span>
+    </button>
+
+    <!-- 创作菜单（扇形） -->
+    <div class="lc-create-menu lc-create-menu--hidden" id="create-menu">
+        <div class="lc-create-menu__backdrop" onclick="hideCreateMenu()"></div>
+        <div class="lc-create-menu__items">
+            <button class="lc-create-menu__item" onclick="createArticle()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                <span>写文章</span>
+            </button>
+            <button class="lc-create-menu__item" onclick="uploadImage()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                    <polyline points="21 15 16 10 5 21"/>
+                </svg>
+                <span>发图片</span>
+            </button>
+            <button class="lc-create-menu__item" onclick="uploadAudio()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="23"/>
+                    <line x1="8" y1="23" x2="16" y2="23"/>
+                </svg>
+                <span>录音频</span>
+            </button>
+        </div>
+    </div>
+
+    <script src="../js/literary-creation.js"></script>
+</body>
+</html>
+

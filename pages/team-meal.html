@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>核桃苑 - 团队餐定制</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'festive-red': '#B71C1C',   /* 节庆红: 团聚氛围 */
+                        'ink-blue': '#3E4E5E',      /* 黛蓝: 稳重 */
+                        'rice-paper': '#F7F4ED',    /* 宣纸白 */
+                        'gold-accent': '#C5A065',   /* 金色点缀 */
+                        'stone-gray': '#78909C',    /* 石板灰 */
+                    },
+                    fontFamily: {
+                        'serif': ['"Songti SC"', '"SimSun"', 'serif'],
+                        'sans': ['"PingFang SC"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'cloud-pattern': "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23B71C1C\' fill-opacity=\'0.03\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-rice-paper text-gray-800 font-sans pb-28 relative">
+
+    <!-- 背景纹理 -->
+    <div class="fixed inset-0 bg-cloud-pattern pointer-events-none z-0"></div>
+
+    <!-- 1. Hero: 盛大聚会 -->
+    <header class="relative h-64 z-10 overflow-hidden rounded-b-[3rem] shadow-xl">
+        <img title="img" src="https://images.unsplash.com/photo-1519671482502-9759101d4561?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-festive-red/90 to-transparent mix-blend-multiply"></div>
+
+        <div class="absolute bottom-6 left-6 text-white">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="bg-white/20 backdrop-blur px-2 py-0.5 text-xs rounded border border-white/30">同学会</span>
+                <span class="bg-white/20 backdrop-blur px-2 py-0.5 text-xs rounded border border-white/30">战友聚</span>
+            </div>
+            <h1 class="text-4xl font-serif font-bold tracking-widest mb-1">团队盛宴</h1>
+            <p class="text-sm opacity-80 font-light">共忆往昔峥嵘岁月 · 重温同窗情谊</p>
+        </div>
+    </header>
+
+    <!-- 2. Logistics Services: 特色服务 (PDF: 团队进园/送餐/移动餐厅) -->
+    <section class="px-5 mt-8 z-10 relative">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-serif font-bold text-ink-blue border-l-4 border-festive-red pl-3">保障服务</h2>
+            <span class="text-xs text-gray-400">一站式团建解决方案</span>
+        </div>
+
+        <div class="grid grid-cols-1 gap-4">
+            <!-- Item 1: 团队进园 (Logistics) -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex gap-4 items-center">
+                <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-bus"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-ink-blue">团队进园</h3>
+                    <p class="text-xs text-gray-500 mt-1">专属大巴停车位，绿色通道免排队，专业讲解员全程陪同。</p>
+                </div>
+                <i class="fa-solid fa-circle-check text-green-500 text-lg"></i>
+            </div>
+
+            <!-- Item 2: 移动餐厅 (Mobile Kitchen) -->
+            <div class="bg-gradient-to-r from-festive-red to-red-700 p-4 rounded-xl shadow-md flex gap-4 items-center text-white relative overflow-hidden">
+                <!-- 装饰 -->
+                <div class="absolute -right-4 -bottom-4 text-9xl text-white/10 rotate-12">
+                    <i class="fa-solid fa-truck-ramp-box"></i>
+                </div>
+
+                <div class="w-14 h-14 bg-white/20 backdrop-blur rounded-lg flex items-center justify-center text-2xl shrink-0 border border-white/30">
+                    <i class="fa-solid fa-fire-burner"></i>
+                </div>
+                <div class="flex-1 z-10">
+                    <h3 class="font-bold text-lg font-serif">移动餐厅</h3>
+                    <p class="text-xs text-white/80 mt-1">名厨现场烹饪，将热气腾腾的宴席搬到山水之间。</p>
+                </div>
+            </div>
+
+            <!-- Item 3: 团队送餐 (Delivery) -->
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex gap-4 items-center">
+                <div class="w-14 h-14 bg-yellow-50 text-yellow-600 rounded-lg flex items-center justify-center text-xl shrink-0">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-ink-blue">团队送餐</h3>
+                    <p class="text-xs text-gray-500 mt-1">定制便当/自助餐盒,准时送达指定景点,游玩用餐两不误。</p>
+                </div>
+                <i class="fa-solid fa-angle-right text-gray-300"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Menu Packages: 菜品展示 (Set Menus) -->
+    <section class="px-5 mt-8 z-10 relative">
+        <h2 class="text-xl font-serif font-bold text-ink-blue mb-4">精选团餐方案</h2>
+
+        <!-- Swiper Container -->
+        <div class="flex overflow-x-auto gap-4 hide-scrollbar pb-6 snap-x snap-mandatory">
+
+            <!-- Plan A: 忆苦思甜饭 (Nostalgia Theme) -->
+            <div class="snap-center shrink-0 w-[280px] bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-200 group">
+                <div class="h-32 bg-stone-200 relative">
+                    <img title="img" src="https://images.unsplash.com/photo-1541544741938-0af808871cc0?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    <div class="absolute top-2 left-2 bg-stone-800 text-white text-[10px] px-2 py-1 rounded">怀旧主题</div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-serif font-bold text-lg text-ink-blue">忆苦思甜·大锅菜</h3>
+                    <div class="my-3 flex flex-wrap gap-1">
+                        <span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">红薯面窝头</span>
+                        <span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">南瓜汤</span>
+                        <span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">大烩菜</span>
+                    </div>
+                    <div class="flex items-end justify-between border-t border-gray-100 pt-3">
+                        <div>
+                            <span class="text-xs text-gray-400">人均</span>
+                            <span class="text-festive-red font-bold text-xl">¥38</span>
+                        </div>
+                        <button class="text-xs bg-ink-blue text-white px-3 py-1.5 rounded-full">查看菜单</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan B: 欢聚一堂 (Reunion Theme) -->
+            <div class="snap-center shrink-0 w-[280px] bg-white rounded-2xl overflow-hidden shadow-lg border-2 border-festive-red/20 relative">
+                 <div class="absolute top-0 right-0 bg-festive-red text-white text-[10px] px-3 py-1 rounded-bl-lg font-bold z-20">热选</div>
+                <div class="h-32 bg-red-50 relative">
+                    <img title="img" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <h3 class="font-serif font-bold text-lg text-ink-blue">欢聚一堂·八大碗</h3>
+                    <div class="my-3 flex flex-wrap gap-1">
+                        <span class="text-[10px] bg-red-50 text-red-500 px-1.5 py-0.5 rounded">小酥肉</span>
+                        <span class="text-[10px] bg-red-50 text-red-500 px-1.5 py-0.5 rounded">黄河鲤鱼</span>
+                        <span class="text-[10px] bg-red-50 text-red-500 px-1.5 py-0.5 rounded">四喜丸子</span>
+                    </div>
+                    <div class="flex items-end justify-between border-t border-gray-100 pt-3">
+                        <div>
+                            <span class="text-xs text-gray-400">人均</span>
+                            <span class="text-festive-red font-bold text-xl">¥88</span>
+                        </div>
+                        <button class="text-xs bg-festive-red text-white px-3 py-1.5 rounded-full shadow-md">查看菜单</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plan C: 定制自助 (Buffet) -->
+            <div class="snap-center shrink-0 w-[280px] bg-white rounded-2xl overflow-hidden shadow-lg border border-stone-200">
+                <div class="h-32 bg-stone-200 relative">
+                    <img title="img" src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?q=80&w=400&auto=format&fit=crop" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <h3 class="font-serif font-bold text-lg text-ink-blue">户外冷餐·自助</h3>
+                    <div class="my-3 flex flex-wrap gap-1">
+                        <span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">精致西点</span>
+                        <span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">时令水果</span>
+                        <span class="text-[10px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500">烧烤BBQ</span>
+                    </div>
+                    <div class="flex items-end justify-between border-t border-gray-100 pt-3">
+                        <div>
+                            <span class="text-xs text-gray-400">人均</span>
+                            <span class="text-festive-red font-bold text-xl">¥128</span>
+                        </div>
+                        <button class="text-xs bg-ink-blue text-white px-3 py-1.5 rounded-full">查看菜单</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 4. CTA: 团体定制入口 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 flex items-center gap-4">
+        <div class="flex-1">
+            <p class="text-xs text-gray-400">20人以上团队</p>
+            <p class="text-sm font-bold text-ink-blue">专属客服一对一策划</p>
+        </div>
+        <div class="flex gap-2">
+             <button title="button" class="w-10 h-10 rounded-full bg-gray-100 text-ink-blue flex items-center justify-center">
+                <i class="fa-solid fa-phone"></i>
+            </button>
+            <button class="bg-festive-red text-white px-6 py-2 rounded-full font-bold shadow-lg flex items-center gap-2">
+                <i class="fa-regular fa-clipboard"></i>
+                定制方案
+            </button>
+        </div>
+    </div>
+
+</body>
+</html>

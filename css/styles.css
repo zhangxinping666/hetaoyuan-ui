@@ -3341,3 +3341,654 @@
     height: 20px;
 }
 
+
+/* ========================================
+   文艺创作 - 数字书房
+   Literary Creation - Digital Study
+======================================== */
+
+/* 页面容器 */
+.lc-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #F7F4ED 0%, #FAF8F3 100%);
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(192, 72, 81, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(62, 78, 94, 0.03) 0%, transparent 50%);
+    padding-bottom: 80px;
+}
+
+/* ========== 顶部导航 ========== */
+.lc-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(135deg, #3E4E5E 0%, #4A5A6A 100%);
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lc-back {
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lc-back:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.lc-back svg {
+    width: 20px;
+    height: 20px;
+}
+
+.lc-header__title-group {
+    flex: 1;
+}
+
+.lc-header__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 2px 0;
+    letter-spacing: 2px;
+}
+
+.lc-header__subtitle {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+/* ========== 每日一赏 ========== */
+.lc-daily-feature {
+    margin: 20px 16px;
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
+
+.lc-daily__container {
+    text-align: center;
+}
+
+.lc-daily__date {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: var(--ink-blue);
+    margin-bottom: 16px;
+    opacity: 0.7;
+}
+
+.lc-daily__artwork {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 16px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.lc-daily__artwork img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.lc-daily__seal {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+}
+
+.lc-seal {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.lc-daily__caption {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    color: var(--ink-blue);
+    margin: 0;
+}
+
+/* ========== 板块通用样式 ========== */
+.lc-section {
+    margin: 0 16px 24px;
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.lc-section__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(62, 78, 94, 0.08);
+}
+
+.lc-section__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ink-blue);
+    letter-spacing: 1px;
+}
+
+.lc-section__more {
+    padding: 6px 12px;
+    border: 1px solid rgba(62, 78, 94, 0.2);
+    background: transparent;
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--ink-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.lc-section__more:hover {
+    background: rgba(62, 78, 94, 0.05);
+    border-color: var(--ink-blue);
+}
+
+/* ========== 阅读标签 ========== */
+.lc-tabs {
+    display: flex;
+    gap: 8px;
+}
+
+.lc-tab {
+    padding: 6px 16px;
+    border: 1px solid rgba(62, 78, 94, 0.2);
+    background: transparent;
+    border-radius: 20px;
+    font-size: 13px;
+    color: var(--ink-blue);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Noto Serif SC', serif;
+}
+
+.lc-tab--active {
+    background: var(--ink-blue);
+    color: white;
+    border-color: var(--ink-blue);
+}
+
+.lc-tab:hover:not(.lc-tab--active) {
+    background: rgba(62, 78, 94, 0.05);
+}
+
+/* ========== 阅读内容 ========== */
+.lc-reading-content {
+    transition: all 0.3s ease;
+}
+
+.lc-reading-content--hidden {
+    display: none;
+}
+
+/* 经典名篇 - 线装书样式 */
+.lc-book-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lc-book-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: linear-gradient(135deg, #FFF9F0 0%, #FFFFFF 100%);
+    border-radius: 8px;
+    border-left: 4px solid var(--cinnabar);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lc-book-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.lc-book-item__spine {
+    width: 4px;
+    background: linear-gradient(180deg, var(--cinnabar) 0%, #A03841 100%);
+    border-radius: 2px;
+}
+
+.lc-book-item__content {
+    flex: 1;
+}
+
+.lc-book-item__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: var(--ink-blue);
+}
+
+.lc-book-item__author {
+    font-size: 13px;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 0 8px 0;
+}
+
+.lc-book-item__meta {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+}
+
+.lc-book-item__category {
+    color: var(--cinnabar);
+    background: rgba(192, 72, 81, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.lc-book-item__pages {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+/* 文学创作 - 瀑布流便签 */
+.lc-creation-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.lc-creation-card {
+    background: linear-gradient(135deg, #FFFEF8 0%, #FFFFFF 100%);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-top: 3px solid var(--cinnabar);
+}
+
+.lc-creation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.lc-creation-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.lc-creation-card__author {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-blue);
+}
+
+.lc-creation-card__time {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.lc-creation-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: var(--ink-blue);
+}
+
+.lc-creation-card__content {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 0 0 12px 0;
+}
+
+.lc-creation-card__footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lc-creation-card__like {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.lc-creation-card__like svg {
+    width: 14px;
+    height: 14px;
+}
+
+.lc-creation-card__like:hover {
+    background: rgba(192, 72, 81, 0.1);
+    color: var(--cinnabar);
+}
+
+/* ========== 书画展览 - 横向卷轴 ========== */
+.lc-scroll-container {
+    margin: 0 -20px;
+    padding: 0 20px;
+}
+
+.lc-gallery-scroll {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.lc-gallery-scroll::-webkit-scrollbar {
+    height: 3px;
+}
+
+.lc-gallery-scroll::-webkit-scrollbar-track {
+    background: rgba(62, 78, 94, 0.05);
+    border-radius: 1.5px;
+}
+
+.lc-gallery-scroll::-webkit-scrollbar-thumb {
+    background: var(--ink-blue);
+    border-radius: 1.5px;
+    opacity: 0.6;
+}
+
+.lc-gallery-card {
+    flex: 0 0 180px;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lc-gallery-card:hover {
+    transform: translateY(-4px);
+}
+
+.lc-gallery-card__frame {
+    width: 180px;
+    height: 240px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #f0f0f0;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 8px #F7F4ED,
+        inset 0 0 0 10px #4A3B32;
+    margin-bottom: 8px;
+}
+
+.lc-gallery-card__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lc-gallery-card__info {
+    padding: 0 4px;
+}
+
+.lc-gallery-card__type {
+    display: inline-block;
+    font-size: 10px;
+    color: var(--ink-blue);
+    background: rgba(62, 78, 94, 0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+}
+
+.lc-gallery-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: var(--ink-blue);
+}
+
+.lc-gallery-card__artist {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+/* ========== 音频播放器 - 黑胶唱片 ========== */
+.lc-audio-player {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lc-audio-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: linear-gradient(135deg, #F5F5F7 0%, #FFFFFF 100%);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lc-audio-card:hover {
+    background: linear-gradient(135deg, #EFEFEF 0%, #FFFFFF 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.lc-audio-card__vinyl {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.lc-vinyl {
+    animation: lc-vinyl-spin 3s linear infinite paused;
+}
+
+.lc-audio-card:hover .lc-vinyl {
+    animation-play-state: running;
+}
+
+@keyframes lc-vinyl-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.lc-audio-card__content {
+    flex: 1;
+    min-width: 0;
+}
+
+.lc-audio-card__title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 6px 0;
+    color: var(--ink-blue);
+}
+
+.lc-audio-card__meta {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    gap: 6px;
+}
+
+.lc-audio-card__play {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: var(--cinnabar);
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.lc-audio-card__play:hover {
+    background: #A03841;
+    transform: scale(1.1);
+}
+
+.lc-audio-card__play svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 2px;
+}
+
+/* ========== 悬浮创作按钮 ========== */
+.lc-fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: auto;
+    height: 56px;
+    padding: 0 24px;
+    background: linear-gradient(135deg, var(--cinnabar) 0%, #A03841 100%);
+    border: none;
+    border-radius: 28px;
+    box-shadow:
+        0 4px 12px rgba(192, 72, 81, 0.4),
+        0 2px 4px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Noto Serif SC', serif;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lc-fab:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 6px 16px rgba(192, 72, 81, 0.5),
+        0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lc-fab:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.lc-fab svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ========== 创作菜单（扇形） ========== */
+.lc-create-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    transition: all 0.3s ease;
+}
+
+.lc-create-menu--hidden {
+    pointer-events: none;
+}
+
+.lc-create-menu__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.lc-create-menu--hidden .lc-create-menu__backdrop {
+    opacity: 0;
+}
+
+.lc-create-menu__items {
+    position: absolute;
+    bottom: 90px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lc-create-menu--hidden .lc-create-menu__items {
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.lc-create-menu__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    background: white;
+    border: none;
+    border-radius: 28px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-blue);
+}
+
+.lc-create-menu__item:hover {
+    background: var(--ink-blue);
+    color: white;
+    transform: translateX(-4px);
+}
+
+.lc-create-menu__item svg {
+    width: 20px;
+    height: 20px;
+}
+

@@ -210,7 +210,13 @@ function renderServiceGrid() {
 function handleServiceClick(serviceId) {
     console.log('点击服务:', serviceId);
 
-    // 所有服务都显示开发中提示
+    // 特殊处理：一桌餐跳转到详情页
+    if (serviceId === 'one-table') {
+        openOneTableMeal();
+        return;
+    }
+
+    // 其他服务显示开发中提示
     alert('该服务页面开发中: ' + serviceId);
 }
 
@@ -224,6 +230,24 @@ function openBanpoDining() {
 function openBanpoTalks() {
     console.log('🏛️ 打开半坡讲谈详情页');
     loadSubPage('banpo-talks');
+}
+
+// 打开文艺创作详情页
+function openLiteraryCreation() {
+    console.log('📚 打开文艺创作详情页');
+    loadSubPage('literary-creation');
+}
+
+// 打开耕读有伴详情页
+function openFarmingReading() {
+    console.log('🌾 打开耕读有伴详情页');
+    loadSubPage('farming-reading');
+}
+
+// 打开一桌餐详情页
+function openOneTableMeal() {
+    console.log('🥢 打开一桌餐详情页');
+    loadSubPage('one-table-meal');
 }
 
 // ========== 半坡等闲弹窗控制 ==========
@@ -1171,6 +1195,9 @@ document.addEventListener("DOMContentLoaded", function () {
     window.goBack = goBack;
     window.openBanpoDining = openBanpoDining;
     window.openBanpoTalks = openBanpoTalks;
+    window.openLiteraryCreation = openLiteraryCreation;
+    window.openFarmingReading = openFarmingReading;
+    window.openOneTableMeal = openOneTableMeal;
 
     // 百农篇函数
     window.showLandmarkDetail = showLandmarkDetail;
