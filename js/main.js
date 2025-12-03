@@ -239,6 +239,27 @@ async function loadSubPage(pageName) {
 // ==========================================
 // 6. 导航与状态管理
 // ==========================================
+function showPage(pageName) {
+    console.log('🔄 显示页面:', pageName);
+    
+    // 如果是首页，直接显示
+    if (pageName === 'home') {
+        const screen = document.querySelector('.screen');
+        const allPages = screen.querySelectorAll('.page');
+        allPages.forEach(page => page.classList.remove('active'));
+        
+        const homePage = document.getElementById('home');
+        if (homePage) {
+            homePage.classList.add('active');
+        }
+        updateNavButtons('home');
+        return;
+    }
+    
+    // 其他页面使用 loadSubPage
+    loadSubPage(pageName);
+}
+
 function goBack() {
     const screen = document.querySelector('.screen');
     const currentPage = screen.querySelector('.page.active');
@@ -254,11 +275,7 @@ function goBack() {
 // 在 js/main.js 中找到 updateNavButtons 函数并替换：
 
 function updateNavButtons(pageName) {
-    // 1. 更新右侧悬浮原型导航 (Prototype Nav)
-    const navContainer = document.querySelector('.prototype-btn')?.parentElement;
-    
-    // 一级页面列表 (Bottom Tabs)
-    // 这些页面显示时，底部导航栏应该可见
+    // 一级页面列表 (Bottom Tabs) - 只有这些页面显示底部导航
     const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
 
     // 控制底部导航栏的显示/隐藏
@@ -267,11 +284,12 @@ function updateNavButtons(pageName) {
         if (rootPages.includes(pageName)) {
             bottomNav.style.display = 'flex'; // 显示
         } else {
-            bottomNav.style.display = 'none'; // 隐藏 (详情页)
+            bottomNav.style.display = 'none'; // 隐藏所有详情页
         }
     }
 
-    // --- 以下是右侧悬浮导航的更新逻辑 (保持不变) ---
+    // 更新右侧悬浮导航
+    const navContainer = document.querySelector('.prototype-btn')?.parentElement;
     if (navContainer) {
         const pageConfig = {
             home: { icon: 'home', title: '首页' },
@@ -301,6 +319,9 @@ function updateNavButtons(pageName) {
                 icon = pageConfig[pageName].icon;
             } else if (pageName === 'one-table-meal') { title = '一桌餐'; icon = 'utensils'; }
             else if (pageName === 'banpo-dining') { title = '半坡餐饮'; icon = 'utensils'; }
+            else if (pageName === 'banpo-talks') { title = '半坡讲坛'; icon = 'comments'; }
+            else if (pageName === 'literary-creation') { title = '文学创作'; icon = 'pen-fancy'; }
+            else if (pageName === 'farming-reading') { title = '耕读'; icon = 'book'; }
             else if (pageName === 'specialty') { title = '半坡特产'; icon = 'gift'; }
             else if (pageName === 'family-park') { title = '亲情乐园'; icon = 'smile'; }
             else if (pageName === 'event-planning') { title = '活动策划'; icon = 'scroll'; }
@@ -308,11 +329,6 @@ function updateNavButtons(pageName) {
             else if (pageName === 'team-meal') { title = '团队餐'; icon = 'users'; }
             else if (pageName === 'red-route') { title = '红色路线'; icon = 'flag'; }
             else if (pageName === 'leisure-tour') { title = '休闲游览'; icon = 'mountain'; }
-            // 加上其他一级页面的标题，以便在右侧导航也能看到
-            else if (pageName === 'discussion') { title = '悬空民宿'; icon = 'comments'; }
-            else if (pageName === 'classics') { title = '经典'; icon = 'book-open'; }
-            else if (pageName === 'customize') { title = '订单'; icon = 'paint-brush'; }
-            else if (pageName === 'profile') { title = '我的'; icon = 'user'; }
 
             const pageBtn = document.createElement('button');
             pageBtn.type = 'button';
@@ -322,8 +338,10 @@ function updateNavButtons(pageName) {
         }
     }
     
-    // 更新底部 Tab 栏高亮状态
-    updateNavActiveState(pageName);
+    // 更新底部 Tab 栏高亮状态（仅在显示时）
+    if (rootPages.includes(pageName)) {
+        updateNavActiveState(pageName);
+    }
 }
 function updateNavActiveState(pageId) {
     const navItems = document.querySelectorAll(".nav-item");
