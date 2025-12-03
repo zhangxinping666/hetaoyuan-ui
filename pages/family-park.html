@@ -1,0 +1,80 @@
+<div id="family-park" class="page h-full flex flex-col bg-[#FFFDF9] relative overflow-hidden font-sans text-[#455A64]">
+
+    <div class="absolute inset-0 pointer-events-none z-0 opacity-5" 
+         style="background-image: url('data:image/svg+xml,%3Csvg width=\'80\' height=\'80\' viewBox=\'0 0 80 80\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23FF8A65\' fill-opacity=\'1\'%3E%3Cpath d=\'M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10zm10 8c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8zm40 40c4.418 0 8-3.582 8-8s-3.582-8-8-8-8 3.582-8 8 3.582 8 8 8z\' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E')">
+    </div>
+
+    <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20">
+        <button title="button" onclick="goBack()" class="w-8 h-8 flex items-center justify-center bg-white/50 backdrop-blur-md rounded-full text-[#FF8A65] shadow-sm active:scale-95 transition-transform">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+        </button>
+        <button title="button" class="w-8 h-8 flex items-center justify-center bg-white/50 backdrop-blur-md rounded-full text-[#FF8A65] shadow-sm active:scale-95 transition-transform">
+            <i class="fa-solid fa-share-nodes text-sm"></i>
+        </button>
+    </header>
+
+    <div class="flex-1 overflow-y-auto pb-24 hide-scrollbar relative z-10">
+        
+        <div class="pt-16 pb-4 px-6 bg-gradient-to-b from-[#FF8A65]/10 to-transparent">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-3xl font-serif font-bold text-[#FF8A65]">亲情乐园</h1>
+                    <p class="text-xs text-gray-400 mt-1 font-serif tracking-widest">在这里，时间慢下来，爱流淌起来</p>
+                </div>
+                <div class="relative w-12 h-12">
+                    <i class="fa-solid fa-paper-plane text-4xl text-[#FF8A65] opacity-20 -rotate-12 absolute top-0 right-0 animate-bounce-slow"></i>
+                </div>
+            </div>
+
+            <div class="relative h-48 w-full rounded-[2rem] overflow-hidden shadow-lg shadow-[#FF8A65]/20">
+                <img title="img" src="https://images.unsplash.com/photo-1536337005238-94b997371b40?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover object-top">
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4 text-white">
+                    <p class="font-serif text-lg">“ 陪伴，是最长情的告白 ”</p>
+                </div>
+            </div>
+        </div>
+
+        <section class="px-6 mt-4 relative">
+            <div class="grid grid-cols-4 gap-3" id="fp-bonds-grid">
+                <div class="h-20 bg-stone-100 rounded-2xl animate-pulse"></div>
+                <div class="h-20 bg-stone-100 rounded-2xl animate-pulse delay-75"></div>
+                <div class="h-20 bg-stone-100 rounded-2xl animate-pulse delay-150"></div>
+                <div class="h-20 bg-stone-100 rounded-2xl animate-pulse delay-200"></div>
+            </div>
+        </section>
+
+        <section class="px-6 mt-8 relative">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-serif font-bold text-[#455A64] border-l-4 border-[#FF8A65] pl-3">温情体验</h2>
+                <span class="text-xs text-gray-400">创造共同记忆</span>
+            </div>
+
+            <div class="space-y-4" id="fp-projects-list">
+                <div class="h-24 bg-white rounded-2xl shadow-sm animate-pulse"></div>
+                <div class="h-24 bg-white rounded-2xl shadow-sm animate-pulse"></div>
+            </div>
+        </section>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between">
+        <div class="flex flex-col">
+            <span class="text-xs text-gray-400">家庭套票 (含午餐+体验)</span>
+            <div class="flex items-baseline gap-1">
+                <span class="text-xs text-[#FF8A65]">¥</span>
+                <span class="text-xl font-bold text-[#FF8A65]">298</span>
+                <span class="text-xs text-gray-400">/3人</span>
+            </div>
+        </div>
+        <button onclick="bookFamilyPackage()" class="bg-[#FF8A65] text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-orange-100 hover:bg-orange-600 transition-colors flex items-center gap-2 active:scale-95">
+            <i class="fa-regular fa-face-smile"></i>
+            一键预订
+        </button>
+    </div>
+
+</div>
+
+<style>
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .animate-bounce-slow { animation: bounce 3s infinite; }
+</style>

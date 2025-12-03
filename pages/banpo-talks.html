@@ -1,149 +1,73 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>半坡讲谈 - 掌上书院</title>
-    <link rel="stylesheet" href="../css/styles.css?v=20251202005">
-</head>
-<body>
-    <!-- 半坡讲谈页面 -->
-    <div class="bt-page">
-        <!-- 顶部导航 -->
-        <header class="bt-header">
-            <button title="button" class="bt-back" onclick="goBack()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                </svg>
-            </button>
-            <h1 class="bt-header__title">半坡讲谈</h1>
-            <div class="bt-header__subtitle">掌上书院</div>
-        </header>
+<div id="banpo-talks" class="page h-full flex flex-col bg-[#F9F7F2] relative overflow-hidden">
+    <header class="flex items-center justify-between px-4 py-3 bg-white/90 backdrop-blur-sm sticky top-0 z-20 border-b border-[#E8E4DC]">
+        <button title="button" onclick="goBack()" class="w-8 h-8 flex items-center justify-center text-[#3E4E5E] active:scale-95 transition-transform">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <div class="text-center">
+            <h1 class="text-lg font-bold text-[#3E4E5E] serif-title">半坡讲谈</h1>
+            <p class="text-[10px] text-[#888] tracking-widest uppercase">ACADEMY</p>
+        </div>
+        <button title="button" class="w-8 h-8 flex items-center justify-center text-[#3E4E5E]">
+            <i class="fas fa-bell"></i>
+        </button>
+    </header>
 
-        <!-- 每日一签 -->
-        <section class="bt-daily-wisdom">
-            <div class="bt-wisdom__container">
-                <div class="bt-wisdom__date" id="daily-date"></div>
-                <div class="bt-wisdom__text" id="daily-wisdom">
-                    学而时习之，不亦说乎
+    <div class="flex-1 overflow-y-auto pb-20 custom-scrollbar">
+        
+        <section class="p-4">
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-[#E8E4DC] relative overflow-hidden flex flex-col items-center text-center">
+                <div class="absolute -right-4 -top-4 text-[100px] text-[#C04851]/5 font-serif select-none">道</div>
+                <div class="text-xs text-[#C04851] tracking-[0.2em] mb-3" id="daily-date">日期加载中...</div>
+                <div class="text-xl font-bold text-[#3E4E5E] serif-title mb-2 leading-relaxed" id="daily-wisdom">
+                    ...
                 </div>
-                <div class="bt-wisdom__source">—— 《论语·学而》</div>
+                <div class="bt-wisdom__source text-xs text-gray-500"></div>
             </div>
         </section>
 
-        <!-- 四大板块导航 -->
-        <nav class="bt-academy">
-            <!-- 杏林馆 · 医学讲座 -->
-            <section class="bt-section bt-section--medical">
-                <div class="bt-section__header">
-                    <div class="bt-section__icon">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <path d="M24 8L28 16L36 18L30 26L32 36L24 32L16 36L18 26L12 18L20 16L24 8Z" 
-                                  fill="currentColor" opacity="0.2"/>
-                            <circle cx="24" cy="24" r="12" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="bt-section__title-group">
-                        <h2 class="bt-section__title">杏林馆</h2>
-                        <p class="bt-section__subtitle">医学讲座</p>
-                    </div>
-                    <button class="bt-section__more" onclick="showAllVideos()">
-                        更多 →
-                    </button>
-                </div>
+        <section class="mb-6 px-4">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-[#3E4E5E] border-l-4 border-[#C04851] pl-2">杏林馆 · 医学讲座</h3>
+                <button class="text-xs text-[#999]" onclick="showAllVideos()">全部 <i class="fas fa-angle-right ml-1"></i></button>
+            </div>
+            <div id="video-list"></div>
+        </section>
 
-                <!-- 视频列表 -->
-                <div class="bt-video-list" id="video-list">
-                    <!-- 视频卡片将由 JS 动态生成 -->
-                </div>
-            </section>
+        <section class="mb-6">
+            <div class="flex items-center justify-between px-4 mb-3">
+                <h3 class="font-bold text-[#3E4E5E] border-l-4 border-[#C04851] pl-2">墨香阁 · 书画课堂</h3>
+                <button class="text-xs text-[#999]" onclick="showAllArtworks()">全部 <i class="fas fa-angle-right ml-1"></i></button>
+            </div>
+            <div class="flex overflow-x-auto px-4 gap-3 pb-2 scrollbar-hide" id="artwork-scroll"></div>
+        </section>
 
-            <!-- 墨香阁 · 书画课堂 -->
-            <section class="bt-section bt-section--arts">
-                <div class="bt-section__header">
-                    <div class="bt-section__icon">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <path d="M12 8L36 8L36 40L12 40Z" stroke="currentColor" stroke-width="2"/>
-                            <path d="M18 16L30 16M18 24L30 24M18 32L26 32" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="bt-section__title-group">
-                        <h2 class="bt-section__title">墨香阁</h2>
-                        <p class="bt-section__subtitle">书画课堂</p>
-                    </div>
-                    <button class="bt-section__more" onclick="showAllArtworks()">
-                        更多 →
-                    </button>
-                </div>
+        <section class="mb-6 px-4">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-[#3E4E5E] border-l-4 border-[#C04851] pl-2">百草园 · 种植栽培</h3>
+                <button class="text-xs text-[#999]" onclick="showAllPlants()">全部 <i class="fas fa-angle-right ml-1"></i></button>
+            </div>
+            <div class="grid grid-cols-2 gap-3" id="garden-grid"></div>
+        </section>
 
-                <!-- 横向画卷滚动 -->
-                <div class="bt-scroll-container">
-                    <div class="bt-artwork-scroll" id="artwork-scroll">
-                        <!-- 作品卡片将由 JS 动态生成 -->
-                    </div>
-                </div>
-            </section>
+        <section class="px-4 mb-8">
+            <div class="flex items-center justify-between mb-3">
+                <h3 class="font-bold text-[#3E4E5E] border-l-4 border-[#C04851] pl-2">茶话会 · 畅谈互动</h3>
+                <button class="text-xs text-[#999]" onclick="showAllTopics()">全部 <i class="fas fa-angle-right ml-1"></i></button>
+            </div>
+            <div id="topic-list"></div>
+        </section>
 
-            <!-- 百草园 · 种植栽培 -->
-            <section class="bt-section bt-section--garden">
-                <div class="bt-section__header">
-                    <div class="bt-section__icon">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <path d="M24 12C24 12 18 18 18 24C18 28 20 32 24 32C28 32 30 28 30 24C30 18 24 12 24 12Z" 
-                                  stroke="currentColor" stroke-width="2"/>
-                            <path d="M24 32L24 40M20 40L28 40" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="bt-section__title-group">
-                        <h2 class="bt-section__title">百草园</h2>
-                        <p class="bt-section__subtitle">种植栽培</p>
-                    </div>
-                    <button class="bt-section__more" onclick="showAllPlants()">
-                        更多 →
-                    </button>
-                </div>
-
-                <!-- 双列宫格 -->
-                <div class="bt-garden-grid" id="garden-grid">
-                    <!-- 植物卡片将由 JS 动态生成 -->
-                </div>
-            </section>
-
-            <!-- 茶话会 · 畅谈互动 -->
-            <section class="bt-section bt-section--chat">
-                <div class="bt-section__header">
-                    <div class="bt-section__icon">
-                        <svg viewBox="0 0 48 48" fill="none">
-                            <circle cx="24" cy="20" r="8" stroke="currentColor" stroke-width="2"/>
-                            <path d="M12 36C12 30 16 26 24 26C32 26 36 30 36 36" stroke="currentColor" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <div class="bt-section__title-group">
-                        <h2 class="bt-section__title">茶话会</h2>
-                        <p class="bt-section__subtitle">畅谈互动</p>
-                    </div>
-                    <button class="bt-section__more" onclick="showAllTopics()">
-                        更多 →
-                    </button>
-                </div>
-
-                <!-- 话题流 -->
-                <div class="bt-topic-list" id="topic-list">
-                    <!-- 话题卡片将由 JS 动态生成 -->
-                </div>
-            </section>
-        </nav>
-
-        <!-- 发起话题悬浮按钮 -->
-        <button class="bt-fab" onclick="createNewTopic()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 5v14M5 12h14"/>
-            </svg>
-            <span>提笔写字</span>
-        </button>
+        <div class="py-6 text-center text-gray-300">
+            <i class="fas fa-yin-yang text-2xl mb-2 opacity-50"></i>
+            <p class="text-[10px]">知行合一 · 止于至善</p>
+        </div>
     </div>
-
-    <script src="../js/banpo-talks.js?v=20251202001"></script>
-</body>
-</html>
-
+    
+    <button title="button" onclick="createNewTopic()" class="absolute bottom-6 right-6 w-14 h-14 bg-[#C04851] rounded-full shadow-xl flex items-center justify-center text-white active:scale-90 transition-transform z-30 group">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-6 h-6 group-hover:rotate-12 transition-transform">
+            <path d="M12 5v14M5 12h14"/>
+        </svg>
+    </button>
+</div>

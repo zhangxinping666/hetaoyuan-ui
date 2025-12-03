@@ -1,132 +1,92 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>核桃苑 - 一桌餐定制</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<div id="one-table-meal" class="page h-full flex flex-col bg-[#FAF9F6] relative overflow-hidden font-sans">
     
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'amber-gold': '#D4AF37',
-                        'cinnabar': '#C04851',
-                        'dark-wood': '#4E342E',
-                        'rice-paper': '#FAF9F6',
-                        'soup': '#FFECB3',
-                    },
-                    fontFamily: {
-                        'serif': ['"Songti SC"', '"SimSun"', 'serif'],
-                        'sans': ['"PingFang SC"', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'card': '0 8px 24px -6px rgba(78, 52, 46, 0.15)',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
-</head>
-<body class="bg-rice-paper text-dark-wood font-sans pb-24">
-
-    <!-- 1. Hero: 氛围营造 -->
-    <header class="relative h-72">
-        <img src="https://images.unsplash.com/photo-1574484284008-86d475d5d6d8?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover brightness-75">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-        
-        <!-- 顶部导航栏 -->
-        <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center text-white z-20">
-            <button onclick="goBack()" class="w-8 h-8 flex items-center justify-center bg-white/20 backdrop-blur rounded-full">
-                <i class="fa-solid fa-chevron-left text-sm"></i>
-            </button>
-            <span class="font-serif tracking-widest">半坡 · 宴</span>
-            <button class="w-8 h-8 flex items-center justify-center bg-white/20 backdrop-blur rounded-full">
-                <i class="fa-solid fa-share-nodes text-sm"></i>
-            </button>
-        </div>
-
-        <div class="absolute bottom-6 left-6 text-white z-10">
-            <div class="flex items-center gap-2 mb-2">
-                <span class="bg-cinnabar px-2 py-0.5 text-[10px] rounded font-bold">必吃榜</span>
-                <span class="text-xs tracking-wider opacity-90">非遗烹饪技艺</span>
-            </div>
-            <h1 class="text-3xl font-serif font-bold mb-1">半坡·一桌餐</h1>
-            <p class="text-xs text-white/70">寻古溯源 · 顺时而食</p>
-        </div>
+    <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center text-white z-20">
+        <button title="button" onclick="goBack()" class="w-8 h-8 flex items-center justify-center bg-black/20 backdrop-blur-md rounded-full active:scale-95 transition-transform">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+        </button>
+        <span class="font-serif tracking-widest text-shadow-sm opacity-0 md:opacity-100 transition-opacity">半坡 · 宴</span>
+        <button title="button" class="w-8 h-8 flex items-center justify-center bg-black/20 backdrop-blur-md rounded-full active:scale-95 transition-transform">
+            <i class="fa-solid fa-share-nodes text-sm"></i>
+        </button>
     </header>
 
-    <!-- 2. Tabs: 场景切换 -->
-    <section class="sticky top-0 z-30 bg-rice-paper pt-4 pb-2 px-6 shadow-sm">
-        <div class="bg-white p-1 rounded-full flex shadow-inner border border-stone-100">
-            <button class="flex-1 py-2 rounded-full bg-dark-wood text-white text-sm font-bold shadow-md transition-all">
-                家庭雅集
-            </button>
-            <button class="flex-1 py-2 rounded-full text-gray-500 text-sm font-bold hover:bg-stone-100 transition-all">
-                团队盛宴
-            </button>
-        </div>
-    </section>
-
-    <!-- 3. Dishes: 菜品展示 (Carousel) -->
-    <section class="mt-6">
-        <div class="px-6 mb-4 flex justify-between items-end">
-            <h2 class="text-xl font-serif font-bold flex items-center gap-2">
-                <i class="fa-solid fa-utensils text-amber-gold text-sm"></i> 经典菜式
-            </h2>
-            <span class="text-xs text-gray-400">滑动查看更多</span>
-        </div>
-
-        <div class="flex gap-4 overflow-x-auto px-6 hide-scrollbar pb-6 snap-x snap-mandatory" id="dishes-container">
-            <!-- 菜品由 JS 渲染 -->
-        </div>
-    </section>
-
-    <!-- 4. Service List: 服务清单 -->
-    <section class="px-6 mt-2">
-        <h2 class="text-xl font-serif font-bold mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-bell-concierge text-amber-gold text-sm"></i> 服务清单
-        </h2>
+    <div class="flex-1 overflow-y-auto pb-24 hide-scrollbar">
         
-        <div class="bg-white rounded-xl p-5 shadow-card border-t-2 border-amber-gold/30">
-            <div class="grid grid-cols-2 gap-y-6 gap-x-4" id="services-container">
-                <!-- 服务由 JS 渲染 -->
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-gray-100 flex items-center gap-2">
-                 <i class="fa-solid fa-circle-info text-gray-300 text-xs"></i>
-                 <p class="text-[10px] text-gray-400">如需定制团队横幅、投影仪等设备，请联系客服。</p>
+        <div class="relative h-72 shrink-0">
+            <img title="img" src="https://images.unsplash.com/photo-1574484284008-86d475d5d6d8?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover brightness-90">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-transparent to-black/40"></div>
+            
+            <div class="absolute bottom-4 left-6 z-10">
+                <div class="flex items-center gap-2 mb-2 animate-fade-in-up">
+                    <span class="bg-[#C04851] text-white px-2 py-0.5 text-[10px] rounded font-bold shadow-sm">必吃榜</span>
+                    <span class="text-xs tracking-wider text-[#4E342E]/80 font-bold bg-white/50 backdrop-blur px-2 py-0.5 rounded">非遗烹饪技艺</span>
+                </div>
+                <h1 class="text-3xl font-serif font-bold mb-1 text-[#4E342E]">半坡·一桌餐</h1>
+                <p class="text-xs text-[#4E342E]/70">寻古溯源 · 顺时而食</p>
             </div>
         </div>
-    </section>
-    
-    <!-- Spacer -->
-    <div class="h-8"></div>
 
-    <!-- 5. Booking Bar: 预订底栏 -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t px-6 py-3 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50">
+        <div class="sticky top-0 z-30 bg-[#FAF9F6] pt-2 pb-4 px-6">
+            <div class="bg-white p-1 rounded-full flex shadow-sm border border-stone-100" id="otm-tabs">
+                </div>
+        </div>
+
+        <section class="mt-2">
+            <div class="px-6 mb-4 flex justify-between items-end">
+                <h2 class="text-xl font-serif font-bold text-[#4E342E] flex items-center gap-2">
+                    <i class="fa-solid fa-utensils text-[#D4AF37] text-sm"></i> 经典菜式
+                </h2>
+                <span class="text-xs text-gray-400">滑动查看更多 <i class="fa-solid fa-angle-right ml-1"></i></span>
+            </div>
+
+            <div class="flex gap-4 overflow-x-auto px-6 hide-scrollbar pb-8 snap-x snap-mandatory min-h-[280px]" id="otm-dish-list">
+                <div class="w-full h-40 flex items-center justify-center">
+                    <i class="fa-solid fa-spinner fa-spin text-gray-300"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="px-6">
+            <h2 class="text-xl font-serif font-bold text-[#4E342E] mb-4 flex items-center gap-2">
+                <i class="fa-solid fa-bell-concierge text-[#D4AF37] text-sm"></i> 服务清单
+            </h2>
+            
+            <div class="bg-white rounded-xl p-5 shadow-[0_8px_24px_-6px_rgba(78,52,46,0.1)] border-t-2 border-[#D4AF37]/30">
+                <div class="grid grid-cols-2 gap-y-6 gap-x-4" id="otm-service-list">
+                    </div>
+                
+                <div class="mt-4 pt-3 border-t border-gray-100 flex items-start gap-2">
+                     <i class="fa-solid fa-circle-info text-gray-300 text-xs mt-0.5"></i>
+                     <p class="text-[10px] text-gray-400 leading-tight">如需定制团队横幅、投影仪等设备，或有忌口需求，请联系客服。</p>
+                </div>
+            </div>
+        </section>
+        
+        <div class="h-8"></div>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 py-3 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-40">
         <div>
             <p class="text-[10px] text-gray-400">套餐价格</p>
-            <div class="flex items-baseline gap-1 text-cinnabar">
+            <div class="flex items-baseline gap-1 text-[#C04851]">
                 <span class="text-xs">¥</span>
-                <span class="text-2xl font-bold font-serif">688</span>
-                <span class="text-xs text-gray-400 font-normal">/桌起 (6-8人)</span>
+                <span class="text-2xl font-bold font-serif transition-all duration-300" id="otm-price">688</span>
+                <span class="text-xs text-gray-400 font-normal" id="otm-unit">/桌起</span>
             </div>
         </div>
         
-        <button onclick="bookNow()" class="bg-dark-wood text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-black transition-colors flex items-center gap-2">
+        <button onclick="bookTable()" class="bg-[#4E342E] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-black active:scale-95 transition-all flex items-center gap-2">
             <span>立即预订</span>
             <i class="fa-solid fa-arrow-right text-xs"></i>
         </button>
     </div>
 
-    <script src="../js/one-table-meal.js"></script>
-</body>
-</html>
+</div>
 
+<style>
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .text-shadow-sm { text-shadow: 0 1px 2px rgba(0,0,0,0.5); }
+    .animate-fade-in-up { animation: fadeInUp 0.5s ease-out; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>

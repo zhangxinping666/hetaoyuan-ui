@@ -1,211 +1,91 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>核桃苑 - 休闲游览</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<div id="leisure-tour" class="page h-full flex flex-col bg-[#F0F4F8] relative overflow-hidden font-sans text-[#37474F]">
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'mineral-blue': '#607D8B',  /* 石青: 山水主色 */
-                        'mist-white': '#F0F4F8',    /* 云水白: 背景 */
-                        'ink-dark': '#37474F',      /* 墨黑: 文字 */
-                        'cinnabar': '#C04851',      /* 朱砂: 点缀 */
-                        'sand': '#D7CCC8',          /* 沙色: 路径线 */
-                    },
-                    fontFamily: {
-                        'serif': ['"Songti SC"', '"SimSun"', 'serif'],
-                        'sans': ['"PingFang SC"', 'sans-serif'],
-                    },
-                    backgroundImage: {
-                        'mountain-pattern': "url('data:image/svg+xml,%3Csvg width=\\'100\\' height=\\'20\\' viewBox=\\'0 0 100 20\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cpath d=\\'M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.374 1.949.786 2.965 1.23.635-1.554 1.348-2.686 2.148-3.414.07-.064.143-.125.219-.184-1.296-.917-2.18-2.126-2.584-3.489-.527.272-1.096.536-1.706.79C66.177 17.828 60.187 19 50 19c-10.35 0-16.59-1.25-25.755-4.966-.55-.223-1.09-.454-1.62-.687-.417 1.393-1.326 2.616-2.67 3.518.172.102.348.196.529.28.895.83 1.636 2.08 2.3 3.855zM50 0c-3.11 0-5.875.922-8.318 2.525C44.425 1.618 47.16 1 50 1s5.575.618 8.318 1.525C55.875.922 53.11 0 50 0zm0 4c-3.11 0-5.875.922-8.318 2.525C44.425 5.618 47.16 5 50 5s5.575.618 8.318 1.525C55.875 4.922 53.11 4 50 4zm0 4c-3.11 0-5.875.922-8.318 2.525C44.425 9.618 47.16 9 50 9s5.575.618 8.318 1.525C55.875 8.922 53.11 8 50 8z\\' fill=\\'%23607D8B\\' fill-opacity=\\'0.05\\' fill-rule=\\'evenodd\\'/%3E%3C/svg%3E')",
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    </style>
-</head>
-<body class="bg-mist-white text-ink-dark font-sans pb-24 relative">
+    <div class="absolute inset-0 pointer-events-none z-0 bg-repeat-x" 
+         style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'20\' viewBox=\'0 0 100 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.374 1.949.786 2.965 1.23.635-1.554 1.348-2.686 2.148-3.414.07-.064.143-.125.219-.184-1.296-.917-2.18-2.126-2.584-3.489-.527.272-1.096.536-1.706.79C66.177 17.828 60.187 19 50 19c-10.35 0-16.59-1.25-25.755-4.966-.55-.223-1.09-.454-1.62-.687-.417 1.393-1.326 2.616-2.67 3.518.172.102.348.196.529.28.895.83 1.636 2.08 2.3 3.855zM50 0c-3.11 0-5.875.922-8.318 2.525C44.425 1.618 47.16 1 50 1s5.575.618 8.318 1.525C55.875.922 53.11 0 50 0zm0 4c-3.11 0-5.875.922-8.318 2.525C44.425 5.618 47.16 5 50 5s5.575.618 8.318 1.525C55.875 4.922 53.11 4 50 4zm0 4c-3.11 0-5.875.922-8.318 2.525C44.425 9.618 47.16 9 50 9s5.575.618 8.318 1.525C55.875 8.922 53.11 8 50 8z\' fill=\'%23607D8B\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')">
+    </div>
 
-    <!-- 背景纹理 -->
-    <div class="fixed inset-0 bg-mountain-pattern pointer-events-none z-0"></div>
-
-    <!-- 1. Hero: 寄情山水 -->
-    <header class="relative h-80 z-10">
-        <!-- 视差背景图 -->
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-mist-white"></div>
-
-        <div class="absolute top-12 left-6 text-white drop-shadow-md">
-            <h1 class="text-4xl font-serif font-bold tracking-widest mb-2">休闲<br>游览</h1>
-            <div class="h-1 w-12 bg-white rounded-full"></div>
-            <p class="mt-4 text-sm font-light tracking-wider opacity-90 writing-vertical-rl h-24 border-l border-white/50 pl-2">
-                行到水穷处 · 坐看云起时
-            </p>
-        </div>
-
-        <!-- 浮动天气卡片 (温馨提示 part 1) -->
-        <div class="absolute bottom-4 right-4 bg-white/80 backdrop-blur rounded-xl p-3 shadow-lg flex items-center gap-3">
-            <div class="text-center">
-                <i class="fa-solid fa-cloud-sun text-mineral-blue text-xl"></i>
-                <p class="text-[10px] text-gray-500">今日</p>
-            </div>
-            <div class="border-l border-gray-300 pl-3">
-                <p class="text-lg font-bold text-ink-dark">22°C</p>
-                <p class="text-[10px] text-gray-500">适宜登山</p>
-            </div>
-        </div>
+    <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 text-white">
+        <button title="button" onclick="goBack()" class="w-8 h-8 flex items-center justify-center bg-black/10 backdrop-blur-md rounded-full active:scale-95 transition-transform">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+        </button>
+        <button title="button" class="w-8 h-8 flex items-center justify-center bg-black/10 backdrop-blur-md rounded-full active:scale-95 transition-transform">
+            <i class="fa-solid fa-share-nodes text-sm"></i>
+        </button>
     </header>
 
-    <!-- 2. Route Recommendation: 游览线路 (Timeline) -->
-    <section class="px-5 mt-6 z-10 relative">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-xl font-serif font-bold text-mineral-blue border-l-4 border-mineral-blue pl-3">推荐路线</h2>
-            <button class="text-xs bg-white px-3 py-1 rounded-full shadow-sm text-gray-500 flex items-center gap-1">
-                <i class="fa-solid fa-map"></i> 查看全图
-            </button>
-        </div>
-
-        <!-- Route A: 养生休闲 (Easy) -->
-        <div class="bg-white rounded-2xl p-5 shadow-md mb-6 relative overflow-hidden group">
-            <div class="absolute top-0 right-0 bg-green-100 text-green-700 text-[10px] px-2 py-1 rounded-bl-lg font-bold">全程平路 · 适宜长者</div>
-
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-10 h-10 rounded-full bg-green-50 flex items-center justify-center text-green-600 text-lg">
-                    <i class="fa-solid fa-person-walking"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg text-ink-dark">A线 · 康养漫步道</h3>
-                    <p class="text-xs text-gray-400">全程 1.5km · 约 40分钟</p>
-                </div>
+    <div class="flex-1 overflow-y-auto pb-24 hide-scrollbar relative z-10">
+        
+        <div class="relative h-80">
+            <img title="img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#F0F4F8]"></div>
+            
+            <div class="absolute top-16 left-6 text-white drop-shadow-md">
+                <h1 class="text-4xl font-serif font-bold tracking-widest mb-2">休闲<br>游览</h1>
+                <div class="h-1 w-12 bg-white rounded-full"></div>
+                <p class="mt-4 text-sm font-light tracking-wider opacity-90 writing-vertical-rl h-24 border-l border-white/50 pl-2">
+                    行到水穷处 · 坐看云起时
+                </p>
             </div>
 
-            <!-- 路线时间轴 -->
-            <div class="relative pl-2">
-                <!-- 连线 -->
-                <div class="absolute top-2 left-[5px] bottom-2 w-0.5 bg-sand"></div>
-
-                <!-- 站点 1 -->
-                <div class="relative flex items-center gap-4 mb-4">
-                    <div class="w-3 h-3 rounded-full bg-mineral-blue border-2 border-white shadow z-10"></div>
-                    <div class="flex-1 bg-gray-50 rounded-lg p-2 flex gap-3">
-                        <img src="https://images.unsplash.com/photo-1586798226058-295325983777?q=80&w=100&auto=format&fit=crop" class="w-12 h-12 rounded object-cover">
-                        <div>
-                            <h4 class="font-bold text-sm">半坡草堂</h4>
-                            <p class="text-[10px] text-gray-500">起点 · 参观书画展</p>
-                        </div>
-                    </div>
+            <div class="absolute bottom-4 right-4 bg-white/80 backdrop-blur rounded-xl p-3 shadow-lg flex items-center gap-3 animate-bounce-slow">
+                <div class="text-center">
+                    <i class="fa-solid fa-cloud-sun text-[#607D8B] text-xl"></i>
+                    <p class="text-[10px] text-gray-500">今日</p>
                 </div>
-
-                <!-- 站点 2 -->
-                <div class="relative flex items-center gap-4 mb-4">
-                    <div class="w-3 h-3 rounded-full bg-mineral-blue border-2 border-white shadow z-10"></div>
-                    <div class="flex-1 bg-gray-50 rounded-lg p-2 flex gap-3">
-                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=100&auto=format&fit=crop" class="w-12 h-12 rounded object-cover">
-                        <div>
-                            <h4 class="font-bold text-sm">志气林</h4>
-                            <p class="text-[10px] text-gray-500">负氧离子氧吧</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 站点 3 -->
-                <div class="relative flex items-center gap-4">
-                    <div class="w-3 h-3 rounded-full bg-cinnabar border-2 border-white shadow z-10"></div>
-                    <div class="flex-1 bg-gray-50 rounded-lg p-2 flex gap-3">
-                        <img src="https://images.unsplash.com/photo-1544979590-37e9b47cd705?q=80&w=100&auto=format&fit=crop" class="w-12 h-12 rounded object-cover">
-                        <div>
-                            <h4 class="font-bold text-sm">百果园</h4>
-                            <p class="text-[10px] text-gray-500">终点 · 采摘品尝</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="w-full mt-4 border border-mineral-blue text-mineral-blue rounded-full py-2 text-sm hover:bg-mineral-blue hover:text-white transition-colors">
-                选择此路线
-            </button>
-        </div>
-
-        <!-- Route B: 登高望远 (Hiking) -->
-        <div class="bg-white rounded-2xl p-5 shadow-md relative overflow-hidden opacity-90 grayscale hover:grayscale-0 transition-all">
-            <div class="absolute top-0 right-0 bg-gray-100 text-gray-500 text-[10px] px-2 py-1 rounded-bl-lg font-bold">登山台阶 · 体力要求</div>
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 text-lg">
-                    <i class="fa-solid fa-mountain-sun"></i>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg text-ink-dark">B线 · 关山探幽道</h3>
-                    <p class="text-xs text-gray-400">全程 3.0km · 约 1.5小时</p>
+                <div class="border-l border-gray-300 pl-3">
+                    <p class="text-lg font-bold text-[#37474F]">22°C</p>
+                    <p class="text-[10px] text-gray-500">适宜登山</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- 3. Tips: 温馨提示 (Card) -->
-    <section class="px-5 mt-6 mb-8 z-10 relative">
-        <div class="bg-[#FFF8E1] rounded-xl p-5 border border-orange-100 relative">
-            <!-- 别针装饰 -->
-            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-12 bg-gray-300 rounded-full opacity-50 z-0"></div>
-            <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-400 rounded-full z-10 shadow-sm"></div>
+        <section class="px-5 mt-6">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-serif font-bold text-[#607D8B] border-l-4 border-[#607D8B] pl-3">推荐路线</h2>
+                <button onclick="viewMap()" class="text-xs bg-white px-3 py-1 rounded-full shadow-sm text-gray-500 flex items-center gap-1 active:bg-gray-100 transition-colors">
+                    <i class="fa-solid fa-map"></i> 查看全图
+                </button>
+            </div>
 
-            <h3 class="font-serif font-bold text-orange-800 text-center mb-4 text-lg">
-                <i class="fa-regular fa-lightbulb mr-1"></i> 温馨提示
-            </h3>
+            <div id="lt-routes-list">
+                <div class="h-40 bg-white rounded-2xl shadow-sm animate-pulse mb-4"></div>
+                <div class="h-20 bg-white rounded-2xl shadow-sm animate-pulse"></div>
+            </div>
+        </section>
 
-            <div class="grid grid-cols-2 gap-4">
-                <div class="flex items-start gap-2">
-                    <i class="fa-solid fa-shirt text-orange-400 mt-1"></i>
-                    <div>
-                        <h4 class="font-bold text-xs text-orange-900">着装建议</h4>
-                        <p class="text-[10px] text-orange-800/70">建议穿着宽松透气的运动装及防滑鞋。</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-2">
-                    <i class="fa-solid fa-shield-cat text-orange-400 mt-1"></i>
-                    <div>
-                        <h4 class="font-bold text-xs text-orange-900">安全须知</h4>
-                        <p class="text-[10px] text-orange-800/70">山路崎岖，请勿进入未开发区域。</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-2">
-                    <i class="fa-solid fa-bus text-orange-400 mt-1"></i>
-                    <div>
-                        <h4 class="font-bold text-xs text-orange-900">交通接驳</h4>
-                        <p class="text-[10px] text-orange-800/70">园区观光车每15分钟一班，招手即停。</p>
-                    </div>
-                </div>
-                <div class="flex items-start gap-2">
-                    <i class="fa-solid fa-kit-medical text-orange-400 mt-1"></i>
-                    <div>
-                        <h4 class="font-bold text-xs text-orange-900">便民服务</h4>
-                        <p class="text-[10px] text-orange-800/70">游客中心免费提供登山杖和急救包。</p>
-                    </div>
+        <section class="px-5 mt-2 mb-8">
+            <div class="bg-[#FFF8E1] rounded-xl p-5 border border-orange-100 relative shadow-sm">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-12 bg-gray-300 rounded-full opacity-50 z-0"></div>
+                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-400 rounded-full z-10 shadow-sm"></div>
+
+                <h3 class="font-serif font-bold text-orange-800 text-center mb-4 text-lg flex justify-center items-center gap-2">
+                    <i class="fa-regular fa-lightbulb"></i> 温馨提示
+                </h3>
+                
+                <div class="grid grid-cols-2 gap-4" id="lt-tips-grid">
+                    <div class="h-10 bg-orange-100/50 rounded animate-pulse"></div>
+                    <div class="h-10 bg-orange-100/50 rounded animate-pulse"></div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-    <!-- 4. Booking Bar: 预约向导 -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50 flex items-center justify-between">
+    <div class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between border-t border-gray-100">
         <div class="flex flex-col">
              <span class="text-xs text-gray-400">为了更好的体验</span>
-             <span class="text-sm font-bold text-mineral-blue">建议提前预约金牌导游</span>
+             <span class="text-sm font-bold text-[#607D8B]">建议提前预约金牌导游</span>
         </div>
-        <button class="bg-mineral-blue text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-100 hover:bg-ink-dark transition-colors flex items-center gap-2">
+        <button onclick="bookGuide()" class="bg-[#607D8B] text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-100 hover:bg-[#37474F] transition-colors flex items-center gap-2 active:scale-95">
             <i class="fa-regular fa-calendar-check"></i>
             我要预订
         </button>
     </div>
 
-</body>
-</html>
+</div>
+
+<style>
+    .writing-vertical-rl { writing-mode: vertical-rl; text-orientation: upright; }
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .animate-bounce-slow { animation: bounce 3s infinite; }
+</style>

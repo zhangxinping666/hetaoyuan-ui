@@ -1,0 +1,80 @@
+<div id="event-planning" class="page h-full flex flex-col bg-[#FCFBF9] relative overflow-hidden font-sans text-[#2D2D2D]">
+
+    <div class="absolute inset-0 pointer-events-none z-0 opacity-5" 
+         style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M30 30c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4zm0-24c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4zm-24 24c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4zM6 6c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4z\' fill=\'%23D32F2F\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')">
+    </div>
+
+    <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 text-white">
+        <butto title="button" onclick="goBack()" class="w-8 h-8 flex items-center justify-center bg-black/20 backdrop-blur-md rounded-full active:scale-95 transition-transform">
+            <i class="fa-solid fa-chevron-left text-sm"></i>
+        </butto>
+        <button title="button"button class="w-8 h-8 flex items-center justify-center bg-black/20 backdrop-blur-md rounded-full active:scale-95 transition-transform">
+            <i class="fa-solid fa-share-nodes text-sm"></i>
+        </button>
+    </header>
+
+    <div class="flex-1 overflow-y-auto pb-24 hide-scrollbar relative z-10">
+        
+        <div class="relative h-72 overflow-hidden">
+            <img title="img" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#D32F2F]/90 via-[#D32F2F]/40 to-transparent mix-blend-multiply"></div>
+            
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white pt-8">
+                <div class="w-12 h-12 border border-white/40 rotate-45 flex items-center justify-center mb-6 animate-pulse-slow">
+                    <div class="w-10 h-10 border border-white/60 flex items-center justify-center">
+                        <span class="font-serif -rotate-45 text-xl">囍</span>
+                    </div>
+                </div>
+                <h1 class="text-4xl font-serif font-bold tracking-[0.2em] mb-2 text-shadow">良辰 · 美景</h1>
+                <p class="text-sm font-light tracking-widest opacity-90">定制您的专属高光时刻</p>
+            </div>
+        </div>
+
+        <section class="px-5 -mt-10 relative z-20">
+            <div class="space-y-6" id="ep-services-list">
+                <div class="h-64 bg-white rounded-2xl shadow-lg animate-pulse"></div>
+                <div class="h-64 bg-white rounded-2xl shadow-lg animate-pulse"></div>
+            </div>
+        </section>
+
+        <section class="px-5 mt-8 mb-8 relative">
+            <h2 class="text-lg font-serif font-bold text-[#2D2D2D] mb-4 text-center">—— 一站式服务流程 ——</h2>
+            
+            <div class="flex justify-between relative px-2">
+                <div class="absolute top-5 left-0 w-full h-0.5 bg-gray-200 -z-10"></div>
+                
+                <div class="w-full flex justify-between" id="ep-process-steps">
+                    <div class="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+                    <div class="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+                    <div class="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+                    <div class="w-10 h-10 bg-gray-200 rounded-full animate-pulse"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between border-t border-gray-100">
+        <div class="flex flex-col">
+            <span class="text-xs text-gray-400">有想法？</span>
+            <span class="text-sm font-bold text-[#2D2D2D]">金牌策划师免费出方案</span>
+        </div>
+        
+        <div class="flex gap-3">
+            <button title="button" onclick="callPlanner()" class="w-10 h-10 rounded-full bg-gray-100 text-[#2D2D2D] flex items-center justify-center hover:bg-gray-200 transition-colors">
+                 <i class="fa-solid fa-phone"></i>
+            </button>
+            <button onclick="submitRequest()" class="bg-[#D32F2F] text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-red-100 hover:bg-red-700 transition-colors flex items-center gap-2 active:scale-95">
+                <i class="fa-solid fa-paper-plane"></i>
+                提交需求
+            </button>
+        </div>
+    </div>
+
+</div>
+
+<style>
+    .hide-scrollbar::-webkit-scrollbar { display: none; }
+    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+    .animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+</style>
