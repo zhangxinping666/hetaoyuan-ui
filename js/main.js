@@ -129,107 +129,53 @@ function loadScript(url) {
 // 5. 核心路由控制器
 // ==========================================
 async function loadSubPage(pageName) {
-    console.log('🔄 路由跳转:', pageName);
     try {
-        // 1. 获取 HTML
-        const url = `pages/${pageName}.html`;
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('HTML加载失败');
-        const html = await response.text();
+        console.log('🔄 加载子页面:', pageName);
+        
         const screen = document.querySelector('.screen');
-
-        // 2. 页面切换
-        const allPages = screen.querySelectorAll('.page');
-        allPages.forEach(page => page.classList.remove('active'));
-
-        let targetPage = document.getElementById(pageName);
-        if (!targetPage) {
-            screen.insertAdjacentHTML('beforeend', html);
-            targetPage = document.getElementById(pageName);
+        if (!screen) {
+            console.error('❌ 找不到 .screen 容器');
+            return;
         }
 
+        // 1. 隐藏当前页面
+        const currentPage = screen.querySelector('.page.active');
+        if (currentPage) currentPage.classList.remove('active');
+
+        // 2. 检查页面是否已存在
+        let targetPage = document.getElementById(pageName);
         if (targetPage) {
             targetPage.classList.add('active');
-        } else {
-            const lastChild = screen.lastElementChild;
-            if (lastChild) lastChild.classList.add('active');
+            updateNavButtons(pageName);
+            return;
         }
 
-        // 3. 动态加载对应 JS 并初始化
+        // 3. 动态加载页面
+        const response = await fetch(`pages/${pageName}.html`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         
-        // --- 首页顶部四个 ---
-        if (pageName === 'bainong') {
-            await loadScript('js/bainong.js');
-            if (window.initBainongPage) window.initBainongPage();
-        } 
-        else if (pageName === 'guanshan') {
-            await loadScript('js/guanshan.js');
-            if (window.initGuanshanPage) window.initGuanshanPage();
-        } 
-        else if (pageName === 'huilong') {
-            await loadScript('js/huilong.js');
-            if (window.initHuilongPage) window.initHuilongPage();
-        } 
-        else if (pageName === 'kangzhan') {
-            await loadScript('js/kangzhan.js');
-            if (window.initKangzhanPage) window.initKangzhanPage();
-        } 
+        const html = await response.text();
         
-        // --- 首页滚动内容 ---
-        else if (pageName === 'banpo-dining') {
-            await loadScript('js/banpo-dining.js');
-            if (window.initBanpoDiningPage) window.initBanpoDiningPage();
-        }
-        else if (pageName === 'banpo-talks') {
-            await loadScript('js/banpo-talks.js');
-            if (window.initBanpoTalksPage) window.initBanpoTalksPage();
-        }
-        else if (pageName === 'literary-creation') {
-            await loadScript('js/literary-creation.js');
-            if (window.initLiteraryCreationPage) window.initLiteraryCreationPage();
-        }
-        else if (pageName === 'farming-reading') {
-            await loadScript('js/farming-reading.js');
-            if (window.initFarmingReadingPage) window.initFarmingReadingPage();
-        }
+        // 创建新页面容器并添加滚动样式
+        const newPage = document.createElement('div');
+        newPage.id = pageName;
+        newPage.className = 'page active';
+        newPage.style.height = '100%';
+        newPage.style.overflowY = 'auto';
+        newPage.style.overflowX = 'hidden';
+        newPage.style.webkitOverflowScrolling = 'touch';
+        newPage.innerHTML = html;
         
-        // --- 定制服务八大模块 ---
-        else if (pageName === 'one-table-meal') {
-            await loadScript('js/one-table-meal.js');
-            if (window.initOneTableMealPage) window.initOneTableMealPage();
-        }
-        else if (pageName === 'team-meal') {
-            await loadScript('js/team-meal.js');
-            if (window.initTeamMealPage) window.initTeamMealPage();
-        }
-        else if (pageName === 'leisure-tour') {
-            await loadScript('js/leisure-tour.js');
-            if (window.initLeisureTourPage) window.initLeisureTourPage();
-        }
-        else if (pageName === 'red-route') {
-            await loadScript('js/red-route.js');
-            if (window.initRedRoutePage) window.initRedRoutePage();
-        }
-        else if (pageName === 'specialty') {
-            await loadScript('js/specialty.js');
-            if (window.initSpecialtyPage) window.initSpecialtyPage();
-        }
-        else if (pageName === 'family-park') {
-            await loadScript('js/family-park.js');
-            if (window.initFamilyParkPage) window.initFamilyParkPage();
-        }
-        else if (pageName === 'event-planning') {
-            await loadScript('js/event-planning.js');
-            if (window.initEventPlanningPage) window.initEventPlanningPage();
-        }
-        else if (pageName === 'farming') {
-            await loadScript('js/farming.js');
-            if (window.initFarmingPage) window.initFarmingPage();
-        }
+        screen.appendChild(newPage);
+
+        // 加载对应的 JavaScript 文件
+        await loadPageScript(pageName);
 
         // 4. 更新底部导航状态
         updateNavButtons(pageName);
-        screen.scrollTop = 0;
+        
+        // 5. 确保页面滚动到顶部
+        newPage.scrollTop = 0;
 
     } catch (error) {
         console.error('❌ 加载页面失败:', error);

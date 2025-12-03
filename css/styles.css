@@ -2183,6 +2183,61 @@
 
 .bd-section-title {
     font-family: 'Noto Serif SC', serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink-blue);
+    flex: 1;
+}
+
+.section-header__link {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    color: var(--cinnabar);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.section-header__link:hover {
+    background: rgba(192, 72, 81, 0.1);
+    transform: translateX(-2px);
+}
+
+/* ========== 经典展示 - 雅致留白 ========== */
+
+/* 2x2 Grid 布局 - 去掉深色底座 */
+.lattice-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 12px; /* 增加间隙，让图片独立呼吸 */
+}
+
+/* 单个卡片 - 独立圆角矩形 */
+.lattice-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 12px; /* 圆角矩形 */
+    border: 1px solid rgba(192, 72, 81, 0.15); /* 极细淡金色边框 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.lattice-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 底图 */
+.lattice-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Noto Serif SC', serif;
     font-size: 22px;
     font-weight: 700;
     color: #5D4037;
@@ -3939,7 +3994,7 @@
     position: absolute;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    /* backdrop-filter: blur(4px); */
     opacity: 1;
     transition: opacity 0.3s ease;
 }
@@ -3991,4 +4046,5 @@
     width: 20px;
     height: 20px;
 }
+
 
