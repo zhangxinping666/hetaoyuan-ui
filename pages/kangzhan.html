@@ -11,7 +11,34 @@
       <i class="fas fa-star"></i>
     </div>
   </header>
+  <div id="kangzhan-modal"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+    onclick="window.closeKangzhanModal()">
+    <div class="bg-[#f4f1ea] rounded-lg w-full max-w-sm overflow-hidden shadow-2xl border-4 border-[#8B0000]"
+      onclick="event.stopPropagation()">
+      <div class="bg-[#8B0000] p-3 flex justify-between items-center text-white">
+        <h3 id="kz-modal-title" class="font-bold text-lg tracking-widest">详情</h3>
+        <button onclick="window.closeKangzhanModal()"
+          class="w-6 h-6 flex items-center justify-center rounded-full hover:bg-white/20 transition">✕</button>
+      </div>
 
+      <div class="relative h-48 bg-gray-200 border-b-2 border-[#d4cbb8]">
+        <img title="img" id="kz-modal-img" src="" class="w-full h-full object-cover" onerror="this.style.display='none'">
+      </div>
+
+      <div class="p-5">
+        <p id="kz-modal-desc" class="text-[#5d4037] text-sm leading-7 font-serif text-justify">
+          内容加载中...
+        </p>
+        <div class="mt-6 flex justify-center">
+          <button onclick="window.closeKangzhanModal()"
+            class="px-6 py-2 border border-[#8B0000] text-[#8B0000] rounded hover:bg-[#8B0000] hover:text-white transition text-sm">
+            关闭
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- 主体内容 -->
   <main class="kz-main">
     <!-- 核心人物区 - 耿风全家庭 -->

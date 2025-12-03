@@ -22,13 +22,28 @@
             <i class="fas fa-arrow-left"></i>
         </button>
     </div>
-
+    <div id="guanshan-detail-modal"
+        class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+        onclick="window.closeGuanshanDetail()">
+        <div class="bg-white rounded-xl w-full max-w-sm overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <div class="relative h-48 bg-gray-100">
+                <img title="img" id="gs-modal-img" src="" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                <button onclick="window.closeGuanshanDetail()"
+                    class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/30 text-white flex items-center justify-center">✕</button>
+            </div>
+            <div class="p-6">
+                <h3 id="gs-modal-title" class="text-xl font-bold text-gray-800 mb-2">标题</h3>
+                <p id="gs-modal-desc" class="text-gray-600 text-sm leading-relaxed">详情内容...</p>
+            </div>
+        </div>
+    </div>
     <!-- 主体内容 -->
     <main class="guanshan-main">
         <!-- 2. 仁山智水 - 太极双切 -->
         <section class="nature-section">
             <div class="nature-toggle">
-                <button type="button" class="nature-toggle__btn active" data-tab="mountain" onclick="switchNature('mountain')">
+                <button type="button" class="nature-toggle__btn active" data-tab="mountain"
+                    onclick="switchNature('mountain')">
                     <span class="nature-toggle__text">仁者乐山</span>
                     <div class="nature-toggle__brush"></div>
                 </button>
@@ -94,4 +109,3 @@
         </div>
     </div>
 </div>
-
