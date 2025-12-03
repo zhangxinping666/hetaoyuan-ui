@@ -513,7 +513,44 @@ function initializeApp() {
 
     console.log('✅ 应用初始化完成');
 }
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('scrollTrack');
+    const dotsContainer = document.getElementById('scrollDots');
 
+    if (!track || !dotsContainer) return;
+
+    const cards = track.querySelectorAll('.scroll-card');
+    const cardCount = cards.length;
+
+    // 1. 动态生成圆点
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < cardCount; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active'); // 默认第一个激活
+        dotsContainer.appendChild(dot);
+    }
+
+    const dots = dotsContainer.querySelectorAll('.dot');
+
+    // 2. 监听滚动事件，更新圆点
+    track.addEventListener('scroll', () => {
+        // 计算当前滚动到了第几个卡片
+        // scrollLeft + (卡片宽度的一半) / (卡片总宽度 + 间距)
+        const scrollLeft = track.scrollLeft;
+        const cardWidth = cards[0].offsetWidth + 12; // 卡片宽 + gap
+        const index = Math.round(scrollLeft / cardWidth);
+
+        // 更新圆点状态
+        dots.forEach((dot, i) => {
+            if (i === index) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    });
+});
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', initializeApp);
 
