@@ -278,18 +278,62 @@ const PAGE_TYPES = {
     ]
 };
 
-function showPage(pageName) {
-    if (PAGE_TYPES.STATIC.includes(pageName)) {
-        // 处理静态页面切换
-        showStaticPage(pageName);
-    } else if (PAGE_TYPES.DYNAMIC.includes(pageName)) {
-        // 处理动态页面加载
-        loadSubPage(pageName);
+function showPage(pageId) {
+    console.log('切换到页面:', pageId);
+
+    // 1. 隐藏所有页面
+    const allPages = document.querySelectorAll('.page');
+    allPages.forEach(page => {
+        page.classList.remove('active');
+        // 这里的 display: none 是为了防止隐藏的页面占位或干扰滚动
+        // 如果你的 CSS .page.active 已经处理了 display，这行可省略
+        // page.style.display = 'none'; 
+    });
+
+    // 2. 显示目标页面 (如果页面存在)
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        // targetPage.style.display = 'block';
+        targetPage.scrollTop = 0; // 切换时回到顶部
     } else {
-        console.warn('⚠️ 未知页面类型:', pageName);
+        // 如果页面不存在（还没写），临时动态生成一个占位，防止点击没反应
+        console.warn('页面不存在，生成临时占位:', pageId);
+        createPlaceholderPage(pageId);
     }
+
+    // 3. 更新底部 Tab 栏的高亮状态
+    updateBottomNav(pageId);
+}
+// 辅助：如果 HTML 里没写那个 div，自动生成一个（防止报错）
+function createPlaceholderPage(pageId) {
+    const screen = document.querySelector('.screen');
+    const newPage = document.createElement('div');
+    newPage.id = pageId;
+    newPage.className = 'page active';
+    newPage.innerHTML = `
+        <div class="h-full flex flex-col items-center justify-center text-gray-400">
+            <i class="fas fa-hammer text-4xl mb-4"></i>
+            <p>${pageId} 页面开发中...</p>
+        </div>
+    `;
+    screen.appendChild(newPage);
 }
 
+// 暴露给全局，不然 HTML onclick 找不到
+window.showPage = showPage;
+// 更新底部图标颜色
+function updateBottomNav(activePageId) {
+    // 移除所有高亮
+    const allNavItems = document.querySelectorAll('.nav-item');
+    allNavItems.forEach(item => item.classList.remove('active'));
+
+    // 添加当前高亮 (前提是你的 HTML 里 nav-item 的 id 是 "b-nav-xxx")
+    const targetNav = document.getElementById(`b-nav-${activePageId}`);
+    if (targetNav) {
+        targetNav.classList.add('active');
+    }
+}
 function showStaticPage(pageName) {
     const screen = document.querySelector('.screen');
     if (!screen) {
