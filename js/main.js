@@ -69,7 +69,7 @@ function renderServiceGrid() {
 
 function handleServiceClick(serviceId) {
     console.log('点击服务:', serviceId);
-    
+
     // 映射表：服务ID -> HTML/JS文件名
     const routeMap = {
         'one-table': 'one-table-meal',
@@ -124,14 +124,24 @@ function loadScript(url) {
         document.body.appendChild(script);
     });
 }
-
+async function loadPageScript(pageName) {
+    try {
+        // 尝试加载对应的 JavaScript 文件
+        const scriptUrl = `js/${pageName}.js`;
+        await loadScript(scriptUrl);
+        console.log(`✅ 页面脚本加载成功: ${pageName}`);
+    } catch (error) {
+        // 如果没有对应的 JS 文件，不报错，只是记录
+        console.log(`ℹ️ 页面 ${pageName} 没有对应的 JS 文件，跳过加载`);
+    }
+}
 // ==========================================
 // 5. 核心路由控制器
 // ==========================================
 async function loadSubPage(pageName) {
     try {
         console.log('🔄 加载动态页面:', pageName);
-        
+
         const screen = document.querySelector('.screen');
         if (!screen) {
             console.error('❌ 找不到 .screen 容器');
@@ -160,10 +170,10 @@ async function loadSubPage(pageName) {
 
         // 动态加载页面
         const response = await fetch(`pages/${pageName}.html`);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
+        if (!response.ok) throw new Error(`页面文件不存在: pages/${pageName}.html`);
+
         const html = await response.text();
-        
+
         // 创建新页面容器
         const newPage = document.createElement('div');
         newPage.id = pageName;
@@ -175,20 +185,23 @@ async function loadSubPage(pageName) {
             -webkit-overflow-scrolling: touch;
         `;
         newPage.innerHTML = html;
-        
+
         screen.appendChild(newPage);
 
-        // 加载对应的 JavaScript 文件
+        // 尝试加载对应的 JavaScript 文件（可选）
         await loadPageScript(pageName);
 
         // 更新导航状态
         updateNavButtons(pageName);
-        
+
         // 确保页面滚动到顶部
         newPage.scrollTop = 0;
 
+        console.log(`✅ 页面加载成功: ${pageName}`);
+
     } catch (error) {
         console.error('❌ 加载页面失败:', error);
+        alert(`页面加载失败: ${error.message}`);
         // 回退到首页
         showStaticPage('home');
     }
@@ -196,7 +209,7 @@ async function loadSubPage(pageName) {
 
 function showStaticPage(pageName) {
     console.log('📄 切换静态页面:', pageName);
-    
+
     const screen = document.querySelector('.screen');
     if (!screen) {
         console.error('❌ 找不到 .screen 容器');
@@ -206,7 +219,7 @@ function showStaticPage(pageName) {
     // 控制底部导航显示
     const bottomNav = document.querySelector('.bottom-nav');
     const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
-    
+
     if (bottomNav) {
         if (rootPages.includes(pageName)) {
             bottomNav.style.display = 'flex';
@@ -252,7 +265,7 @@ const PAGE_TYPES = {
     // 动态页面 - 需要从 pages/ 目录加载
     DYNAMIC: [
         'bainong', 'guanshan', 'huilong', 'kangzhan',
-        'one-table-meal', 'team-meal', 'specialty', 'event-planning', 
+        'one-table-meal', 'team-meal', 'specialty', 'event-planning',
         'farming', 'family-park', 'leisure-tour', 'red-route',
         'banpo-dining', 'banpo-talks', 'literary-creation', 'farming-reading'
     ]
@@ -260,7 +273,7 @@ const PAGE_TYPES = {
 
 function showPage(pageName) {
     console.log('🔄 显示页面:', pageName);
-    
+
     if (PAGE_TYPES.STATIC.includes(pageName)) {
         // 处理静态页面切换
         showStaticPage(pageName);
@@ -274,7 +287,7 @@ function showPage(pageName) {
 
 function showStaticPage(pageName) {
     console.log('📄 切换静态页面:', pageName);
-    
+
     const screen = document.querySelector('.screen');
     if (!screen) {
         console.error('❌ 找不到 .screen 容器');
@@ -284,7 +297,7 @@ function showStaticPage(pageName) {
     // 控制底部导航显示
     const bottomNav = document.querySelector('.bottom-nav');
     const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
-    
+
     if (bottomNav) {
         if (rootPages.includes(pageName)) {
             bottomNav.style.display = 'flex';
@@ -322,7 +335,7 @@ function showStaticPage(pageName) {
 async function loadSubPage(pageName) {
     try {
         console.log('🔄 加载动态页面:', pageName);
-        
+
         const screen = document.querySelector('.screen');
         if (!screen) {
             console.error('❌ 找不到 .screen 容器');
@@ -352,9 +365,9 @@ async function loadSubPage(pageName) {
         // 动态加载页面
         const response = await fetch(`pages/${pageName}.html`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        
+
         const html = await response.text();
-        
+
         // 创建新页面容器
         const newPage = document.createElement('div');
         newPage.id = pageName;
@@ -366,7 +379,7 @@ async function loadSubPage(pageName) {
             -webkit-overflow-scrolling: touch;
         `;
         newPage.innerHTML = html;
-        
+
         screen.appendChild(newPage);
 
         // 加载对应的 JavaScript 文件
@@ -374,7 +387,7 @@ async function loadSubPage(pageName) {
 
         // 更新导航状态
         updateNavButtons(pageName);
-        
+
         // 确保页面滚动到顶部
         newPage.scrollTop = 0;
 
@@ -487,16 +500,24 @@ function goBack() {
 // 页面初始化
 function initializeApp() {
     console.log('🚀 应用初始化');
-    
+
     // 确保首页激活
     showStaticPage('home');
-    
+
     // 渲染首页内容
     renderLatticeGrid();
     renderServiceGrid();
-    
+
     console.log('✅ 应用初始化完成');
 }
 
 // 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', initializeApp);
+
+// 暴露函数给 HTML 行内 onclick 使用
+window.handleCategoryClick = handleCategoryClick;
+window.handleServiceClick = handleServiceClick;
+window.loadSubPage = loadSubPage; // 如果有其他地方用到也建议暴露
+window.goBack = goBack; // 导航栏按钮也会用到这个
+
 document.addEventListener('DOMContentLoaded', initializeApp);
