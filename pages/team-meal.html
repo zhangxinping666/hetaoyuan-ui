@@ -131,20 +131,22 @@
             </div>
         </section>
     </div>
-
     <div
-        class="absolute bottom-0 left-0 right-0 bg-white px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between border-t border-gray-100">
+        class="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 pt-4 pb-8 flex items-center justify-between shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-50">
+
         <div class="flex flex-col">
-            <span class="text-xs text-gray-400">有特殊需求？</span>
+            <span class="text-[10px] text-gray-400">有特殊需求？</span>
             <span class="text-sm font-bold text-[#3E4E5E]">联系经理一对一定制</span>
         </div>
+
         <div class="flex gap-3">
             <a href="tel:0371-1234567"
-                class="w-11 h-11 rounded-full bg-[#F9F7F2] text-[#C04851] flex items-center justify-center border border-[#C04851]/20 active:scale-95">
+                class="w-11 h-11 rounded-full bg-[#F9F7F2] text-[#C04851] flex items-center justify-center border border-[#C04851]/20 active:scale-95 transition-transform shadow-sm">
                 <i class="fas fa-phone-alt"></i>
             </a>
+
             <button onclick="alert('已提交定制需求，客户经理将尽快与您联系！')"
-                class="bg-gradient-to-r from-[#C04851] to-[#A03841] text-white px-6 py-2.5 rounded-full font-bold shadow-md shadow-red-100 active:scale-95 transition-transform flex items-center gap-2">
+                class="bg-gradient-to-r from-[#C04851] to-[#A03841] text-white px-5 py-2.5 rounded-full font-bold shadow-lg shadow-red-100 active:scale-95 transition-transform flex items-center gap-2 text-sm">
                 <i class="fas fa-clipboard-list"></i>
                 提交需求
             </button>

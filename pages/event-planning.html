@@ -59,21 +59,23 @@
     </div>
 
     <div
-        class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between border-t border-gray-100">
+        class="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 pt-4 pb-8 flex items-center justify-between shadow-[0_-4px_20px_rgba(211,47,47,0.08)] z-50">
+
         <div class="flex flex-col">
-            <span class="text-xs text-gray-400">有想法？</span>
+            <span class="text-[10px] text-gray-400">有想法？</span>
             <span class="text-sm font-bold text-[#2D2D2D]">金牌策划师免费出方案</span>
         </div>
 
         <div class="flex gap-3">
-            <button title="button" onclick="callPlanner()"
-                class="w-10 h-10 rounded-full bg-gray-100 text-[#2D2D2D] flex items-center justify-center hover:bg-gray-200 transition-colors">
-                <i class="fa-solid fa-phone"></i>
+            <button title="联系策划师" onclick="callPlanner()"
+                class="w-11 h-11 rounded-full bg-gray-50 text-[#2D2D2D] border border-gray-200 flex items-center justify-center hover:bg-white hover:border-[#D32F2F] hover:text-[#D32F2F] transition-all shadow-sm active:scale-95">
+                <i class="fa-solid fa-phone text-sm"></i>
             </button>
+
             <button onclick="submitRequest()"
-                class="bg-[#D32F2F] text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-red-100 hover:bg-red-700 transition-colors flex items-center gap-2 active:scale-95">
-                <i class="fa-solid fa-paper-plane"></i>
-                提交需求
+                class="bg-[#D32F2F] text-white px-6 py-2.5 rounded-full font-bold shadow-lg shadow-red-200 hover:bg-[#B71C1C] transition-all flex items-center gap-2 active:scale-95">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                <span class="text-sm">提交需求</span>
             </button>
         </div>
     </div>

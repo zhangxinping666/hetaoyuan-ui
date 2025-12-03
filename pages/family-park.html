@@ -59,17 +59,19 @@
     </div>
 
     <div
-        class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between">
+        class="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-orange-100 px-6 pt-4 pb-8 flex items-center justify-between shadow-[0_-4px_20px_rgba(255,138,101,0.1)] z-50">
+
         <div class="flex flex-col">
-            <span class="text-xs text-gray-400">家庭套票 (含午餐+体验)</span>
-            <div class="flex items-baseline gap-1">
-                <span class="text-xs text-[#FF8A65]">¥</span>
-                <span class="text-xl font-bold text-[#FF8A65]">298</span>
-                <span class="text-xs text-gray-400">/3人</span>
+            <span class="text-[10px] text-gray-400">家庭套票 (含午餐+体验)</span>
+            <div class="flex items-baseline gap-1 text-[#FF8A65]">
+                <span class="text-xs font-medium">¥</span>
+                <span class="text-2xl font-bold font-serif leading-none">298</span>
+                <span class="text-xs text-gray-400 font-normal">/3人</span>
             </div>
         </div>
+
         <button onclick="bookFamilyPackage()"
-            class="bg-[#FF8A65] text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-orange-100 hover:bg-orange-600 transition-colors flex items-center gap-2 active:scale-95">
+            class="bg-[#FF8A65] text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-[#FF8A65]/30 hover:bg-[#F4511E] active:scale-95 transition-all flex items-center gap-2">
             <i class="fa-regular fa-face-smile"></i>
             一键预订
         </button>
