@@ -1,24 +1,24 @@
 <div id="red-route" class="page h-full flex flex-col bg-[#F5F5F4] relative overflow-hidden font-sans text-[#44403C]">
-
-    <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 text-white">
-        <button title="button" onclick="goBack()" class="w-8 h-8 flex items-center justify-center bg-black/20 backdrop-blur-md rounded-full active:scale-95 transition-transform">
-            <i class="fa-solid fa-chevron-left text-sm"></i>
+    <div class="page-header"
+        style="position: sticky; top: 0; z-index: 50; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <button type="button" class="page-header__back" onclick="goBack()" aria-label="返回">
+            <i class="fas fa-arrow-left"></i>
         </button>
-        <span class="font-serif tracking-widest text-shadow opacity-90">红色 · 足迹</span>
-        <button title="button" class="w-8 h-8 flex items-center justify-center bg-black/20 backdrop-blur-md rounded-full active:scale-95 transition-transform">
-            <i class="fa-solid fa-share-nodes text-sm"></i>
-        </button>
-    </header>
-
+        <h1 class="page-header__title">红色 · 足迹</h1>
+        <div class="page-header__placeholder"></div>
+    </div>
     <div class="flex-1 overflow-y-auto pb-24 hide-scrollbar relative z-10">
-        
+
         <div class="relative h-72 bg-[#1C1917] text-white overflow-hidden rounded-b-[2rem] shadow-2xl">
-            <img title="img" src="https://images.unsplash.com/photo-1533236392063-ce267923707c?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover opacity-60 mix-blend-overlay">
-            
+            <img title="img"
+                src="https://images.unsplash.com/photo-1533236392063-ce267923707c?q=80&w=800&auto=format&fit=crop"
+                class="w-full h-full object-cover opacity-60 mix-blend-overlay">
+
             <div class="absolute inset-0 bg-gradient-to-br from-[#B71C1C]/80 to-[#1C1917]/90"></div>
-            
+
             <div class="absolute inset-0 flex flex-col items-center justify-center pt-8 text-center">
-                <div class="w-16 h-16 border-2 border-[#FFD700] rounded-full flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(255,215,0,0.3)] animate-pulse-slow">
+                <div
+                    class="w-16 h-16 border-2 border-[#FFD700] rounded-full flex items-center justify-center mb-4 shadow-[0_0_15px_rgba(255,215,0,0.3)] animate-pulse-slow">
                     <i class="fa-solid fa-star text-3xl text-[#FFD700]"></i>
                 </div>
                 <h1 class="text-3xl font-serif font-bold tracking-[0.2em] mb-2 text-shadow-lg">红色路线</h1>
@@ -28,33 +28,40 @@
         </div>
 
         <section class="px-6 mt-8 relative">
-            <div class="absolute left-9 top-0 bottom-0 w-0.5 bg-stone-300/50 z-0"></div> <div id="rr-timeline-list">
+            <div class="absolute left-9 top-0 bottom-0 w-0.5 bg-stone-300/50 z-0"></div>
+            <div id="rr-timeline-list">
                 <div class="h-32 bg-white rounded-lg shadow-sm animate-pulse mb-6 ml-8"></div>
                 <div class="h-32 bg-white rounded-lg shadow-sm animate-pulse mb-6 ml-8"></div>
             </div>
         </section>
 
         <section class="px-6 mt-2 mb-8 relative">
-            <div class="bg-[#292524] rounded-xl p-6 text-center text-white relative overflow-hidden shadow-inner border border-stone-700">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent opacity-50"></div>
-                
+            <div
+                class="bg-[#292524] rounded-xl p-6 text-center text-white relative overflow-hidden shadow-inner border border-stone-700">
+                <div
+                    class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#FFD700] to-transparent opacity-50">
+                </div>
+
                 <i class="fa-solid fa-wreath text-4xl text-stone-500 mb-3 block opacity-50"></i>
                 <h3 class="font-serif font-bold text-xl mb-1 tracking-wide">云端献花</h3>
                 <p class="text-xs text-stone-400 mb-5 font-mono" id="flower-counter">正在统计人数...</p>
-                
-                <button id="flower-btn" onclick="offerFlower()" class="bg-[#D32F2F] hover:bg-red-700 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-red-900/50 transition-all active:scale-95 flex items-center justify-center gap-2 mx-auto ring-1 ring-white/10">
+
+                <button id="flower-btn" onclick="offerFlower()"
+                    class="bg-[#D32F2F] hover:bg-red-700 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-red-900/50 transition-all active:scale-95 flex items-center justify-center gap-2 mx-auto ring-1 ring-white/10">
                     <i class="fa-solid fa-flower-tulip"></i> 敬献鲜花
                 </button>
             </div>
         </section>
     </div>
 
-    <div class="absolute bottom-0 left-0 right-0 bg-[#1C1917] border-t border-stone-800 px-6 py-4 z-30 flex items-center justify-between shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
+    <div
+        class="absolute bottom-0 left-0 right-0 bg-[#1C1917] border-t border-stone-800 px-6 py-4 z-30 flex items-center justify-between shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
         <div>
             <p class="text-[10px] text-stone-400">红色教育基地</p>
             <p class="text-sm font-bold text-stone-200">支持党支部/团队预约讲解</p>
         </div>
-        <button onclick="bookGroupVisit()" class="bg-[#FFD700] text-[#1C1917] px-6 py-2.5 rounded-full font-bold shadow-lg hover:bg-yellow-400 transition-colors flex items-center gap-2 active:scale-95">
+        <button onclick="bookGroupVisit()"
+            class="bg-[#FFD700] text-[#1C1917] px-6 py-2.5 rounded-full font-bold shadow-lg hover:bg-yellow-400 transition-colors flex items-center gap-2 active:scale-95">
             <i class="fa-solid fa-flag"></i>
             预约参观
         </button>
@@ -63,11 +70,40 @@
 </div>
 
 <style>
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .text-shadow { text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-    .text-shadow-lg { text-shadow: 0 4px 8px rgba(0,0,0,0.6); }
-    .animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-    .animate-fade-in-up { animation: fadeInUp 0.6s ease-out backwards; }
-    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .animate-pulse-slow {
+        animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .animate-fade-in-up {
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>

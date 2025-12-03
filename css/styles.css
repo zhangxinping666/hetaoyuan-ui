@@ -463,7 +463,7 @@
 
 .discussion-scroll__indicator {
     width: 6px;
-    height: 6px;
+    height: 3px;
     background: rgba(62, 78, 94, 0.2);
     border-radius: 50%;
     transition: all 0.3s ease;
@@ -483,8 +483,8 @@
 /* 横向滚动容器 */
 .discussion-scroll__track {
     display: flex;
-    gap: 12px;
-    padding: 0 16px 12px 16px; /* 底部留出滚动条空间 */
+    gap: 10px;
+    padding: 0 10px 8px 10px; /* 底部留出滚动条空间 */
     overflow-x: scroll; /* 强制显示滚动条 */
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
@@ -494,32 +494,46 @@
     z-index: 1;
 }
 
-/* 自定义滚动条样式 - 水墨风格 */
+/* 横向滚动容器 */
+.discussion-scroll__track {
+    display: flex;
+    gap: 10px;
+    padding: 0 10px 12px 10px; /* 底部留出更多呼吸空间 */
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* --- 朱砂风格滚动条 --- */
 .discussion-scroll__track::-webkit-scrollbar {
-    height: 2px; /* 极细的滚动条 */
+    height: 6px; /* 稍微加高，便于视觉捕捉，但不显笨重 */
+    background-color: transparent; /* 轨道完全透明 */
 }
 
 .discussion-scroll__track::-webkit-scrollbar-track {
-    background: rgba(62, 78, 94, 0.05); /* 极淡的墨色轨道 */
-    border-radius: 1px;
+    background: rgba(0, 0, 0, 0.02); /* 极淡的阴影轨道，若隐若现 */
+    border-radius: 10px;
+    margin: 0 10px; /* 轨道两端留白，不顶头 */
 }
 
 .discussion-scroll__track::-webkit-scrollbar-thumb {
-    background: var(--cinnabar); /* 纯色砖红 */
-    border-radius: 1px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0.6;
+    /* 使用渐变色模拟朱砂的质感，或者直接用 var(--cinnabar) */
+    background: linear-gradient(to right, #e0d6c6, var(--cinnabar, #454545), #e0d6c6);
+    /* 如果没有定义变量，可以用这个备用色：background: #8b1e1e; */
+    
+    border-radius: 10px; /* 完美的圆角 */
+    border: 1px solid rgba(255,255,255,0.8); /* 加个白边，像镶嵌的宝石，增加立体感 */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    opacity: 0.8;
+    transition: all 0.3s ease;
 }
 
 .discussion-scroll__track::-webkit-scrollbar-thumb:hover {
-    opacity: 1; /* 悬停时完全不透明 */
-    transform: scaleY(1.5); /* 悬停时高度增加 */
-}
-
-/* Firefox 滚动条样式 */
-.discussion-scroll__track {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(192, 72, 81, 0.6) rgba(62, 78, 94, 0.05);
+    background: var(--cinnabar, #272727); /* 悬停时变实色 */
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(139, 30, 30, 0.2); /* 增加红色辉光 */
 }
 
 /* 单个卡片 - 画卷 */

@@ -1,38 +1,44 @@
 <div id="farming" class="page h-full flex flex-col bg-[#F7F4ED] relative overflow-hidden font-sans text-[#2F3542]">
-
-    <div class="absolute inset-0 pointer-events-none z-0 opacity-10" 
-         style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%236B8E23\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E')">
+    <div class="page-header"
+        style="position: sticky; top: 0; z-index: 50; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <button type="button" class="page-header__back" onclick="goBack()" aria-label="返回">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="page-header__title">种植领养</h1>
+        <div class="page-header__placeholder"></div>
+    </div>
+    <div class="absolute inset-0 pointer-events-none z-0 opacity-10"
+        style="background-image: url('data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%236B8E23\' fill-opacity=\'1\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'3\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'3\'/%3E%3C/g%3E%3C/svg%3E')">
     </div>
 
-    <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 text-white">
-        <button title="button" onclick="goBack()" class="w-8 h-8 flex items-center justify-center bg-black/20 backdrop-blur-md rounded-full active:scale-95 transition-transform">
-            <i class="fa-solid fa-chevron-left text-sm"></i>
-        </button>
-        <button title="button" class="w-8 h-8 flex items-center justify-center bg-black/20 backdrop-blur-md rounded-full active:scale-95 transition-transform">
-            <i class="fa-solid fa-share-nodes text-sm"></i>
-        </button>
-    </header>
 
     <div class="flex-1 overflow-y-auto pb-24 hide-scrollbar relative z-10">
-        
+
         <div class="relative h-72 overflow-hidden rounded-b-[40px] shadow-xl">
-            <img title="img" src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+            <img title="img"
+                src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=800&auto=format&fit=crop"
+                class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-            
+
             <div class="absolute bottom-8 left-6 text-white">
                 <div class="flex items-center gap-2 mb-2">
-                    <span class="bg-[#6B8E23]/90 backdrop-blur px-2 py-0.5 text-xs rounded border border-white/20">半坡云农场</span>
+                    <span
+                        class="bg-[#6B8E23]/90 backdrop-blur px-2 py-0.5 text-xs rounded border border-white/20">半坡云农场</span>
                     <span class="text-xs opacity-80 tracking-widest">NO.12093认证基地</span>
                 </div>
                 <h1 class="text-4xl font-serif font-bold mb-1 tracking-widest">归园·田居</h1>
                 <p class="text-sm font-hand opacity-90">“ 采菊东篱下，悠然见南山 ”</p>
             </div>
 
-            <div class="absolute top-16 right-6 bg-white/20 backdrop-blur border border-white/30 rounded-full px-3 py-1 flex items-center gap-2 text-white text-xs">
+            <div
+                class="absolute top-16 right-6 bg-white/20 backdrop-blur border border-white/30 rounded-full px-3 py-1 flex items-center gap-2 text-white text-xs">
                 <div class="flex -space-x-2">
-                    <img title="img" src="https://i.pravatar.cc/100?img=11" class="w-5 h-5 rounded-full border border-white">
-                    <img title="img" src="https://i.pravatar.cc/100?img=12" class="w-5 h-5 rounded-full border border-white">
-                    <img title="img" src="https://i.pravatar.cc/100?img=13" class="w-5 h-5 rounded-full border border-white">
+                    <img title="img" src="https://i.pravatar.cc/100?img=11"
+                        class="w-5 h-5 rounded-full border border-white">
+                    <img title="img" src="https://i.pravatar.cc/100?img=12"
+                        class="w-5 h-5 rounded-full border border-white">
+                    <img title="img" src="https://i.pravatar.cc/100?img=13"
+                        class="w-5 h-5 rounded-full border border-white">
                 </div>
                 <span>1,208位庄主已入驻</span>
             </div>
@@ -65,13 +71,16 @@
         </section>
     </div>
 
-    <div class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between border-t border-gray-100">
+    <div
+        class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between border-t border-gray-100">
         <div class="flex flex-col">
-            <button onclick="bookVisitFarm()" class="text-xs text-gray-500 flex items-center gap-1 hover:text-[#6B8E23] transition-colors">
+            <button onclick="bookVisitFarm()"
+                class="text-xs text-gray-500 flex items-center gap-1 hover:text-[#6B8E23] transition-colors">
                 <i class="fa-regular fa-calendar-check"></i> 预约实地考察
             </button>
         </div>
-        <button onclick="becomeOwner()" class="bg-[#6B8E23] text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-green-100 hover:bg-green-700 transition-colors flex items-center gap-2 active:scale-95">
+        <button onclick="becomeOwner()"
+            class="bg-[#6B8E23] text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-green-100 hover:bg-green-700 transition-colors flex items-center gap-2 active:scale-95">
             <i class="fa-solid fa-seedling"></i>
             成为庄主
         </button>
@@ -80,6 +89,12 @@
 </div>
 
 <style>
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
 </style>

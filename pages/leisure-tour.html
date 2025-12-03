@@ -1,33 +1,46 @@
 <div id="leisure-tour" class="page h-full flex flex-col bg-[#F0F4F8] relative overflow-hidden font-sans text-[#37474F]">
-
-    <div class="absolute inset-0 pointer-events-none z-0 bg-repeat-x" 
-         style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'20\' viewBox=\'0 0 100 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.374 1.949.786 2.965 1.23.635-1.554 1.348-2.686 2.148-3.414.07-.064.143-.125.219-.184-1.296-.917-2.18-2.126-2.584-3.489-.527.272-1.096.536-1.706.79C66.177 17.828 60.187 19 50 19c-10.35 0-16.59-1.25-25.755-4.966-.55-.223-1.09-.454-1.62-.687-.417 1.393-1.326 2.616-2.67 3.518.172.102.348.196.529.28.895.83 1.636 2.08 2.3 3.855zM50 0c-3.11 0-5.875.922-8.318 2.525C44.425 1.618 47.16 1 50 1s5.575.618 8.318 1.525C55.875.922 53.11 0 50 0zm0 4c-3.11 0-5.875.922-8.318 2.525C44.425 5.618 47.16 5 50 5s5.575.618 8.318 1.525C55.875 4.922 53.11 4 50 4zm0 4c-3.11 0-5.875.922-8.318 2.525C44.425 9.618 47.16 9 50 9s5.575.618 8.318 1.525C55.875 8.922 53.11 8 50 8z\' fill=\'%23607D8B\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')">
+    <div class="page-header"
+        style="position: sticky; top: 0; z-index: 50; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <button type="button" class="page-header__back" onclick="goBack()" aria-label="返回">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="page-header__title">休闲游览</h1>
+        <div class="page-header__placeholder"></div>
+    </div>
+    <div class="absolute inset-0 pointer-events-none z-0 bg-repeat-x"
+        style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'20\' viewBox=\'0 0 100 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M21.184 20c.357-.13.72-.264 1.088-.402l1.768-.661C33.64 15.347 39.647 14 50 14c10.271 0 15.362 1.222 24.629 4.928.955.374 1.949.786 2.965 1.23.635-1.554 1.348-2.686 2.148-3.414.07-.064.143-.125.219-.184-1.296-.917-2.18-2.126-2.584-3.489-.527.272-1.096.536-1.706.79C66.177 17.828 60.187 19 50 19c-10.35 0-16.59-1.25-25.755-4.966-.55-.223-1.09-.454-1.62-.687-.417 1.393-1.326 2.616-2.67 3.518.172.102.348.196.529.28.895.83 1.636 2.08 2.3 3.855zM50 0c-3.11 0-5.875.922-8.318 2.525C44.425 1.618 47.16 1 50 1s5.575.618 8.318 1.525C55.875.922 53.11 0 50 0zm0 4c-3.11 0-5.875.922-8.318 2.525C44.425 5.618 47.16 5 50 5s5.575.618 8.318 1.525C55.875 4.922 53.11 4 50 4zm0 4c-3.11 0-5.875.922-8.318 2.525C44.425 9.618 47.16 9 50 9s5.575.618 8.318 1.525C55.875 8.922 53.11 8 50 8z\' fill=\'%23607D8B\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')">
     </div>
 
     <header class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20 text-white">
-        <button title="button" onclick="goBack()" class="w-8 h-8 flex items-center justify-center bg-black/10 backdrop-blur-md rounded-full active:scale-95 transition-transform">
+        <button title="button" onclick="goBack()"
+            class="w-8 h-8 flex items-center justify-center bg-black/10 backdrop-blur-md rounded-full active:scale-95 transition-transform">
             <i class="fa-solid fa-chevron-left text-sm"></i>
         </button>
-        <button title="button" class="w-8 h-8 flex items-center justify-center bg-black/10 backdrop-blur-md rounded-full active:scale-95 transition-transform">
+        <button title="button"
+            class="w-8 h-8 flex items-center justify-center bg-black/10 backdrop-blur-md rounded-full active:scale-95 transition-transform">
             <i class="fa-solid fa-share-nodes text-sm"></i>
         </button>
     </header>
 
     <div class="flex-1 overflow-y-auto pb-24 hide-scrollbar relative z-10">
-        
+
         <div class="relative h-80">
-            <img title="img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover">
+            <img title="img"
+                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop"
+                class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-[#F0F4F8]"></div>
-            
+
             <div class="absolute top-16 left-6 text-white drop-shadow-md">
                 <h1 class="text-4xl font-serif font-bold tracking-widest mb-2">休闲<br>游览</h1>
                 <div class="h-1 w-12 bg-white rounded-full"></div>
-                <p class="mt-4 text-sm font-light tracking-wider opacity-90 writing-vertical-rl h-24 border-l border-white/50 pl-2">
+                <p
+                    class="mt-4 text-sm font-light tracking-wider opacity-90 writing-vertical-rl h-24 border-l border-white/50 pl-2">
                     行到水穷处 · 坐看云起时
                 </p>
             </div>
 
-            <div class="absolute bottom-4 right-4 bg-white/80 backdrop-blur rounded-xl p-3 shadow-lg flex items-center gap-3 animate-bounce-slow">
+            <div
+                class="absolute bottom-4 right-4 bg-white/80 backdrop-blur rounded-xl p-3 shadow-lg flex items-center gap-3 animate-bounce-slow">
                 <div class="text-center">
                     <i class="fa-solid fa-cloud-sun text-[#607D8B] text-xl"></i>
                     <p class="text-[10px] text-gray-500">今日</p>
@@ -42,7 +55,8 @@
         <section class="px-5 mt-6">
             <div class="flex items-center justify-between mb-6">
                 <h2 class="text-xl font-serif font-bold text-[#607D8B] border-l-4 border-[#607D8B] pl-3">推荐路线</h2>
-                <button onclick="viewMap()" class="text-xs bg-white px-3 py-1 rounded-full shadow-sm text-gray-500 flex items-center gap-1 active:bg-gray-100 transition-colors">
+                <button onclick="viewMap()"
+                    class="text-xs bg-white px-3 py-1 rounded-full shadow-sm text-gray-500 flex items-center gap-1 active:bg-gray-100 transition-colors">
                     <i class="fa-solid fa-map"></i> 查看全图
                 </button>
             </div>
@@ -55,13 +69,16 @@
 
         <section class="px-5 mt-2 mb-8">
             <div class="bg-[#FFF8E1] rounded-xl p-5 border border-orange-100 relative shadow-sm">
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-12 bg-gray-300 rounded-full opacity-50 z-0"></div>
-                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-400 rounded-full z-10 shadow-sm"></div>
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-12 bg-gray-300 rounded-full opacity-50 z-0">
+                </div>
+                <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-400 rounded-full z-10 shadow-sm">
+                </div>
 
-                <h3 class="font-serif font-bold text-orange-800 text-center mb-4 text-lg flex justify-center items-center gap-2">
+                <h3
+                    class="font-serif font-bold text-orange-800 text-center mb-4 text-lg flex justify-center items-center gap-2">
                     <i class="fa-regular fa-lightbulb"></i> 温馨提示
                 </h3>
-                
+
                 <div class="grid grid-cols-2 gap-4" id="lt-tips-grid">
                     <div class="h-10 bg-orange-100/50 rounded animate-pulse"></div>
                     <div class="h-10 bg-orange-100/50 rounded animate-pulse"></div>
@@ -70,12 +87,14 @@
         </section>
     </div>
 
-    <div class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between border-t border-gray-100">
+    <div
+        class="absolute bottom-0 left-0 right-0 bg-white px-6 py-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] z-30 flex items-center justify-between border-t border-gray-100">
         <div class="flex flex-col">
-             <span class="text-xs text-gray-400">为了更好的体验</span>
-             <span class="text-sm font-bold text-[#607D8B]">建议提前预约金牌导游</span>
+            <span class="text-xs text-gray-400">为了更好的体验</span>
+            <span class="text-sm font-bold text-[#607D8B]">建议提前预约金牌导游</span>
         </div>
-        <button onclick="bookGuide()" class="bg-[#607D8B] text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-100 hover:bg-[#37474F] transition-colors flex items-center gap-2 active:scale-95">
+        <button onclick="bookGuide()"
+            class="bg-[#607D8B] text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-100 hover:bg-[#37474F] transition-colors flex items-center gap-2 active:scale-95">
             <i class="fa-regular fa-calendar-check"></i>
             我要预订
         </button>
@@ -84,8 +103,21 @@
 </div>
 
 <style>
-    .writing-vertical-rl { writing-mode: vertical-rl; text-orientation: upright; }
-    .hide-scrollbar::-webkit-scrollbar { display: none; }
-    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .animate-bounce-slow { animation: bounce 3s infinite; }
+    .writing-vertical-rl {
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .animate-bounce-slow {
+        animation: bounce 3s infinite;
+    }
 </style>

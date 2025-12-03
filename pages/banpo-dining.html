@@ -1,4 +1,12 @@
 <div id="banpo-dining" class="page active">
+    <div class="page-header"
+        style="position: sticky; top: 0; z-index: 50; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <button type="button" class="page-header__back" onclick="goBack()" aria-label="返回">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="page-header__title">半坡餐饮</h1>
+        <div class="page-header__placeholder"></div>
+    </div>
     <section class="bd-hero">
         <div class="bd-hero__bg">
             <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=600&fit=crop" alt="传统中式宴席"
@@ -6,9 +14,6 @@
         </div>
         <div class="bd-hero__overlay"></div>
         <div class="bd-hero__content">
-            <button type="button" class="bd-back-btn" onclick="goBack()" aria-label="返回">
-                <i class="fas fa-arrow-left"></i>
-            </button>
             <h1 class="bd-hero__title">食在半坡</h1>
             <p class="bd-hero__subtitle">寻古溯源 · 养生之道</p>
         </div>
@@ -19,7 +24,8 @@
         onclick="window.closeBanpoDiningModal()">
         <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
             <div class="relative h-56 bg-orange-50">
-                <img title="1" id="bd-modal-img" src="" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                <img title="1" id="bd-modal-img" src="" class="w-full h-full object-cover"
+                    onerror="this.style.display='none'">
                 <button title="button" onclick="window.closeBanpoDiningModal()"
                     class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition backdrop-blur-sm">
                     <i class="fas fa-times"></i>
@@ -41,14 +47,15 @@
         </div>
     </div>
 
-    <main class="bd-main pb-8"> <section class="bd-wisdom">
+    <main class="bd-main pb-8">
+        <section class="bd-wisdom">
             <div class="bd-section-header">
                 <h2 class="bd-section-title">文化根源</h2>
                 <p class="bd-section-subtitle">传承千年的饮食智慧</p>
             </div>
 
             <div class="bd-wisdom__scroll" id="wisdom-scroll">
-                </div>
+            </div>
         </section>
 
         <section class="bd-gallery">
@@ -58,7 +65,7 @@
             </div>
 
             <div class="bd-gallery__grid" id="gallery-grid">
-                </div>
+            </div>
         </section>
 
         <section class="bd-school">
@@ -68,7 +75,7 @@
             </div>
 
             <div class="bd-school__list" id="school-list">
-                </div>
+            </div>
         </section>
 
         <section class="bd-environment">
@@ -78,13 +85,13 @@
             </div>
 
             <div class="bd-carousel" id="environment-carousel">
-                </div>
+            </div>
         </section>
 
         <div class="px-4 mt-10 mb-6">
-            <button type="button" class="bd-reserve-btn w-full bg-[#D84315] text-white py-3.5 rounded-xl shadow-lg font-bold text-lg tracking-wide hover:bg-[#bf360c] active:scale-95 transition-all flex items-center justify-center"
-                onclick="window.makeReservation()" 
-                aria-label="立即预订">
+            <button type="button"
+                class="bd-reserve-btn w-full bg-[#D84315] text-white py-3.5 rounded-xl shadow-lg font-bold text-lg tracking-wide hover:bg-[#bf360c] active:scale-95 transition-all flex items-center justify-center"
+                onclick="window.makeReservation()" aria-label="立即预订">
                 <i class="fas fa-utensils mr-2"></i>
                 立即预订一桌餐
             </button>
