@@ -1,37 +1,18 @@
-// main.js - 核心架构文件
+// js/main.js - 最终完整版
 
-// ========== 1. 首页：窗棂格栅配置 ==========
+// ==========================================
+// 1. 首页：窗棂格栅配置 (Header Grid)
+// ==========================================
 const categories = [
-    {
-        id: 'bainong',
-        title: '百农篇',
-        subtitle: '农耕文明',
-        image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=400&fit=crop'
-    },
-    {
-        id: 'guanshan',
-        title: '关山篇',
-        subtitle: '山川地理',
-        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop'
-    },
-    {
-        id: 'huilong',
-        title: '回龙篇',
-        subtitle: '龙脉传承',
-        image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400&h=400&fit=crop'
-    },
-    {
-        id: 'kangzhan',
-        title: '抗战篇',
-        subtitle: '红色记忆',
-        image: 'https://images.unsplash.com/photo-1569254979650-e066a2e6e1c2?w=400&h=400&fit=crop'
-    }
+    { id: 'bainong', title: '百农篇', subtitle: '农耕文明', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=400&fit=crop' },
+    { id: 'guanshan', title: '关山篇', subtitle: '山川地理', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop' },
+    { id: 'huilong', title: '回龙篇', subtitle: '龙脉传承', image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400&h=400&fit=crop' },
+    { id: 'kangzhan', title: '抗战篇', subtitle: '红色记忆', image: 'https://images.unsplash.com/photo-1569254979650-e066a2e6e1c2?w=400&h=400&fit=crop' }
 ];
 
 function renderLatticeGrid() {
     const gridContainer = document.getElementById('lattice-grid');
     if (!gridContainer) return;
-
     gridContainer.innerHTML = categories.map(category => `
         <div class="lattice-card" onclick="window.handleCategoryClick('${category.id}')" data-id="${category.id}">
             <img class="lattice-card__image" src="${category.image}" alt="${category.title}" onerror="this.style.backgroundColor='#eee'" />
@@ -46,11 +27,12 @@ function renderLatticeGrid() {
 
 function handleCategoryClick(categoryId) {
     console.log('点击分类:', categoryId);
-    // 直接跳转，loadSubPage 会处理动态加载
     loadSubPage(categoryId);
 }
 
-// ========== 2. 首页：服务百宝格配置 ==========
+// ==========================================
+// 2. 首页：服务百宝格配置 (Service Icons)
+// ==========================================
 const services = [
     { id: 'one-table', name: '一桌餐', icon: 'bowl', isHot: true },
     { id: 'team-meal', name: '团队餐', icon: 'group' },
@@ -76,7 +58,6 @@ const iconSVGs = {
 function renderServiceGrid() {
     const gridContainer = document.getElementById('service-grid');
     if (!gridContainer) return;
-
     gridContainer.innerHTML = services.map(service => `
         <div class="service-grid__item" onclick="handleServiceClick('${service.id}')" data-id="${service.id}">
             ${service.isHot ? '<span class="service-grid__hot-badge">热</span>' : ''}
@@ -88,16 +69,29 @@ function renderServiceGrid() {
 
 function handleServiceClick(serviceId) {
     console.log('点击服务:', serviceId);
-    if (serviceId === 'one-table') {
-        openOneTableMeal();
-    } else if (serviceId === 'farming') {
-        openFarmingReading();
+    
+    // 映射表：服务ID -> HTML/JS文件名
+    const routeMap = {
+        'one-table': 'one-table-meal',
+        'team-meal': 'team-meal',
+        'leisure-tour': 'leisure-tour',
+        'red-route': 'red-route',
+        'specialty': 'specialty',
+        'family-park': 'family-park',
+        'event-planning': 'event-planning',
+        'farming': 'farming'
+    };
+
+    if (routeMap[serviceId]) {
+        loadSubPage(routeMap[serviceId]);
     } else {
         alert('该服务页面开发中: ' + serviceId);
     }
 }
 
-// ========== 3. 全局导航入口函数 ==========
+// ==========================================
+// 3. 全局导航入口函数
+// ==========================================
 function openBanpoDining() { loadSubPage('banpo-dining'); }
 function openBanpoTalks() { loadSubPage('banpo-talks'); }
 function openLiteraryCreation() { loadSubPage('literary-creation'); }
@@ -114,11 +108,12 @@ function closeBanpoText() {
     if (modal) { modal.classList.remove('active'); document.body.style.overflow = ''; }
 }
 
-// ========== 4. 核心工具：动态脚本加载 ==========
+// ==========================================
+// 4. 核心工具：动态脚本加载
+// ==========================================
 function loadScript(url) {
     return new Promise((resolve, reject) => {
         if (document.querySelector(`script[src="${url}"]`)) {
-            console.log(`✅ 脚本复用: ${url}`);
             resolve();
             return;
         }
@@ -130,7 +125,9 @@ function loadScript(url) {
     });
 }
 
-// ========== 5. 核心路由控制器 ==========
+// ==========================================
+// 5. 核心路由控制器
+// ==========================================
 async function loadSubPage(pageName) {
     console.log('🔄 路由跳转:', pageName);
     try {
@@ -154,28 +151,31 @@ async function loadSubPage(pageName) {
         if (targetPage) {
             targetPage.classList.add('active');
         } else {
-            // 容错处理：如果没有 ID，激活最后一个元素
             const lastChild = screen.lastElementChild;
             if (lastChild) lastChild.classList.add('active');
         }
 
         // 3. 动态加载对应 JS 并初始化
+        
+        // --- 首页顶部四个 ---
         if (pageName === 'bainong') {
             await loadScript('js/bainong.js');
             if (window.initBainongPage) window.initBainongPage();
-        }
+        } 
         else if (pageName === 'guanshan') {
             await loadScript('js/guanshan.js');
             if (window.initGuanshanPage) window.initGuanshanPage();
-        }
+        } 
         else if (pageName === 'huilong') {
             await loadScript('js/huilong.js');
             if (window.initHuilongPage) window.initHuilongPage();
-        }
+        } 
         else if (pageName === 'kangzhan') {
             await loadScript('js/kangzhan.js');
             if (window.initKangzhanPage) window.initKangzhanPage();
-        }
+        } 
+        
+        // --- 首页滚动内容 ---
         else if (pageName === 'banpo-dining') {
             await loadScript('js/banpo-dining.js');
             if (window.initBanpoDiningPage) window.initBanpoDiningPage();
@@ -192,124 +192,139 @@ async function loadSubPage(pageName) {
             await loadScript('js/farming-reading.js');
             if (window.initFarmingReadingPage) window.initFarmingReadingPage();
         }
+        
+        // --- 定制服务八大模块 ---
         else if (pageName === 'one-table-meal') {
             await loadScript('js/one-table-meal.js');
             if (window.initOneTableMealPage) window.initOneTableMealPage();
         }
         else if (pageName === 'team-meal') {
             await loadScript('js/team-meal.js');
-            if (typeof window.initTeamMealPage === 'function') {
-                window.initTeamMealPage();
-            }
+            if (window.initTeamMealPage) window.initTeamMealPage();
         }
         else if (pageName === 'leisure-tour') {
             await loadScript('js/leisure-tour.js');
-            if (typeof window.initLeisureTourPage === 'function') {
-                window.initLeisureTourPage();
-            }
+            if (window.initLeisureTourPage) window.initLeisureTourPage();
         }
         else if (pageName === 'red-route') {
             await loadScript('js/red-route.js');
-            if (typeof window.initRedRoutePage === 'function') {
-                window.initRedRoutePage();
-            }
+            if (window.initRedRoutePage) window.initRedRoutePage();
         }
         else if (pageName === 'specialty') {
             await loadScript('js/specialty.js');
-            if (typeof window.initSpecialtyPage === 'function') {
-                window.initSpecialtyPage();
-            }
+            if (window.initSpecialtyPage) window.initSpecialtyPage();
         }
         else if (pageName === 'family-park') {
             await loadScript('js/family-park.js');
-            if (typeof window.initFamilyParkPage === 'function') {
-                window.initFamilyParkPage();
-            }
+            if (window.initFamilyParkPage) window.initFamilyParkPage();
         }
         else if (pageName === 'event-planning') {
             await loadScript('js/event-planning.js');
-            if (typeof window.initEventPlanningPage === 'function') {
-                window.initEventPlanningPage();
-            }
+            if (window.initEventPlanningPage) window.initEventPlanningPage();
         }
         else if (pageName === 'farming') {
             await loadScript('js/farming.js');
-            if (typeof window.initFarmingPage === 'function') {
-                window.initFarmingPage();
-            }
+            if (window.initFarmingPage) window.initFarmingPage();
         }
-        // 4. 更新 UI 状态
+
+        // 4. 更新底部导航状态
         updateNavButtons(pageName);
         screen.scrollTop = 0;
 
     } catch (error) {
-        console.error('❌ 页面加载错误:', error);
-        alert('页面加载失败，请检查网络');
+        console.error('❌ 加载页面失败:', error);
     }
 }
 
-// ========== 6. 导航与状态管理 ==========
+// ==========================================
+// 6. 导航与状态管理
+// ==========================================
 function goBack() {
     const screen = document.querySelector('.screen');
     const currentPage = screen.querySelector('.page.active');
 
     if (currentPage && currentPage.id !== 'home') {
-        currentPage.remove(); // 销毁页面，节省内存并确保下次重新初始化
+        currentPage.remove(); // 销毁页面，保证下次重新初始化
         const homePage = document.getElementById('home');
         if (homePage) homePage.classList.add('active');
         updateNavButtons('home');
     }
 }
 
+// 在 js/main.js 中找到 updateNavButtons 函数并替换：
+
 function updateNavButtons(pageName) {
-    const navContainer = document.querySelector('.prototype-btn').parentElement;
-    if (!navContainer) return;
+    // 1. 更新右侧悬浮原型导航 (Prototype Nav)
+    const navContainer = document.querySelector('.prototype-btn')?.parentElement;
+    
+    // 一级页面列表 (Bottom Tabs)
+    // 这些页面显示时，底部导航栏应该可见
+    const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
 
-    const pageConfig = {
-        home: { icon: 'home', title: '首页' },
-        bainong: { icon: 'seedling', title: '百农篇' },
-        guanshan: { icon: 'mountain', title: '关山篇' },
-        huilong: { icon: 'landmark', title: '回龙篇' },
-        kangzhan: { icon: 'flag', title: '抗战篇' }
-        // 其他页面可以继续添加...
-    };
-
-    navContainer.innerHTML = '';
-
-    // 始终显示首页按钮
-    const homeBtn = document.createElement('button');
-    homeBtn.type = 'button';
-    homeBtn.className = `prototype-btn ${pageName === 'home' ? 'active' : ''}`;
-    homeBtn.onclick = () => goBack();
-    homeBtn.innerHTML = `<i class="fas fa-home mr-2"></i>首页`;
-    navContainer.appendChild(homeBtn);
-
-    // 如果不是首页，显示当前页面按钮
-    if (pageName !== 'home') {
-        let title = '详情页';
-        let icon = 'file-alt';
-
-        // 尝试从配置中获取，或者根据页面ID推断
-        if (pageConfig[pageName]) {
-            title = pageConfig[pageName].title;
-            icon = pageConfig[pageName].icon;
-        } else if (pageName === 'one-table-meal') { title = '一桌餐'; icon = 'utensils'; }
-        else if (pageName === 'banpo-dining') { title = '半坡餐饮'; icon = 'utensils'; }
-        else if (pageName === 'banpo-talks') { title = '半坡讲谈'; icon = 'chalkboard-teacher'; }
-        else if (pageName === 'literary-creation') { title = '数字书房'; icon = 'book-reader'; }
-        else if (pageName === 'farming-reading') { title = '耕读有伴'; icon = 'cloud-sun'; }
-
-        const pageBtn = document.createElement('button');
-        pageBtn.type = 'button';
-        pageBtn.className = 'prototype-btn active';
-        pageBtn.innerHTML = `<i class="fas fa-${icon} mr-2"></i>${title}`;
-        navContainer.appendChild(pageBtn);
+    // 控制底部导航栏的显示/隐藏
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (bottomNav) {
+        if (rootPages.includes(pageName)) {
+            bottomNav.style.display = 'flex'; // 显示
+        } else {
+            bottomNav.style.display = 'none'; // 隐藏 (详情页)
+        }
     }
 
-    // 更新底部 Tab 栏高亮
+    // --- 以下是右侧悬浮导航的更新逻辑 (保持不变) ---
+    if (navContainer) {
+        const pageConfig = {
+            home: { icon: 'home', title: '首页' },
+            bainong: { icon: 'seedling', title: '百农篇' },
+            guanshan: { icon: 'mountain', title: '关山篇' },
+            huilong: { icon: 'landmark', title: '回龙篇' },
+            kangzhan: { icon: 'flag', title: '抗战篇' }
+        };
+
+        navContainer.innerHTML = '';
+
+        // 始终显示首页按钮
+        const homeBtn = document.createElement('button');
+        homeBtn.type = 'button';
+        homeBtn.className = `prototype-btn ${pageName === 'home' ? 'active' : ''}`;
+        homeBtn.onclick = () => goBack();
+        homeBtn.innerHTML = `<i class="fas fa-home mr-2"></i>首页`;
+        navContainer.appendChild(homeBtn);
+
+        // 如果不是首页，显示当前页面按钮
+        if (pageName !== 'home') {
+            let title = '详情页';
+            let icon = 'file-alt';
+            
+            if (pageConfig[pageName]) {
+                title = pageConfig[pageName].title;
+                icon = pageConfig[pageName].icon;
+            } else if (pageName === 'one-table-meal') { title = '一桌餐'; icon = 'utensils'; }
+            else if (pageName === 'banpo-dining') { title = '半坡餐饮'; icon = 'utensils'; }
+            else if (pageName === 'specialty') { title = '半坡特产'; icon = 'gift'; }
+            else if (pageName === 'family-park') { title = '亲情乐园'; icon = 'smile'; }
+            else if (pageName === 'event-planning') { title = '活动策划'; icon = 'scroll'; }
+            else if (pageName === 'farming') { title = '种养认领'; icon = 'seedling'; }
+            else if (pageName === 'team-meal') { title = '团队餐'; icon = 'users'; }
+            else if (pageName === 'red-route') { title = '红色路线'; icon = 'flag'; }
+            else if (pageName === 'leisure-tour') { title = '休闲游览'; icon = 'mountain'; }
+            // 加上其他一级页面的标题，以便在右侧导航也能看到
+            else if (pageName === 'discussion') { title = '悬空民宿'; icon = 'comments'; }
+            else if (pageName === 'classics') { title = '经典'; icon = 'book-open'; }
+            else if (pageName === 'customize') { title = '订单'; icon = 'paint-brush'; }
+            else if (pageName === 'profile') { title = '我的'; icon = 'user'; }
+
+            const pageBtn = document.createElement('button');
+            pageBtn.type = 'button';
+            pageBtn.className = 'prototype-btn active';
+            pageBtn.innerHTML = `<i class="fas fa-${icon} mr-2"></i>${title}`;
+            navContainer.appendChild(pageBtn);
+        }
+    }
+    
+    // 更新底部 Tab 栏高亮状态
     updateNavActiveState(pageName);
 }
-
 function updateNavActiveState(pageId) {
     const navItems = document.querySelectorAll(".nav-item");
     navItems.forEach((item) => {
@@ -319,11 +334,29 @@ function updateNavActiveState(pageId) {
     });
 
     let activeNavId = null;
-    // 简单的映射逻辑
+    
+    // 首页
     if (pageId === "home") activeNavId = "b-nav-home";
-    else if (pageId === "banpo-talks" || pageId === "literary-creation") activeNavId = "b-nav-classics";
-    else if (pageId === "banpo-dining" || pageId === "one-table-meal") activeNavId = "b-nav-customize";
-    else if (pageId === "farming-reading") activeNavId = "b-nav-discussion";
+    
+    // 经典 (Classics) Tab
+    else if (["classics", "banpo-talks", "literary-creation", "bainong", "guanshan", "huilong", "kangzhan"].includes(pageId)) {
+        activeNavId = "b-nav-classics";
+    }
+    
+    // 订单/定制 (Customize) Tab - 包含所有服务
+    else if (["customize", "banpo-dining", "one-table-meal", "team-meal", "specialty", "event-planning"].includes(pageId)) {
+        activeNavId = "b-nav-customize";
+    }
+    
+    // 悬空民宿/交流 (Discussion) Tab - 包含社区和游览
+    else if (["discussion", "farming-reading", "family-park", "farming", "leisure-tour", "red-route"].includes(pageId)) {
+        activeNavId = "b-nav-discussion";
+    }
+    
+    // 我的 (Profile) Tab
+    else if (pageId === "profile") {
+        activeNavId = "b-nav-profile";
+    }
 
     if (activeNavId) {
         const activeNav = document.getElementById(activeNavId);
@@ -343,9 +376,10 @@ function updateTime() {
     timeElements.forEach(el => el.textContent = `${hours}:${minutes}`);
 }
 
-// ========== 7. 首页特有逻辑 (横向滚动) ==========
+// ==========================================
+// 7. 首页特有逻辑
+// ==========================================
 function initDiscussionScroll() {
-    // 这部分逻辑只属于首页，保留在此处
     const track = document.querySelector('.discussion-scroll__track');
     const cards = document.querySelectorAll('.scroll-card');
     const indicatorsContainer = document.getElementById('scroll-indicators');
@@ -354,12 +388,11 @@ function initDiscussionScroll() {
 
     let currentIndex = 0;
 
-    // 创建指示器
     if (indicatorsContainer) {
         indicatorsContainer.innerHTML = Array.from(cards).map((_, index) => `
             <div class="discussion-scroll__indicator ${index === 0 ? 'discussion-scroll__indicator--active' : ''}" data-index="${index}"></div>
         `).join('');
-
+        
         indicatorsContainer.querySelectorAll('.discussion-scroll__indicator').forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
                 track.scrollTo({ left: cards[index].offsetLeft - 16, behavior: 'smooth' });
@@ -367,7 +400,6 @@ function initDiscussionScroll() {
         });
     }
 
-    // 滚动监听
     track.addEventListener('scroll', () => {
         const trackLeft = track.scrollLeft;
         let closestIndex = 0;
@@ -376,7 +408,7 @@ function initDiscussionScroll() {
             const dist = Math.abs(trackLeft - (card.offsetLeft - 16));
             if (dist < minDistance) { minDistance = dist; closestIndex = index; }
         });
-
+        
         if (closestIndex !== currentIndex) {
             currentIndex = closestIndex;
             document.querySelectorAll('.discussion-scroll__indicator').forEach((ind, i) => {
@@ -387,28 +419,50 @@ function initDiscussionScroll() {
     });
 }
 
-// ========== 8. 应用入口 ==========
+// ==========================================
+// 8. 核心：底部导航兼容处理
+// ==========================================
+// 该函数用于响应 index.html 中底部导航栏的 onclick="showPage('xxx')"
+window.showPage = function(pageId) {
+    console.log('👆 底部导航点击:', pageId);
+    
+    // 映射关系：Tab ID -> 实际页面文件名
+    const navMap = {
+        'home': 'home',
+        'discussion': 'discussion',
+        'classics': 'classics',
+        'customize': 'customize',
+        'profile': 'profile'
+    };
+
+    const targetPageName = navMap[pageId] || pageId;
+    loadSubPage(targetPageName);
+};
+
+// ==========================================
+// 9. 应用入口
+// ==========================================
 function initializeApp() {
     if (window.__appInitialized) return;
-
+    
     // 显示首页
     const homePage = document.getElementById('home');
     if (homePage) homePage.classList.add('active');
-
+    
     updateTime();
-    initDiscussionScroll(); // 首页滑动组件
+    initDiscussionScroll();
     window.__appInitialized = true;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    console.log('🚀 应用启动...');
     renderLatticeGrid();
     renderServiceGrid();
     initializeApp();
 
-    // 暴露全局函数
     window.loadSubPage = loadSubPage;
     window.goBack = goBack;
+    
+    // 暴露函数
     window.openBanpoDining = openBanpoDining;
     window.openBanpoTalks = openBanpoTalks;
     window.openLiteraryCreation = openLiteraryCreation;
@@ -418,4 +472,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.closeBanpoText = closeBanpoText;
     window.handleServiceClick = handleServiceClick;
     window.handleCategoryClick = handleCategoryClick;
+    
+    console.log('✅ 系统就绪: 底部导航已挂载');
 });
