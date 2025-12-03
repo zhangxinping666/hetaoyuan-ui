@@ -92,11 +92,20 @@ function handleServiceClick(serviceId) {
 // ==========================================
 // 3. 全局导航入口函数
 // ==========================================
+// 详情页跳转函数
 function openBanpoDining() { loadSubPage('banpo-dining'); }
 function openBanpoTalks() { loadSubPage('banpo-talks'); }
 function openLiteraryCreation() { loadSubPage('literary-creation'); }
 function openFarmingReading() { loadSubPage('farming-reading'); }
 function openOneTableMeal() { loadSubPage('one-table-meal'); }
+function openTeamMeal() { loadSubPage('team-meal'); }
+function openLeisureTour() { loadSubPage('leisure-tour'); }
+function openRedRoute() { loadSubPage('red-route'); }
+function openSpecialty() { loadSubPage('specialty'); }
+function openFamilyPark() { loadSubPage('family-park'); }
+function openEventPlanning() { loadSubPage('event-planning'); }
+function openFarming() { loadSubPage('farming'); }
+function openHuiLong() { loadSubPage('huilong'); }
 
 // 首页弹窗控制
 function showBanpoText() {
@@ -197,8 +206,6 @@ async function loadSubPage(pageName) {
         // 确保页面滚动到顶部
         newPage.scrollTop = 0;
 
-        console.log(`✅ 页面加载成功: ${pageName}`);
-
     } catch (error) {
         console.error('❌ 加载页面失败:', error);
         alert(`页面加载失败: ${error.message}`);
@@ -272,8 +279,6 @@ const PAGE_TYPES = {
 };
 
 function showPage(pageName) {
-    console.log('🔄 显示页面:', pageName);
-
     if (PAGE_TYPES.STATIC.includes(pageName)) {
         // 处理静态页面切换
         showStaticPage(pageName);
@@ -286,8 +291,6 @@ function showPage(pageName) {
 }
 
 function showStaticPage(pageName) {
-    console.log('📄 切换静态页面:', pageName);
-
     const screen = document.querySelector('.screen');
     if (!screen) {
         console.error('❌ 找不到 .screen 容器');
@@ -517,7 +520,21 @@ document.addEventListener('DOMContentLoaded', initializeApp);
 // 暴露函数给 HTML 行内 onclick 使用
 window.handleCategoryClick = handleCategoryClick;
 window.handleServiceClick = handleServiceClick;
-window.loadSubPage = loadSubPage; // 如果有其他地方用到也建议暴露
-window.goBack = goBack; // 导航栏按钮也会用到这个
+window.loadSubPage = loadSubPage;
+window.goBack = goBack;
+
+// 暴露详情页跳转函数
+window.openBanpoDining = openBanpoDining;
+window.openBanpoTalks = openBanpoTalks;
+window.openLiteraryCreation = openLiteraryCreation;
+window.openFarmingReading = openFarmingReading;
+window.openOneTableMeal = openOneTableMeal;
+window.openTeamMeal = openTeamMeal;
+window.openLeisureTour = openLeisureTour;
+window.openRedRoute = openRedRoute;
+window.openSpecialty = openSpecialty;
+window.openFamilyPark = openFamilyPark;
+window.openEventPlanning = openEventPlanning;
+window.openFarming = openFarming;
 
 document.addEventListener('DOMContentLoaded', initializeApp);

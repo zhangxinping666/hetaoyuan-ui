@@ -1,7 +1,234 @@
-<!-- 百农篇页面 -->
 <div id="bainong" class="page active">
-    <!-- 顶部导航栏 -->
-    <div class="page-header">
+    <style>
+        /* 基础背景 */
+        .bainong-bg {
+            background-color: #f9f6f2;
+        }
+
+        /* 1. 时间轴样式 */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid #e0d6c6;
+            margin-left: 10px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -26px;
+            top: 15px;
+            width: 14px;
+            height: 14px;
+            background: #8b1e1e;
+            /* 殷红色 */
+            border: 2px solid #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #e0d6c6;
+        }
+
+        .timeline-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .timeline-card:active {
+            transform: scale(0.98);
+        }
+
+        .timeline-card__image {
+            height: 140px;
+            background: #eee;
+        }
+
+        .timeline-card__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .timeline-card__content {
+            padding: 12px;
+        }
+
+        .timeline-card__title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .timeline-card__desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        /* 2. 校友墙 - 横向滚动 */
+        .alumni-wall {
+            position: relative;
+            background: #fff;
+            padding: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .alumni-wall__bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0.05;
+            background-image: radial-gradient(#8b1e1e 1px, transparent 1px);
+            background-size: 10px 10px;
+            pointer-events: none;
+        }
+
+        .alumni-wall__scroll {
+            display: flex;
+            overflow-x: auto;
+            padding: 0 15px;
+            gap: 15px;
+            /* 隐藏滚动条 */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .alumni-wall__scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .alumni-card {
+            flex: 0 0 70px;
+            text-align: center;
+        }
+
+        .alumni-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            border: 2px solid #e0d6c6;
+            margin: 0 auto 6px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .alumni-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .alumni-name {
+            font-size: 12px;
+            color: #333;
+            display: block;
+            white-space: nowrap;
+        }
+
+        /* 3. 竹简列表 - 修复后的精美版 */
+        .bamboo-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bamboo-item {
+            background: #fdfbf7;
+            border: 1px solid #e6dcc8;
+            border-left: 4px solid #8b1e1e;
+            /* 左侧红线加粗 */
+            border-radius: 6px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* 选中状态（展开时）增加一点阴影 */
+        .bamboo-item.active {
+            box-shadow: 0 4px 12px rgba(139, 30, 30, 0.08);
+            border-color: #dcbfa6;
+        }
+
+        .bamboo-header {
+            padding: 16px 15px;
+            /* 增加内边距 */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: #fff;
+            /* 头部白色 */
+        }
+
+        /* 新增：头部左侧容器，锁定图标和文字的位置 */
+        .bamboo-header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            /* 图标和文字的间距 */
+        }
+
+        .bamboo-icon {
+            font-size: 20px;
+            color: #8b1e1e;
+            /* 图标红色 */
+            width: 24px;
+            text-align: center;
+        }
+
+        .bamboo-text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bamboo-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        .bamboo-subtitle {
+            font-size: 12px;
+            color: #999;
+            margin-top: 4px;
+            font-weight: normal;
+        }
+
+        .bamboo-arrow {
+            color: #ccc;
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        /* 展开后的内容区域 */
+        .bamboo-content {
+            background: #faf7f2;
+            /* 稍微深一点的米色背景 */
+            padding: 15px 20px;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            border-top: 1px dashed #e0d6c6;
+            /* 虚线分割，更有质感 */
+            text-align: justify;
+            /* 文字两端对齐 */
+        }
+    </style>
+
+    <div class="page-header"
+        style="position: sticky; top: 0; z-index: 50; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
         <button type="button" class="page-header__back" onclick="goBack()" aria-label="返回">
             <i class="fas fa-arrow-left"></i>
         </button>
@@ -9,24 +236,23 @@
         <div class="page-header__placeholder"></div>
     </div>
 
-    <!-- 主体内容 -->
-    <main class="pb-20 px-4">
-        <!-- 模块 A：百农精神 - 地标巡礼（时间轴） -->
-        <section class="mt-4">
-            <div class="section-header">
-                <div class="section-header__bar"></div>
-                <h2 class="section-header__title">百农精神</h2>
-            </div>
-            <p class="section-subtitle">地标巡礼</p>
+    <main class="bainong-bg px-4 pt-4 pb-4">
 
-            <!-- 时间轴 -->
+        <section class="mb-6">
+            <div class="section-header" style="display:flex; align-items:center; margin-bottom:10px;">
+                <div style="width:4px; height:18px; background:#8b1e1e; margin-right:8px; border-radius:2px;"></div>
+                <h2 style="font-size:18px; font-weight:bold; color:#333;">百农精神</h2>
+                <span style="font-size:12px; color:#999; margin-left:8px;">地标巡礼</span>
+            </div>
+
             <div class="timeline">
-                <!-- 志气林 -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-card" onclick="showLandmarkDetail('zhiqilin')">
+                    <div class="timeline-card"
+                        onclick="window.showLandmarkDetail('zhiqilin', '志气林', '十年树木，百年树人。那片见证誓言的树林，记录着第一代开拓者的足迹。')">
                         <div class="timeline-card__image">
-                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop" alt="志气林">
+                            <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400" alt="志气林"
+                                onerror="this.src='https://placehold.co/400x200/e8e4dc/5d4037?text=志气林';">
                         </div>
                         <div class="timeline-card__content">
                             <h3 class="timeline-card__title">志气林</h3>
@@ -35,12 +261,13 @@
                     </div>
                 </div>
 
-                <!-- 志气楼 -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-card" onclick="showLandmarkDetail('zhiqilou')">
+                    <div class="timeline-card"
+                        onclick="window.showLandmarkDetail('zhiqilou', '志气楼', '一砖一瓦皆是情。这是由师生共同亲手搭建的教学楼，象征着自力更生的精神。')">
                         <div class="timeline-card__image">
-                            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=200&fit=crop" alt="志气楼">
+                            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400" alt="志气楼"
+                                onerror="this.src='https://placehold.co/400x200/e8e4dc/5d4037?text=志气楼';">
                         </div>
                         <div class="timeline-card__content">
                             <h3 class="timeline-card__title">志气楼</h3>
@@ -49,15 +276,16 @@
                     </div>
                 </div>
 
-                <!-- 展览馆 -->
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
-                    <div class="timeline-card" onclick="showLandmarkDetail('zhanlanguan')">
+                    <div class="timeline-card"
+                        onclick="window.showLandmarkDetail('zhanlanguan', '校史展览馆', '这里收藏着建校以来的珍贵文物与影像，是连接过去与未来的桥梁。')">
                         <div class="timeline-card__image">
-                            <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=400&h=200&fit=crop" alt="展览馆">
+                            <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=400" alt="展览馆"
+                                onerror="this.src='https://placehold.co/400x200/e8e4dc/5d4037?text=展览馆';">
                         </div>
                         <div class="timeline-card__content">
-                            <h3 class="timeline-card__title">展览馆</h3>
+                            <h3 class="timeline-card__title">校史展览馆</h3>
                             <p class="timeline-card__desc">历史的见证，荣耀的传承。</p>
                         </div>
                     </div>
@@ -65,39 +293,49 @@
             </div>
         </section>
 
-        <!-- 模块 B：百农校友 - 桃李芬芳（头像墙） -->
-        <section class="mt-6">
-            <div class="section-header">
-                <div class="section-header__bar"></div>
-                <h2 class="section-header__title">百农校友</h2>
+        <section class="mb-6">
+            <div class="section-header" style="display:flex; align-items:center; margin-bottom:10px;">
+                <div style="width:4px; height:18px; background:#8b1e1e; margin-right:8px; border-radius:2px;"></div>
+                <h2 style="font-size:18px; font-weight:bold; color:#333;">百农校友</h2>
+                <span style="font-size:12px; color:#999; margin-left:8px;">桃李芬芳</span>
             </div>
-            <p class="section-subtitle">桃李芬芳</p>
 
-            <!-- 头像墙容器 -->
             <div class="alumni-wall">
-                <!-- 梅花背景装饰 -->
                 <div class="alumni-wall__bg"></div>
-                
-                <!-- 头像滚动区 -->
                 <div class="alumni-wall__scroll" id="alumni-scroll">
-                    <!-- 由 JavaScript 动态生成 -->
+                    <div style="padding:20px; color:#999; font-size:12px;">加载中...</div>
                 </div>
             </div>
         </section>
 
-        <!-- 模块 C：教研风采 - 书卷清单（折叠列表） -->
-        <section class="mt-6 mb-6">
-            <div class="section-header">
-                <div class="section-header__bar"></div>
-                <h2 class="section-header__title">教研风采</h2>
+        <section class="mb-6">
+            <div class="section-header" style="display:flex; align-items:center; margin-bottom:10px;">
+                <div style="width:4px; height:18px; background:#8b1e1e; margin-right:8px; border-radius:2px;"></div>
+                <h2 style="font-size:18px; font-weight:bold; color:#333;">教研风采</h2>
+                <span style="font-size:12px; color:#999; margin-left:8px;">书卷清单</span>
             </div>
-            <p class="section-subtitle">书卷清单</p>
 
-            <!-- 竹简列表 -->
-            <div class="bamboo-list" id="bamboo-list">
-                <!-- 由 JavaScript 动态生成 -->
-            </div>
+            <div class="bamboo-list" id="bamboo-list"></div>
         </section>
     </main>
-</div>
 
+    <div id="landmark-modal" class="hidden"
+        style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999; display:none; align-items:center; justify-content:center;"
+        onclick="window.closeLandmarkDetail()">
+        <div style="background:white; width:85%; max-width:340px; border-radius:12px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.2);"
+            onclick="event.stopPropagation()">
+            <div style="height:160px; background:#eee; position:relative;">
+                <img id="modal-img" src="" style="width:100%; height:100%; object-fit:cover;"
+                    onerror="this.src='https://placehold.co/400x200/e8e4dc/5d4037?text=暂无图片'">
+                <button onclick="window.closeLandmarkDetail()"
+                    style="position:absolute; top:10px; right:10px; background:rgba(0,0,0,0.5); border:none; color:white; width:30px; height:30px; border-radius:50%; font-size:16px;">×</button>
+            </div>
+            <div style="padding:20px;">
+                <h3 id="modal-title" style="font-size:20px; font-weight:bold; color:#333; margin-bottom:10px;">标题</h3>
+                <p id="modal-desc" style="font-size:14px; color:#666; line-height:1.6; margin-bottom:20px;">详情内容...</p>
+                <button onclick="window.closeLandmarkDetail()"
+                    style="width:100%; padding:10px; background:#8b1e1e; color:white; border:none; border-radius:6px; font-weight:bold;">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>

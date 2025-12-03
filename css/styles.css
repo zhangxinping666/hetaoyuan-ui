@@ -225,7 +225,7 @@
     display: none;
     height: calc(100% - 44px);
     overflow-y: auto;
-    padding-bottom: 100px;
+    /* padding-bottom: 100px; */
     position: relative;
     background-color: #F7F4ED;
 }

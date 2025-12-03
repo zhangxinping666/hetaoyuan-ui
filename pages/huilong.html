@@ -23,8 +23,24 @@
             </button>
         </div>
     </div>
+    <div id="huilong-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onclick="window.closeHuilongDetail()">
+        <div class="bg-white rounded-xl w-full max-w-md overflow-hidden shadow-2xl transform transition-all" onclick="event.stopPropagation()">
+            <div class="relative h-48 bg-gray-200">
+                <img title="img" id="hl-modal-img" src="" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/600x400'">
+                <button title="button" onclick="window.closeHuilongDetail()" class="absolute top-2 right-2 w-8 h-8 rounded-full bg-black/30 text-white flex items-center justify-center hover:bg-black/50 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <h3 id="hl-modal-title" class="text-2xl font-serif font-bold text-[#8B4513] mb-2">标题</h3>
+                <div class="w-10 h-1 bg-[#C04851] mb-4"></div>
+                <p id="hl-modal-desc" class="text-gray-600 text-sm leading-relaxed text-justify">详情内容...</p>
+                <button onclick="window.closeHuilongDetail()" class="mt-6 w-full py-3 bg-[#8B4513] text-white rounded-lg font-bold hover:bg-[#6d360f] transition">关闭</button>
+            </div>
+        </div>
+    </div>
 
-    <main class="pb-20 bg-stone-50">
+    <main class="pb-4 bg-stone-50">
         
         <section class="section-dark py-8 px-4 bg-[#E8E6E1]">
             <div class="section-header mb-6">
