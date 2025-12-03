@@ -324,13 +324,18 @@ function createPlaceholderPage(pageId) {
 window.showPage = showPage;
 // 更新底部图标颜色
 function updateBottomNav(activePageId) {
-    // 移除所有高亮
+    // 【关键步骤 1：移除所有激活状态】
+    // 必须确保这一步在添加新激活状态之前运行。
     const allNavItems = document.querySelectorAll('.nav-item');
-    allNavItems.forEach(item => item.classList.remove('active'));
+    allNavItems.forEach(item => {
+        // 移除所有 nav-item 上的 active 类
+        item.classList.remove('active');
+    });
 
-    // 添加当前高亮 (前提是你的 HTML 里 nav-item 的 id 是 "b-nav-xxx")
+    // 【关键步骤 2：添加新激活状态】
     const targetNav = document.getElementById(`b-nav-${activePageId}`);
     if (targetNav) {
+        // 仅将 active 类添加到当前点击的 Tab
         targetNav.classList.add('active');
     }
 }
