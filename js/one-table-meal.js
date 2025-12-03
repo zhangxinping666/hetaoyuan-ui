@@ -11,12 +11,12 @@
             name: '家庭雅集',
             price: '688',
             unit: '/桌 (4-6人)',
-            desc: '温馨家常，老少咸宜',
+            desc: '温馨家常，老少咸宜。精选半坡本地食材，还原儿时记忆中的味道。',
             dishes: [
-                { name: '太行炖土鸡', image: 'https://images.unsplash.com/photo-1625938145744-e38051524294?w=400', tags: ['招牌', '滋补'], desc: '半坡散养走地鸡，慢火煨制4小时' },
-                { name: '核桃仁拌野菜', image: 'https://images.unsplash.com/photo-1560155016-bd4879ae8f21?w=400', tags: ['时令', '爽口'], desc: '当季野菜配鲜核桃，清爽解腻' },
-                { name: '手工杂粮面', image: 'https://images.unsplash.com/photo-1606214300755-a50d28731b6e?w=400', tags: ['主食', '手工'], desc: '石磨面粉手工擀制，配特制肉臊' },
-                { name: '山药红烧肉', image: 'https://images.unsplash.com/photo-1608475861994-cf7fc9f51a02?w=400', tags: ['硬菜', '下饭'], desc: '铁棍山药与五花肉的完美融合' }
+                { id: 'f1', name: '太行炖土鸡', image: 'https://images.unsplash.com/photo-1625938145744-e38051524294?w=400', tags: ['招牌', '滋补'], desc: '半坡散养走地鸡，肉质紧实，慢火煨制4小时，汤色金黄，营养丰富。' },
+                { id: 'f2', name: '核桃仁拌野菜', image: 'https://images.unsplash.com/photo-1560155016-bd4879ae8f21?w=400', tags: ['时令', '爽口'], desc: '当季新鲜野菜配上半坡特产鲜核桃仁，清脆爽口，解腻开胃。' },
+                { id: 'f3', name: '手工杂粮面', image: 'https://images.unsplash.com/photo-1606214300755-a50d28731b6e?w=400', tags: ['主食', '手工'], desc: '石磨面粉手工擀制，劲道滑爽，配上特制肉臊卤子，一碗下肚超满足。' },
+                { id: 'f4', name: '山药红烧肉', image: 'https://images.unsplash.com/photo-1608475861994-cf7fc9f51a02?w=400', tags: ['硬菜', '下饭'], desc: '铁棍山药吸饱了肉汁，软糯香甜，五花肉肥而不腻，入口即化。' }
             ]
         },
         business: {
@@ -24,12 +24,12 @@
             name: '团队盛宴',
             price: '1288',
             unit: '/桌 (8-10人)',
-            desc: '商务宴请，排面十足',
+            desc: '商务宴请，排面十足。汇聚山珍海味，打造高端用餐体验。',
             dishes: [
-                { name: '烤全羊腿', image: 'https://images.unsplash.com/photo-1544025162-d76690b60943?w=400', tags: ['硬菜', '特色'], desc: '秘制腌料，外酥里嫩，香气四溢' },
-                { name: '清蒸虹鳟鱼', image: 'https://images.unsplash.com/photo-1580959375944-0b7b9e7d6b3f?w=400', tags: ['鲜美', '活鱼'], desc: '山泉水养殖，肉质细嫩无腥味' },
-                { name: '养生菌菇汤', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400', tags: ['养生', '鲜汤'], desc: '七种野生菌菇熬制，鲜掉眉毛' },
-                { name: '太行炖土鸡', image: 'https://images.unsplash.com/photo-1625938145744-e38051524294?w=400', tags: ['招牌', '滋补'], desc: '半坡散养走地鸡，慢火煨制4小时' }
+                { id: 'b1', name: '烤全羊腿', image: 'https://images.unsplash.com/photo-1544025162-d76690b60943?w=400', tags: ['硬菜', '特色'], desc: '精选羔羊后腿，秘制香料腌制入味，炭火慢烤至外酥里嫩，香气四溢。' },
+                { id: 'b2', name: '清蒸虹鳟鱼', image: 'https://images.unsplash.com/photo-1580959375944-0b7b9e7d6b3f?w=400', tags: ['鲜美', '活鱼'], desc: '引山泉水养殖的虹鳟鱼，现杀现蒸，肉质细嫩无腥味，营养价值极高。' },
+                { id: 'b3', name: '养生菌菇汤', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400', tags: ['养生', '鲜汤'], desc: '汇集七种野生菌菇，不加味精，全靠食材本身的鲜味，一口鲜掉眉毛。' },
+                { id: 'b4', name: '太行炖土鸡', image: 'https://images.unsplash.com/photo-1625938145744-e38051524294?w=400', tags: ['招牌', '滋补'], desc: '半坡散养走地鸡，慢火煨制4小时，汤色金黄，老少皆宜。' }
             ]
         }
     };
@@ -57,11 +57,11 @@
         const inactiveClass = "text-gray-500 hover:bg-stone-100";
 
         container.innerHTML = `
-            <button onclick="switchPackage('family')" 
+            <button onclick="window.switchPackage('family')" 
                 class="flex-1 py-2 rounded-full text-sm font-bold transition-all duration-300 ${currentPackage === 'family' ? activeClass : inactiveClass}">
                 ${packages.family.name}
             </button>
-            <button onclick="switchPackage('business')" 
+            <button onclick="window.switchPackage('business')" 
                 class="flex-1 py-2 rounded-full text-sm font-bold transition-all duration-300 ${currentPackage === 'business' ? activeClass : inactiveClass}">
                 ${packages.business.name}
             </button>
@@ -80,9 +80,11 @@
         
         setTimeout(() => {
             container.innerHTML = data.dishes.map(dish => `
-                <div class="snap-center shrink-0 w-[260px] bg-white rounded-xl overflow-hidden shadow-[0_8px_24px_-6px_rgba(78,52,46,0.15)] group cursor-pointer" onclick="alert('查看详情：${dish.name}')">
+                <div class="snap-center shrink-0 w-[260px] bg-white rounded-xl overflow-hidden shadow-[0_8px_24px_-6px_rgba(78,52,46,0.15)] group cursor-pointer hover:shadow-lg transition-shadow" 
+                     onclick="window.showDishDetail('${dish.id}')">
                     <div class="h-40 overflow-hidden relative">
-                        <img src="${dish.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="${dish.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                             onerror="this.src='https://via.placeholder.com/400x300/4E342E/FFFFFF?text=${dish.name}'">
                         <div class="absolute bottom-0 left-0 w-full h-2/3 bg-gradient-to-t from-black/70 to-transparent"></div>
                         <span class="absolute bottom-3 left-3 text-white font-serif text-lg font-bold tracking-wide">${dish.name}</span>
                     </div>
@@ -145,6 +147,7 @@
     // 3. 交互函数 (挂载到 window)
     // ==========================================
 
+    // 切换套餐
     window.switchPackage = function(pkgId) {
         if (currentPackage === pkgId) return;
         currentPackage = pkgId;
@@ -153,8 +156,79 @@
         updateBottomBar();
     };
 
+    // 显示菜品详情弹窗
+    window.showDishDetail = function(id) {
+        const pkg = packages[currentPackage];
+        const dish = pkg.dishes.find(d => d.id === id);
+        
+        if(dish) {
+            window.openOneTableMealModal(dish.name, dish.desc, dish.image);
+        }
+    };
+
+    // 预订功能
     window.bookTable = function() {
-        alert(`已为您预订：${packages[currentPackage].name}\n价格：¥${packages[currentPackage].price}`);
+        const pkg = packages[currentPackage];
+        const btn = document.querySelector('.otm-book-btn'); // 假设 HTML 按钮有这个类名
+        
+        if (btn) {
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> 处理中...';
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                // 恢复按钮状态
+                btn.innerHTML = originalText;
+                btn.classList.remove('opacity-80', 'cursor-not-allowed');
+                
+                // 弹出成功提示
+                window.openOneTableMealModal(
+                    '预订成功', 
+                    `您已成功预订【${pkg.name}】\n价格：¥${pkg.price}${pkg.unit}\n\n稍后会有客服联系您确认用餐时间和人数。`, 
+                    null
+                );
+            }, 1000);
+        } else {
+            // 降级处理
+            alert(`已为您预订：${pkg.name}\n价格：¥${pkg.price}`);
+        }
+    };
+
+    // --- 通用弹窗逻辑 (内部函数) ---
+    window.openOneTableMealModal = function(title, desc, imgUrl) {
+        const modal = document.getElementById('onetable-modal');
+        if (!modal) {
+            alert(`${title}\n\n${desc}`); 
+            return;
+        }
+
+        const titleEl = document.getElementById('otm-modal-title');
+        const descEl = document.getElementById('otm-modal-desc');
+        const imgEl = document.getElementById('otm-modal-img');
+        const imgContainer = imgEl ? imgEl.parentElement : null;
+
+        if(titleEl) titleEl.innerText = title;
+        if(descEl) descEl.innerText = desc || '暂无描述';
+        
+        if(imgEl && imgContainer) {
+            if(imgUrl) {
+                imgEl.src = imgUrl;
+                imgContainer.style.display = 'block';
+            } else {
+                imgContainer.style.display = 'none';
+            }
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    };
+
+    window.closeOneTableMealModal = function() {
+        const modal = document.getElementById('onetable-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
     };
 
     // ==========================================
@@ -167,5 +241,12 @@
         renderServices();
         updateBottomBar();
     };
+
+    // 自动检测并初始化
+    setTimeout(() => {
+        if(document.getElementById('one-table-meal')) {
+            window.initOneTableMealPage();
+        }
+    }, 100);
 
 })();
