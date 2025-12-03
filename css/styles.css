@@ -60,7 +60,18 @@
     letter-spacing: 0.3em;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
+/* 确保二级页面完全隐藏底部导航 */
+.page:not(#home):not(#discussion):not(#classics):not(#customize):not(#profile) ~ .bottom-nav {
+    display: none !important;
+    visibility: hidden !important;
+}
 
+/* 二级页面时强制隐藏底部导航 */
+.bottom-nav.hidden {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
 /* ========== 通用板块标题样式 ========== */
 .section-header {
     display: flex;

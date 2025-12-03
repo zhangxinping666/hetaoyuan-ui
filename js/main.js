@@ -7,7 +7,7 @@ const categories = [
     { id: 'bainong', title: '百农篇', subtitle: '农耕文明', image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=400&h=400&fit=crop' },
     { id: 'guanshan', title: '关山篇', subtitle: '山川地理', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop' },
     { id: 'huilong', title: '回龙篇', subtitle: '龙脉传承', image: 'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?w=400&h=400&fit=crop' },
-    { id: 'kangzhan', title: '抗战篇', subtitle: '红色记忆', image: 'https://images.unsplash.com/photo-1569254979650-e066a2e6e1c2?w=400&h=400&fit=crop' }
+    { id: 'kangzhan', title: '抗战篇', subtitle: '红色记忆', image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=400&h=400&fit=crop' }
 ];
 
 function renderLatticeGrid() {
@@ -130,7 +130,7 @@ function loadScript(url) {
 // ==========================================
 async function loadSubPage(pageName) {
     try {
-        console.log('🔄 加载子页面:', pageName);
+        console.log('🔄 加载动态页面:', pageName);
         
         const screen = document.querySelector('.screen');
         if (!screen) {
@@ -138,32 +138,42 @@ async function loadSubPage(pageName) {
             return;
         }
 
-        // 1. 隐藏当前页面
+        // 强制隐藏底部导航（二级页面）
+        const bottomNav = document.querySelector('.bottom-nav');
+        if (bottomNav) {
+            bottomNav.style.display = 'none';
+            bottomNav.classList.add('hidden');
+        }
+
+        // 隐藏当前页面
         const currentPage = screen.querySelector('.page.active');
         if (currentPage) currentPage.classList.remove('active');
 
-        // 2. 检查页面是否已存在
+        // 检查页面是否已存在
         let targetPage = document.getElementById(pageName);
         if (targetPage) {
             targetPage.classList.add('active');
+            targetPage.scrollTop = 0;
             updateNavButtons(pageName);
             return;
         }
 
-        // 3. 动态加载页面
+        // 动态加载页面
         const response = await fetch(`pages/${pageName}.html`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         
         const html = await response.text();
         
-        // 创建新页面容器并添加滚动样式
+        // 创建新页面容器
         const newPage = document.createElement('div');
         newPage.id = pageName;
         newPage.className = 'page active';
-        newPage.style.height = '100%';
-        newPage.style.overflowY = 'auto';
-        newPage.style.overflowX = 'hidden';
-        newPage.style.webkitOverflowScrolling = 'touch';
+        newPage.style.cssText = `
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        `;
         newPage.innerHTML = html;
         
         screen.appendChild(newPage);
@@ -171,39 +181,289 @@ async function loadSubPage(pageName) {
         // 加载对应的 JavaScript 文件
         await loadPageScript(pageName);
 
-        // 4. 更新底部导航状态
+        // 更新导航状态
         updateNavButtons(pageName);
         
-        // 5. 确保页面滚动到顶部
+        // 确保页面滚动到顶部
         newPage.scrollTop = 0;
 
     } catch (error) {
         console.error('❌ 加载页面失败:', error);
+        // 回退到首页
+        showStaticPage('home');
     }
 }
 
+function showStaticPage(pageName) {
+    console.log('📄 切换静态页面:', pageName);
+    
+    const screen = document.querySelector('.screen');
+    if (!screen) {
+        console.error('❌ 找不到 .screen 容器');
+        return;
+    }
+
+    // 控制底部导航显示
+    const bottomNav = document.querySelector('.bottom-nav');
+    const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
+    
+    if (bottomNav) {
+        if (rootPages.includes(pageName)) {
+            bottomNav.style.display = 'flex';
+            bottomNav.style.visibility = 'visible';
+            bottomNav.classList.remove('hidden');
+        } else {
+            bottomNav.style.display = 'none';
+            bottomNav.style.visibility = 'hidden';
+            bottomNav.classList.add('hidden');
+        }
+    }
+
+    // 隐藏所有页面
+    const allPages = screen.querySelectorAll('.page');
+    allPages.forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // 显示目标页面
+    const targetPage = document.getElementById(pageName);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        // 滚动到顶部
+        targetPage.scrollTop = 0;
+    } else {
+        console.error('❌ 找不到页面:', pageName);
+        return;
+    }
+
+    // 更新导航状态
+    updateNavButtons(pageName);
+    updateNavActiveState(pageName);
+}
+
 // ==========================================
-// 6. 导航与状态管理
+// 6. 导航与状态管理 - 重构版
 // ==========================================
+
+// 定义页面类型
+const PAGE_TYPES = {
+    // 静态页面 - 已在 index.html 中定义
+    STATIC: ['home', 'classics', 'customize', 'discussion', 'profile'],
+    // 动态页面 - 需要从 pages/ 目录加载
+    DYNAMIC: [
+        'bainong', 'guanshan', 'huilong', 'kangzhan',
+        'one-table-meal', 'team-meal', 'specialty', 'event-planning', 
+        'farming', 'family-park', 'leisure-tour', 'red-route',
+        'banpo-dining', 'banpo-talks', 'literary-creation', 'farming-reading'
+    ]
+};
+
 function showPage(pageName) {
     console.log('🔄 显示页面:', pageName);
     
-    // 如果是首页，直接显示
-    if (pageName === 'home') {
-        const screen = document.querySelector('.screen');
-        const allPages = screen.querySelectorAll('.page');
-        allPages.forEach(page => page.classList.remove('active'));
-        
-        const homePage = document.getElementById('home');
-        if (homePage) {
-            homePage.classList.add('active');
-        }
-        updateNavButtons('home');
+    if (PAGE_TYPES.STATIC.includes(pageName)) {
+        // 处理静态页面切换
+        showStaticPage(pageName);
+    } else if (PAGE_TYPES.DYNAMIC.includes(pageName)) {
+        // 处理动态页面加载
+        loadSubPage(pageName);
+    } else {
+        console.warn('⚠️ 未知页面类型:', pageName);
+    }
+}
+
+function showStaticPage(pageName) {
+    console.log('📄 切换静态页面:', pageName);
+    
+    const screen = document.querySelector('.screen');
+    if (!screen) {
+        console.error('❌ 找不到 .screen 容器');
         return;
     }
+
+    // 控制底部导航显示
+    const bottomNav = document.querySelector('.bottom-nav');
+    const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
     
-    // 其他页面使用 loadSubPage
-    loadSubPage(pageName);
+    if (bottomNav) {
+        if (rootPages.includes(pageName)) {
+            bottomNav.style.display = 'flex';
+            bottomNav.style.visibility = 'visible';
+            bottomNav.classList.remove('hidden');
+        } else {
+            bottomNav.style.display = 'none';
+            bottomNav.style.visibility = 'hidden';
+            bottomNav.classList.add('hidden');
+        }
+    }
+
+    // 隐藏所有页面
+    const allPages = screen.querySelectorAll('.page');
+    allPages.forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // 显示目标页面
+    const targetPage = document.getElementById(pageName);
+    if (targetPage) {
+        targetPage.classList.add('active');
+        // 滚动到顶部
+        targetPage.scrollTop = 0;
+    } else {
+        console.error('❌ 找不到页面:', pageName);
+        return;
+    }
+
+    // 更新导航状态
+    updateNavButtons(pageName);
+    updateNavActiveState(pageName);
+}
+
+async function loadSubPage(pageName) {
+    try {
+        console.log('🔄 加载动态页面:', pageName);
+        
+        const screen = document.querySelector('.screen');
+        if (!screen) {
+            console.error('❌ 找不到 .screen 容器');
+            return;
+        }
+
+        // 强制隐藏底部导航（二级页面）
+        const bottomNav = document.querySelector('.bottom-nav');
+        if (bottomNav) {
+            bottomNav.style.display = 'none';
+            bottomNav.classList.add('hidden');
+        }
+
+        // 隐藏当前页面
+        const currentPage = screen.querySelector('.page.active');
+        if (currentPage) currentPage.classList.remove('active');
+
+        // 检查页面是否已存在
+        let targetPage = document.getElementById(pageName);
+        if (targetPage) {
+            targetPage.classList.add('active');
+            targetPage.scrollTop = 0;
+            updateNavButtons(pageName);
+            return;
+        }
+
+        // 动态加载页面
+        const response = await fetch(`pages/${pageName}.html`);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        
+        const html = await response.text();
+        
+        // 创建新页面容器
+        const newPage = document.createElement('div');
+        newPage.id = pageName;
+        newPage.className = 'page active';
+        newPage.style.cssText = `
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        `;
+        newPage.innerHTML = html;
+        
+        screen.appendChild(newPage);
+
+        // 加载对应的 JavaScript 文件
+        await loadPageScript(pageName);
+
+        // 更新导航状态
+        updateNavButtons(pageName);
+        
+        // 确保页面滚动到顶部
+        newPage.scrollTop = 0;
+
+    } catch (error) {
+        console.error('❌ 加载页面失败:', error);
+        // 回退到首页
+        showStaticPage('home');
+    }
+}
+
+function updateNavActiveState(pageName) {
+    // 更新底部导航栏的激活状态
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.classList.remove('active');
+    });
+
+    // 激活对应的导航项
+    const targetNavItem = document.getElementById(`b-nav-${pageName}`);
+    if (targetNavItem) {
+        targetNavItem.classList.add('active');
+    }
+}
+
+function updateNavButtons(pageName) {
+    // 一级页面列表 - 显示底部导航
+    const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
+
+    // 控制底部导航栏显示/隐藏
+    const bottomNav = document.querySelector('.bottom-nav');
+    if (bottomNav) {
+        if (rootPages.includes(pageName)) {
+            bottomNav.style.display = 'flex';
+        } else {
+            bottomNav.style.display = 'none';
+        }
+    }
+
+    // 更新右侧悬浮导航
+    updatePrototypeNav(pageName);
+}
+
+function updatePrototypeNav(pageName) {
+    const navContainer = document.querySelector('.prototype-btn')?.parentElement;
+    if (!navContainer) return;
+
+    const pageConfig = {
+        home: { icon: 'home', title: '首页' },
+        classics: { icon: 'book-open', title: '经典典藏' },
+        discussion: { icon: 'comments', title: '悬空民宿' },
+        customize: { icon: 'clipboard-list', title: '我的订单' },
+        profile: { icon: 'user', title: '个人中心' },
+        bainong: { icon: 'seedling', title: '百农篇' },
+        guanshan: { icon: 'mountain', title: '关山篇' },
+        huilong: { icon: 'landmark', title: '回龙篇' },
+        kangzhan: { icon: 'flag', title: '抗战篇' },
+        'one-table-meal': { icon: 'utensils', title: '一桌餐' },
+        'banpo-dining': { icon: 'utensils', title: '半坡餐饮' },
+        'banpo-talks': { icon: 'comments', title: '半坡讲坛' },
+        'literary-creation': { icon: 'pen-fancy', title: '文学创作' },
+        'farming-reading': { icon: 'book', title: '耕读' },
+        'specialty': { icon: 'gift', title: '半坡特产' },
+        'family-park': { icon: 'smile', title: '亲情乐园' },
+        'event-planning': { icon: 'scroll', title: '活动策划' },
+        'farming': { icon: 'seedling', title: '种养认领' },
+        'team-meal': { icon: 'users', title: '团队餐' },
+        'red-route': { icon: 'flag', title: '红色路线' },
+        'leisure-tour': { icon: 'mountain', title: '休闲游览' }
+    };
+
+    navContainer.innerHTML = '';
+
+    // 首页按钮
+    const homeBtn = document.createElement('button');
+    homeBtn.type = 'button';
+    homeBtn.className = `prototype-btn ${pageName === 'home' ? 'active' : ''}`;
+    homeBtn.onclick = () => goBack();
+    homeBtn.innerHTML = `<i class="fas fa-home mr-2"></i>首页`;
+    navContainer.appendChild(homeBtn);
+
+    // 当前页面按钮（如果不是首页）
+    if (pageName !== 'home' && pageConfig[pageName]) {
+        const { icon, title } = pageConfig[pageName];
+        const pageBtn = document.createElement('button');
+        pageBtn.type = 'button';
+        pageBtn.className = 'prototype-btn active';
+        pageBtn.innerHTML = `<i class="fas fa-${icon} mr-2"></i>${title}`;
+        navContainer.appendChild(pageBtn);
+    }
 }
 
 function goBack() {
@@ -211,231 +471,32 @@ function goBack() {
     const currentPage = screen.querySelector('.page.active');
 
     if (currentPage && currentPage.id !== 'home') {
-        currentPage.remove(); // 销毁页面，保证下次重新初始化
-        const homePage = document.getElementById('home');
-        if (homePage) homePage.classList.add('active');
-        updateNavButtons('home');
-    }
-}
-
-// 在 js/main.js 中找到 updateNavButtons 函数并替换：
-
-function updateNavButtons(pageName) {
-    // 一级页面列表 (Bottom Tabs) - 只有这些页面显示底部导航
-    const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
-
-    // 控制底部导航栏的显示/隐藏
-    const bottomNav = document.querySelector('.bottom-nav');
-    if (bottomNav) {
-        if (rootPages.includes(pageName)) {
-            bottomNav.style.display = 'flex'; // 显示
+        // 如果是动态页面，移除它
+        if (PAGE_TYPES.DYNAMIC.includes(currentPage.id)) {
+            currentPage.remove();
         } else {
-            bottomNav.style.display = 'none'; // 隐藏所有详情页
+            // 如果是静态页面，只是隐藏
+            currentPage.classList.remove('active');
         }
     }
 
-    // 更新右侧悬浮导航
-    const navContainer = document.querySelector('.prototype-btn')?.parentElement;
-    if (navContainer) {
-        const pageConfig = {
-            home: { icon: 'home', title: '首页' },
-            bainong: { icon: 'seedling', title: '百农篇' },
-            guanshan: { icon: 'mountain', title: '关山篇' },
-            huilong: { icon: 'landmark', title: '回龙篇' },
-            kangzhan: { icon: 'flag', title: '抗战篇' }
-        };
-
-        navContainer.innerHTML = '';
-
-        // 始终显示首页按钮
-        const homeBtn = document.createElement('button');
-        homeBtn.type = 'button';
-        homeBtn.className = `prototype-btn ${pageName === 'home' ? 'active' : ''}`;
-        homeBtn.onclick = () => goBack();
-        homeBtn.innerHTML = `<i class="fas fa-home mr-2"></i>首页`;
-        navContainer.appendChild(homeBtn);
-
-        // 如果不是首页，显示当前页面按钮
-        if (pageName !== 'home') {
-            let title = '详情页';
-            let icon = 'file-alt';
-            
-            if (pageConfig[pageName]) {
-                title = pageConfig[pageName].title;
-                icon = pageConfig[pageName].icon;
-            } else if (pageName === 'one-table-meal') { title = '一桌餐'; icon = 'utensils'; }
-            else if (pageName === 'banpo-dining') { title = '半坡餐饮'; icon = 'utensils'; }
-            else if (pageName === 'banpo-talks') { title = '半坡讲坛'; icon = 'comments'; }
-            else if (pageName === 'literary-creation') { title = '文学创作'; icon = 'pen-fancy'; }
-            else if (pageName === 'farming-reading') { title = '耕读'; icon = 'book'; }
-            else if (pageName === 'specialty') { title = '半坡特产'; icon = 'gift'; }
-            else if (pageName === 'family-park') { title = '亲情乐园'; icon = 'smile'; }
-            else if (pageName === 'event-planning') { title = '活动策划'; icon = 'scroll'; }
-            else if (pageName === 'farming') { title = '种养认领'; icon = 'seedling'; }
-            else if (pageName === 'team-meal') { title = '团队餐'; icon = 'users'; }
-            else if (pageName === 'red-route') { title = '红色路线'; icon = 'flag'; }
-            else if (pageName === 'leisure-tour') { title = '休闲游览'; icon = 'mountain'; }
-
-            const pageBtn = document.createElement('button');
-            pageBtn.type = 'button';
-            pageBtn.className = 'prototype-btn active';
-            pageBtn.innerHTML = `<i class="fas fa-${icon} mr-2"></i>${title}`;
-            navContainer.appendChild(pageBtn);
-        }
-    }
-    
-    // 更新底部 Tab 栏高亮状态（仅在显示时）
-    if (rootPages.includes(pageName)) {
-        updateNavActiveState(pageName);
-    }
-}
-function updateNavActiveState(pageId) {
-    const navItems = document.querySelectorAll(".nav-item");
-    navItems.forEach((item) => {
-        item.classList.remove("active");
-        item.classList.add("text-gray-500");
-        item.style.color = "";
-    });
-
-    let activeNavId = null;
-    
-    // 首页
-    if (pageId === "home") activeNavId = "b-nav-home";
-    
-    // 经典 (Classics) Tab
-    else if (["classics", "banpo-talks", "literary-creation", "bainong", "guanshan", "huilong", "kangzhan"].includes(pageId)) {
-        activeNavId = "b-nav-classics";
-    }
-    
-    // 订单/定制 (Customize) Tab - 包含所有服务
-    else if (["customize", "banpo-dining", "one-table-meal", "team-meal", "specialty", "event-planning"].includes(pageId)) {
-        activeNavId = "b-nav-customize";
-    }
-    
-    // 悬空民宿/交流 (Discussion) Tab - 包含社区和游览
-    else if (["discussion", "farming-reading", "family-park", "farming", "leisure-tour", "red-route"].includes(pageId)) {
-        activeNavId = "b-nav-discussion";
-    }
-    
-    // 我的 (Profile) Tab
-    else if (pageId === "profile") {
-        activeNavId = "b-nav-profile";
-    }
-
-    if (activeNavId) {
-        const activeNav = document.getElementById(activeNavId);
-        if (activeNav) {
-            activeNav.classList.add("active");
-            activeNav.classList.remove("text-gray-500");
-            activeNav.style.color = "#C04851";
-        }
-    }
-}
-
-function updateTime() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const timeElements = document.querySelectorAll(".status-bar span:first-child");
-    timeElements.forEach(el => el.textContent = `${hours}:${minutes}`);
-}
-
-// ==========================================
-// 7. 首页特有逻辑
-// ==========================================
-function initDiscussionScroll() {
-    const track = document.querySelector('.discussion-scroll__track');
-    const cards = document.querySelectorAll('.scroll-card');
-    const indicatorsContainer = document.getElementById('scroll-indicators');
-
-    if (!track || cards.length === 0) return;
-
-    let currentIndex = 0;
-
-    if (indicatorsContainer) {
-        indicatorsContainer.innerHTML = Array.from(cards).map((_, index) => `
-            <div class="discussion-scroll__indicator ${index === 0 ? 'discussion-scroll__indicator--active' : ''}" data-index="${index}"></div>
-        `).join('');
-        
-        indicatorsContainer.querySelectorAll('.discussion-scroll__indicator').forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                track.scrollTo({ left: cards[index].offsetLeft - 16, behavior: 'smooth' });
-            });
-        });
-    }
-
-    track.addEventListener('scroll', () => {
-        const trackLeft = track.scrollLeft;
-        let closestIndex = 0;
-        let minDistance = Infinity;
-        cards.forEach((card, index) => {
-            const dist = Math.abs(trackLeft - (card.offsetLeft - 16));
-            if (dist < minDistance) { minDistance = dist; closestIndex = index; }
-        });
-        
-        if (closestIndex !== currentIndex) {
-            currentIndex = closestIndex;
-            document.querySelectorAll('.discussion-scroll__indicator').forEach((ind, i) => {
-                if (i === currentIndex) ind.classList.add('discussion-scroll__indicator--active');
-                else ind.classList.remove('discussion-scroll__indicator--active');
-            });
-        }
-    });
-}
-
-// ==========================================
-// 8. 核心：底部导航兼容处理
-// ==========================================
-// 该函数用于响应 index.html 中底部导航栏的 onclick="showPage('xxx')"
-window.showPage = function(pageId) {
-    console.log('👆 底部导航点击:', pageId);
-    
-    // 映射关系：Tab ID -> 实际页面文件名
-    const navMap = {
-        'home': 'home',
-        'discussion': 'discussion',
-        'classics': 'classics',
-        'customize': 'customize',
-        'profile': 'profile'
-    };
-
-    const targetPageName = navMap[pageId] || pageId;
-    loadSubPage(targetPageName);
-};
-
-// ==========================================
-// 9. 应用入口
-// ==========================================
-function initializeApp() {
-    if (window.__appInitialized) return;
-    
     // 显示首页
-    const homePage = document.getElementById('home');
-    if (homePage) homePage.classList.add('active');
-    
-    updateTime();
-    initDiscussionScroll();
-    window.__appInitialized = true;
+    showStaticPage('home');
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+// 页面初始化
+function initializeApp() {
+    console.log('🚀 应用初始化');
+    
+    // 确保首页激活
+    showStaticPage('home');
+    
+    // 渲染首页内容
     renderLatticeGrid();
     renderServiceGrid();
-    initializeApp();
+    
+    console.log('✅ 应用初始化完成');
+}
 
-    window.loadSubPage = loadSubPage;
-    window.goBack = goBack;
-    
-    // 暴露函数
-    window.openBanpoDining = openBanpoDining;
-    window.openBanpoTalks = openBanpoTalks;
-    window.openLiteraryCreation = openLiteraryCreation;
-    window.openFarmingReading = openFarmingReading;
-    window.openOneTableMeal = openOneTableMeal;
-    window.showBanpoText = showBanpoText;
-    window.closeBanpoText = closeBanpoText;
-    window.handleServiceClick = handleServiceClick;
-    window.handleCategoryClick = handleCategoryClick;
-    
-    console.log('✅ 系统就绪: 底部导航已挂载');
-});
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', initializeApp);
