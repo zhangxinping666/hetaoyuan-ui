@@ -18,27 +18,27 @@
 
     // 杏林馆
     const medicalVideos = [
-        { id: 1, title: '心血管健康养护指南', lecturer: '张教授', duration: '45分钟', tag: '专家号', thumbnail: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400', views: 1234 },
-        { id: 2, title: '中医养生：四季调理', lecturer: '李医师', duration: '38分钟', tag: '养生', thumbnail: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400', views: 892 },
-        { id: 3, title: '老年营养学基础', lecturer: '王营养师', duration: '52分钟', tag: '营养', thumbnail: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400', views: 756 }
+        { id: 1, title: '心血管健康养护指南', lecturer: '张教授', duration: '45分钟', tag: '专家号', thumbnail: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400', views: 1234, desc: '张教授深入浅出地讲解心血管疾病的预防与日常养护，适合中老年朋友观看。' },
+        { id: 2, title: '中医养生：四季调理', lecturer: '李医师', duration: '38分钟', tag: '养生', thumbnail: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400', views: 892, desc: '顺应四时变化，调整饮食起居。李医师教你如何通过中医智慧保持身体平衡。' },
+        { id: 3, title: '老年营养学基础', lecturer: '王营养师', duration: '52分钟', tag: '营养', thumbnail: 'https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400', views: 756, desc: '科学饮食，健康长寿。王营养师为您解读老年人膳食宝塔与营养补充要点。' }
     ];
 
     // 墨香阁
     const artworks = [
-        { id: 1, title: '兰亭序临摹', author: '王羲之', type: '书法', image: 'https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?w=300' },
-        { id: 2, title: '山水小品', author: '张大千', type: '国画', image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300' },
-        { id: 3, title: '梅兰竹菊', author: '齐白石', type: '国画', image: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=300' },
-        { id: 4, title: '行书习作', author: '颜真卿', type: '书法', image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300' }
+        { id: 1, title: '兰亭序临摹', author: '王羲之', type: '书法', image: 'https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?w=300', desc: '天下第一行书，笔法精妙，气韵生动。' },
+        { id: 2, title: '山水小品', author: '张大千', type: '国画', image: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=300', desc: '泼墨山水，意境深远，尺幅之间见天地。' },
+        { id: 3, title: '梅兰竹菊', author: '齐白石', type: '国画', image: 'https://images.unsplash.com/photo-1547891654-e66ed7ebb968?w=300', desc: '花鸟虫鱼，妙趣横生，尽显生活情趣。' },
+        { id: 4, title: '行书习作', author: '颜真卿', type: '书法', image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300', desc: '颜筋柳骨，雄强浑厚，正大气象。' }
     ];
 
     // 百草园
     const plants = [
-        { id: 1, name: '核桃树', category: '果树', difficulty: '简单', icon: '🌰', color: '#8B7355' },
-        { id: 2, name: '阳台蔬菜', category: '蔬菜', difficulty: '简单', icon: '🥬', color: '#7CB342' },
-        { id: 3, name: '中草药', category: '药材', difficulty: '中等', icon: '🌿', color: '#66BB6A' },
-        { id: 4, name: '花卉盆栽', category: '观赏', difficulty: '简单', icon: '🌸', color: '#EC407A' },
-        { id: 5, name: '茶树种植', category: '经济作物', difficulty: '中等', icon: '🍵', color: '#689F38' },
-        { id: 6, name: '香草园艺', category: '香料', difficulty: '简单', icon: '🌱', color: '#9CCC65' }
+        { id: 1, name: '核桃树', category: '果树', difficulty: '简单', icon: '🌰', color: '#8B7355', desc: '适应性强，喜光，耐寒。果实营养丰富，具有健脑益智的功效。' },
+        { id: 2, name: '阳台蔬菜', category: '蔬菜', difficulty: '简单', icon: '🥬', color: '#7CB342', desc: '利用阳台空间种植生菜、小葱等，享受从田间到餐桌的新鲜与乐趣。' },
+        { id: 3, name: '中草药', category: '药材', difficulty: '中等', icon: '🌿', color: '#66BB6A', desc: '种植薄荷、紫苏等常见中草药，既可观赏，又可药用、食用。' },
+        { id: 4, name: '花卉盆栽', category: '观赏', difficulty: '简单', icon: '🌸', color: '#EC407A', desc: '美化环境，陶冶情操。不同花卉有不同的养护习性，需注意光照和水分。' },
+        { id: 5, name: '茶树种植', category: '经济作物', difficulty: '中等', icon: '🍵', color: '#689F38', desc: '体验采茶、制茶的乐趣。茶树喜温暖湿润气候，需酸性土壤。' },
+        { id: 6, name: '香草园艺', category: '香料', difficulty: '简单', icon: '🌱', color: '#9CCC65', desc: '迷迭香、百里香等香草，气味芬芳，可用于烹饪提味或制作香囊。' }
     ];
 
     // 茶话会
@@ -83,9 +83,9 @@
         const container = document.getElementById('video-list');
         if (!container) return;
         container.innerHTML = medicalVideos.map(video => `
-            <article class="bt-video-card flex gap-3 p-3 bg-white rounded-xl shadow-sm mb-3 cursor-pointer" onclick="playVideo(${video.id})">
-                <div class="relative w-32 h-20 flex-shrink-0 rounded-lg overflow-hidden">
-                    <img src="${video.thumbnail}" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=400'">
+            <article class="bt-video-card flex gap-3 p-3 bg-white rounded-xl shadow-sm mb-3 cursor-pointer" onclick="window.playVideo(${video.id})">
+                <div class="relative w-32 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gray-100">
+                    <img src="${video.thumbnail}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400x300/eee/999?text=视频'">
                     <span class="absolute bottom-1 right-1 text-[10px] text-white bg-black/60 px-1 rounded">${video.duration}</span>
                 </div>
                 <div class="flex-1 flex flex-col justify-between">
@@ -103,9 +103,9 @@
         const container = document.getElementById('artwork-scroll');
         if (!container) return;
         container.innerHTML = artworks.map(art => `
-            <article class="flex-shrink-0 w-36 mr-3 cursor-pointer group" onclick="viewArtwork(${art.id})">
-                <div class="w-36 h-48 rounded-lg overflow-hidden mb-2 relative shadow-md">
-                    <img src="${art.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?w=300'">
+            <article class="flex-shrink-0 w-36 mr-3 cursor-pointer group" onclick="window.viewArtwork(${art.id})">
+                <div class="w-36 h-48 rounded-lg overflow-hidden mb-2 relative shadow-md bg-gray-100">
+                    <img src="${art.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/300x400/eee/999?text=书画'">
                     <span class="absolute top-2 left-2 bg-white/90 text-[10px] px-2 py-0.5 rounded font-bold text-[#C04851]">${art.type}</span>
                 </div>
                 <h3 class="text-xs font-bold text-center text-[#3E4E5E]">${art.title}</h3>
@@ -118,7 +118,7 @@
         const container = document.getElementById('garden-grid');
         if (!container) return;
         container.innerHTML = plants.map(plant => `
-            <article class="bg-white p-3 rounded-xl shadow-sm flex flex-col items-center cursor-pointer relative overflow-hidden" onclick="viewPlantDetail(${plant.id})">
+            <article class="bg-white p-3 rounded-xl shadow-sm flex flex-col items-center cursor-pointer relative overflow-hidden" onclick="window.viewPlantDetail(${plant.id})">
                 <div class="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-2xl mb-2">${plant.icon}</div>
                 <h3 class="text-sm font-bold text-[#3E4E5E]">${plant.name}</h3>
                 <div class="flex gap-1 mt-1">
@@ -133,9 +133,9 @@
         const container = document.getElementById('topic-list');
         if (!container) return;
         container.innerHTML = topics.map(topic => `
-            <article class="bg-white p-4 rounded-xl shadow-sm mb-3" onclick="viewTopic(${topic.id})">
+            <article class="bg-white p-4 rounded-xl shadow-sm mb-3" onclick="window.viewTopic(${topic.id})">
                 <div class="flex items-center mb-2">
-                    <img class="w-8 h-8 rounded-full mr-2" src="${topic.avatar}" alt="${topic.author}">
+                    <img class="w-8 h-8 rounded-full mr-2 bg-gray-200" src="${topic.avatar}" alt="${topic.author}" onerror="this.src='https://via.placeholder.com/50'">
                     <div class="flex-1">
                         <div class="text-xs font-bold text-[#3E4E5E]">${topic.author}</div>
                         <div class="text-[10px] text-gray-400">${topic.time}</div>
@@ -155,17 +155,74 @@
     // 3. 交互函数 (挂载到 window 以供 HTML 调用)
     // ==========================================
     
-    window.playVideo = function(id) { alert(`播放视频 ${id}（功能开发中）`); }
-    window.viewArtwork = function(id) { alert(`查看作品 ${id}（功能开发中）`); }
-    window.viewPlantDetail = function(id) { alert(`查看植物 ${id} 详情（功能开发中）`); }
-    window.viewTopic = function(id) { alert(`查看话题 ${id}（功能开发中）`); }
-    window.createNewTopic = function() { alert('发起新话题（功能开发中）'); }
-    window.showAllVideos = function() { alert('查看全部医学讲座（功能开发中）'); }
-    window.showAllArtworks = function() { alert('查看全部书画作品（功能开发中）'); }
-    window.showAllPlants = function() { alert('查看全部种植指南（功能开发中）'); }
-    window.showAllTopics = function() { alert('查看全部话题（功能开发中）'); }
+    // 打开通用弹窗
+    function openBanpoTalksModal(title, desc, imgUrl) {
+        const modal = document.getElementById('banpo-talks-modal');
+        if (!modal) {
+            alert(`${title}\n${desc}`); // 降级处理
+            return;
+        }
 
-    // 注意：goBack 使用 main.js 中定义的全局函数，这里不需要重新定义
+        const titleEl = document.getElementById('bt-modal-title');
+        const descEl = document.getElementById('bt-modal-desc');
+        const imgEl = document.getElementById('bt-modal-img');
+
+        if(titleEl) titleEl.innerText = title;
+        if(descEl) descEl.innerText = desc || '暂无描述';
+        
+        if(imgEl) {
+            if(imgUrl) {
+                imgEl.src = imgUrl;
+                imgEl.parentElement.style.display = 'block';
+            } else {
+                imgEl.parentElement.style.display = 'none';
+            }
+        }
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    window.closeBanpoTalksModal = function() {
+        const modal = document.getElementById('banpo-talks-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    };
+
+    window.playVideo = function(id) {
+        const item = medicalVideos.find(v => v.id === id);
+        if(item) openBanpoTalksModal(item.title, `(正在播放视频)\n${item.desc}`, item.thumbnail);
+    };
+
+    window.viewArtwork = function(id) {
+        const item = artworks.find(a => a.id === id);
+        if(item) openBanpoTalksModal(item.title, `作者：${item.author}\n类型：${item.type}\n\n${item.desc}`, item.image);
+    };
+
+    window.viewPlantDetail = function(id) {
+        const item = plants.find(p => p.id === id);
+        if(item) {
+            // 植物没图，用图标代替
+            const content = `类别：${item.category}\n难度：${item.difficulty}\n\n${item.desc}`;
+            openBanpoTalksModal(item.name + ' ' + item.icon, content, null);
+        }
+    };
+
+    window.viewTopic = function(id) {
+        const item = topics.find(t => t.id === id);
+        if(item) openBanpoTalksModal(item.title, `发帖人：${item.author}\n时间：${item.time}\n\n${item.content}`, null);
+    };
+
+    window.createNewTopic = function() {
+        openBanpoTalksModal('发起新话题', '话题发布功能正在开发中...\n请稍后重试。', null);
+    };
+
+    window.showAllVideos = function() { alert('查看全部医学讲座（功能开发中）'); };
+    window.showAllArtworks = function() { alert('查看全部书画作品（功能开发中）'); };
+    window.showAllPlants = function() { alert('查看全部种植指南（功能开发中）'); };
+    window.showAllTopics = function() { alert('查看全部话题（功能开发中）'); };
 
     // ==========================================
     // 4. 初始化入口 (供 main.js 调用)
@@ -179,5 +236,12 @@
         renderTopicList();
         console.log('✅ 所有模块加载完成');
     };
+
+    // 自动尝试初始化
+    setTimeout(() => {
+        if(document.getElementById('banpo-talks')) {
+            window.initBanpoTalksPage();
+        }
+    }, 100);
 
 })();

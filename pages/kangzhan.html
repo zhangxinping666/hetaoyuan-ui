@@ -1,125 +1,114 @@
-<!-- 抗战篇 - 红色档案室风格 -->
 <div id="kangzhan" class="page active">
-  <!-- 顶部导航 -->
-  <header class="kz-header">
-    <button type="button" class="kz-back-btn" onclick="goBack()" aria-label="返回">
-      <i class="fas fa-arrow-left"></i>
-    </button>
-    <h1 class="kz-title">抗战篇</h1>
-    <!-- 五角星水印 -->
-    <div class="kz-star-watermark">
-      <i class="fas fa-star"></i>
+    <header class="kz-header">
+        <button type="button" class="kz-back-btn" onclick="goBack()" aria-label="返回">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h1 class="kz-title">抗战篇</h1>
+        <div class="kz-star-watermark">
+            <i class="fas fa-star"></i>
+        </div>
+    </header>
+
+    <div id="kangzhan-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4" onclick="window.closeKangzhanModal()">
+        <div class="bg-[#f4f1ea] rounded-lg w-full max-w-sm overflow-hidden shadow-2xl border-4 border-[#8B0000]" onclick="event.stopPropagation()">
+            <div class="bg-[#8B0000] p-3 flex justify-between items-center text-white">
+                <h3 id="kz-modal-title" class="font-bold text-lg tracking-widest">详情</h3>
+                <button onclick="window.closeKangzhanModal()" class="w-6 h-6 flex items-center justify-center rounded-full hover:bg-white/20 transition">✕</button>
+            </div>
+            
+            <div class="relative h-48 bg-gray-200 border-b-2 border-[#d4cbb8]">
+                <img title="img" id="kz-modal-img" src="" class="w-full h-full object-cover" onerror="this.style.display='none'">
+            </div>
+
+            <div class="p-5">
+                <p id="kz-modal-desc" class="text-[#5d4037] text-sm leading-7 font-serif text-justify">
+                    内容加载中...
+                </p>
+                <div class="mt-6 flex justify-center">
+                    <button onclick="window.closeKangzhanModal()" class="px-6 py-2 border border-[#8B0000] text-[#8B0000] rounded hover:bg-[#8B0000] hover:text-white transition text-sm">
+                        关闭
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </header>
-  <div id="kangzhan-modal"
-    class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
-    onclick="window.closeKangzhanModal()">
-    <div class="bg-[#f4f1ea] rounded-lg w-full max-w-sm overflow-hidden shadow-2xl border-4 border-[#8B0000]"
-      onclick="event.stopPropagation()">
-      <div class="bg-[#8B0000] p-3 flex justify-between items-center text-white">
-        <h3 id="kz-modal-title" class="font-bold text-lg tracking-widest">详情</h3>
-        <button onclick="window.closeKangzhanModal()"
-          class="w-6 h-6 flex items-center justify-center rounded-full hover:bg-white/20 transition">✕</button>
-      </div>
 
-      <div class="relative h-48 bg-gray-200 border-b-2 border-[#d4cbb8]">
-        <img title="img" id="kz-modal-img" src="" class="w-full h-full object-cover" onerror="this.style.display='none'">
-      </div>
+    <main class="kz-main pb-8"> <section class="kz-hero">
+            <div class="kz-hero__container">
+                <div class="kz-photo">
+                    <img src="https://images.unsplash.com/photo-1611329857570-f02f340e7378?w=300&h=400&fit=crop" 
+                         alt="耿风全家庭"
+                         onerror="this.src='https://via.placeholder.com/300x400/8B0000/FFFFFF?text=耿风全家庭'">
+                </div>
+                <div class="kz-hero__content">
+                    <div class="kz-badge">抗战英雄</div>
+                    <h2 class="kz-hero__title">耿风全家庭</h2>
+                    <p class="kz-hero__desc">
+                        一门忠烈，满门英雄。耿风全一家八口人，七人参加抗日，五人壮烈牺牲。
+                        他们用鲜血和生命诠释了中华民族不屈的抗战精神。
+                    </p>
+                    <button type="button" class="kz-hero__btn" onclick="window.showHeroDetail('gengfengquan')" aria-label="了解更多">
+                        了解更多 <i class="fas fa-chevron-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
 
-      <div class="p-5">
-        <p id="kz-modal-desc" class="text-[#5d4037] text-sm leading-7 font-serif text-justify">
-          内容加载中...
-        </p>
-        <div class="mt-6 flex justify-center">
-          <button onclick="window.closeKangzhanModal()"
-            class="px-6 py-2 border border-[#8B0000] text-[#8B0000] rounded hover:bg-[#8B0000] hover:text-white transition text-sm">
-            关闭
-          </button>
+        <section class="kz-contrast">
+            <div class="kz-contrast__grid">
+                <div class="kz-card kz-card--dark" onclick="window.showRelicDetail('document')">
+                    <div class="kz-card__bg"></div>
+                    <div class="kz-card__content">
+                        <i class="fas fa-exclamation-triangle kz-card__icon"></i>
+                        <h3 class="kz-card__title">侵略铁证</h3>
+                        <p class="kz-card__subtitle">历史不容忘却</p>
+                    </div>
+                </div>
+
+                <div class="kz-card kz-card--light" onclick="window.showHeroDetail('zhaoyiman')">
+                    <div class="kz-card__corner"></div>
+                    <div class="kz-card__content">
+                        <i class="fas fa-book-open kz-card__icon"></i>
+                        <h3 class="kz-card__title">抗战故事</h3>
+                        <p class="kz-card__subtitle">英雄的赞歌</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="kz-relics">
+            <div class="kz-section-header">
+                <div class="kz-section-header__line"></div>
+                <h2 class="kz-section-header__title">红色遗珍</h2>
+                <div class="kz-section-header__line"></div>
+            </div>
+
+            <div class="kz-relics__scroll" id="relics-scroll">
+                </div>
+        </section>
+
+        <section class="kz-media">
+            <div class="kz-section-header">
+                <div class="kz-section-header__line"></div>
+                <h2 class="kz-section-header__title">历史回声</h2>
+                <div class="kz-section-header__line"></div>
+            </div>
+
+            <div class="kz-media__list" id="media-list">
+                </div>
+        </section>
+
+        <div class="px-4 mt-8 mb-4">
+            <button type="button" class="kz-book-btn w-full bg-[#8B0000] text-[#f4f1ea] py-3.5 rounded-lg shadow-lg font-bold text-lg tracking-widest hover:bg-[#6d0000] active:scale-95 transition-all flex items-center justify-center border-2 border-[#d4cbb8]" 
+                    onclick="window.bookVisit()" 
+                    aria-label="预约参观">
+                <i class="fas fa-ticket-alt mr-2 text-[#d4cbb8]"></i>
+                预约现场参观学习
+            </button>
+            <p class="text-center text-xs text-gray-500 mt-2 font-serif">
+                * 每日参观名额有限，请提前预约
+            </p>
         </div>
-      </div>
-    </div>
-  </div>
-  <!-- 主体内容 -->
-  <main class="kz-main">
-    <!-- 核心人物区 - 耿风全家庭 -->
-    <section class="kz-hero">
-      <div class="kz-hero__container">
-        <!-- 老照片 -->
-        <div class="kz-photo">
-          <img src="https://images.unsplash.com/photo-1611329857570-f02f340e7378?w=300&h=400&fit=crop" alt="耿风全家庭"
-            onerror="this.src='https://via.placeholder.com/300x400/8B0000/FFFFFF?text=耿风全家庭'">
-        </div>
-        <!-- 文字内容 -->
-        <div class="kz-hero__content">
-          <div class="kz-badge">抗战英雄</div>
-          <h2 class="kz-hero__title">耿风全家庭</h2>
-          <p class="kz-hero__desc">
-            一门忠烈，满门英雄。耿风全一家八口人，七人参加抗日，五人壮烈牺牲。
-            他们用鲜血和生命诠释了中华民族不屈的抗战精神。
-          </p>
-          <button type="button" class="kz-hero__btn" onclick="showHeroDetail('gengfengquan')" aria-label="了解更多">
-            了解更多 <i class="fas fa-chevron-right ml-1"></i>
-          </button>
-        </div>
-      </div>
-    </section>
 
-    <!-- 历史回廊 - 对比网格 -->
-    <section class="kz-contrast">
-      <div class="kz-contrast__grid">
-        <!-- 卡片A - 侵略铁证 -->
-        <div class="kz-card kz-card--dark" onclick="showSection('evidence')">
-          <div class="kz-card__bg"></div>
-          <div class="kz-card__content">
-            <i class="fas fa-exclamation-triangle kz-card__icon"></i>
-            <h3 class="kz-card__title">侵略铁证</h3>
-            <p class="kz-card__subtitle">历史不容忘却</p>
-          </div>
-        </div>
-
-        <!-- 卡片B - 抗战故事 -->
-        <div class="kz-card kz-card--light" onclick="showSection('stories')">
-          <div class="kz-card__corner"></div>
-          <div class="kz-card__content">
-            <i class="fas fa-book-open kz-card__icon"></i>
-            <h3 class="kz-card__title">抗战故事</h3>
-            <p class="kz-card__subtitle">英雄的赞歌</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 文物陈列 - 红色遗珍 -->
-    <section class="kz-relics">
-      <div class="kz-section-header">
-        <div class="kz-section-header__line"></div>
-        <h2 class="kz-section-header__title">红色遗珍</h2>
-        <div class="kz-section-header__line"></div>
-      </div>
-
-      <div class="kz-relics__scroll" id="relics-scroll">
-        <!-- 由 JavaScript 动态生成 -->
-      </div>
-    </section>
-
-    <!-- 红色之声 - 历史回声 -->
-    <section class="kz-media">
-      <div class="kz-section-header">
-        <div class="kz-section-header__line"></div>
-        <h2 class="kz-section-header__title">历史回声</h2>
-        <div class="kz-section-header__line"></div>
-      </div>
-
-      <div class="kz-media__list" id="media-list">
-        <!-- 由 JavaScript 动态生成 -->
-      </div>
-    </section>
-    <!-- 底部栏 -->
-    <footer class="kz-footer">
-      <button type="button" class="kz-footer__btn" onclick="bookVisit()" aria-label="预约参观">
-        <i class="fas fa-ticket-alt mr-2"></i>
-        预约现场参观学习
-      </button>
-    </footer>
-  </main>
+    </main>
 </div>

@@ -1,11 +1,8 @@
-<!-- 半坡餐饮 - Neo-Chinese Dining Experience -->
 <div id="banpo-dining" class="page active">
-    <!-- Hero Section -->
     <section class="bd-hero">
         <div class="bd-hero__bg">
-            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=600&fit=crop" 
-                 alt="传统中式宴席" 
-                 onerror="this.src='https://via.placeholder.com/800x600/D84315/FFFFFF?text=食在半坡'">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=600&fit=crop" alt="传统中式宴席"
+                onerror="this.src='https://via.placeholder.com/800x600/D84315/FFFFFF?text=食在半坡'">
         </div>
         <div class="bd-hero__overlay"></div>
         <div class="bd-hero__content">
@@ -17,63 +14,84 @@
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main class="bd-main">
-        <!-- Cultural Wisdom Section -->
-        <section class="bd-wisdom">
+    <div id="banpo-dining-modal"
+        class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+        onclick="window.closeBanpoDiningModal()">
+        <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <div class="relative h-56 bg-orange-50">
+                <img title="1" id="bd-modal-img" src="" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                <button title="button" onclick="window.closeBanpoDiningModal()"
+                    class="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition backdrop-blur-sm">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-6">
+                <h3 id="bd-modal-title" class="text-xl font-bold text-gray-800 mb-3 font-serif">标题</h3>
+                <div class="w-8 h-1 bg-[#D84315] mb-4 rounded-full"></div>
+                <p id="bd-modal-desc" class="text-gray-600 text-sm leading-relaxed text-justify">
+                    内容加载中...
+                </p>
+
+                <button onclick="window.closeBanpoDiningModal()"
+                    class="mt-6 w-full py-3 bg-orange-100 text-[#D84315] font-bold rounded-xl hover:bg-orange-200 transition">
+                    好的
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <main class="bd-main pb-8"> <section class="bd-wisdom">
             <div class="bd-section-header">
                 <h2 class="bd-section-title">文化根源</h2>
                 <p class="bd-section-subtitle">传承千年的饮食智慧</p>
             </div>
-            
+
             <div class="bd-wisdom__scroll" id="wisdom-scroll">
-                <!-- 由 JavaScript 动态生成 -->
-            </div>
+                </div>
         </section>
 
-        <!-- Culinary Gallery -->
         <section class="bd-gallery">
             <div class="bd-section-header">
                 <h2 class="bd-section-title">名菜欣赏</h2>
                 <p class="bd-section-subtitle">传统美食的艺术呈现</p>
             </div>
-            
+
             <div class="bd-gallery__grid" id="gallery-grid">
-                <!-- 由 JavaScript 动态生成 -->
-            </div>
+                </div>
         </section>
 
-        <!-- Cooking School -->
         <section class="bd-school">
             <div class="bd-section-header">
                 <h2 class="bd-section-title">做菜学堂</h2>
                 <p class="bd-section-subtitle">跟随大厨学习传统烹饪</p>
             </div>
-            
+
             <div class="bd-school__list" id="school-list">
-                <!-- 由 JavaScript 动态生成 -->
-            </div>
+                </div>
         </section>
 
-        <!-- Environment Showcase -->
         <section class="bd-environment">
             <div class="bd-section-header">
                 <h2 class="bd-section-title">半坡餐饮</h2>
                 <p class="bd-section-subtitle">雅致的用餐环境</p>
             </div>
-            
+
             <div class="bd-carousel" id="environment-carousel">
-                <!-- 由 JavaScript 动态生成 -->
-            </div>
+                </div>
         </section>
+
+        <div class="px-4 mt-10 mb-6">
+            <button type="button" class="bd-reserve-btn w-full bg-[#D84315] text-white py-3.5 rounded-xl shadow-lg font-bold text-lg tracking-wide hover:bg-[#bf360c] active:scale-95 transition-all flex items-center justify-center"
+                onclick="window.makeReservation()" 
+                aria-label="立即预订">
+                <i class="fas fa-utensils mr-2"></i>
+                立即预订一桌餐
+            </button>
+            <p class="text-center text-xs text-gray-400 mt-3">
+                * 为了保证食材新鲜，请至少提前24小时预约
+            </p>
+        </div>
+
     </main>
-
-    <!-- Floating Footer -->
-    <footer class="bd-footer">
-        <button type="button" class="bd-footer__btn" onclick="makeReservation()" aria-label="立即预订">
-            <i class="fas fa-utensils mr-2"></i>
-            立即预订一桌餐
-        </button>
-    </footer>
 </div>
-
