@@ -479,22 +479,50 @@
     border-radius: 3px;
     background: var(--cinnabar);
 }
-/* 1. 隐藏原生滚动条 (但保留滚动功能) */
+/* 1. 横向滚动容器基础样式 */
 .discussion-scroll__track {
     display: flex;
-    gap: 12px;
-    padding: 0 16px 20px; /* 底部留白给圆点 */
+    gap: 12px; /* 保持卡片间距 */
+    /* 底部留出空间给滚动条，不再尝试隐藏 */
+    padding: 0 16px 12px; 
     overflow-x: auto;
+    overflow-y: hidden; /* 仅允许横向滚动 */
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     
-    /* 隐藏 Chrome/Safari/Webkit 滚动条 */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE 10+ */
+    /* 移除所有隐藏滚动条的 CSS 规则 */
+    scrollbar-width: auto; 
+    -ms-overflow-style: auto; 
 }
+
+/* 2. 滚动条整体样式 */
 .discussion-scroll__track::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
+    height: 8px; /* 滚动条高度 */
+    background-color: transparent;
+}
+
+/* 3. 轨道样式 (浅色/背景) */
+.discussion-scroll__track::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05); /* 极淡的轨道，不抢眼 */
+    border-radius: 10px;
+}
+
+/* 4. 滑块（朱砂风格）样式 */
+.discussion-scroll__track::-webkit-scrollbar-thumb {
+    /* 使用朱砂红，保持新中式主题 */
+    background: #8b1e1e; 
+    border-radius: 10px; 
+    /* 增加微弱的白边和阴影，增加质感 */
+    border: 1px solid rgba(255,255,255,0.7); 
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* 5. 滑块悬停样式 */
+.discussion-scroll__track::-webkit-scrollbar-thumb:hover {
+    background: #A03841; /* 悬停时颜色加深 */
+    cursor: pointer;
 }
 
 /* 2. 圆点容器样式 */

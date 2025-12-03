@@ -324,18 +324,13 @@ function createPlaceholderPage(pageId) {
 window.showPage = showPage;
 // 更新底部图标颜色
 function updateBottomNav(activePageId) {
-    // 【关键步骤 1：移除所有激活状态】
-    // 必须确保这一步在添加新激活状态之前运行。
+    // 移除所有高亮
     const allNavItems = document.querySelectorAll('.nav-item');
-    allNavItems.forEach(item => {
-        // 移除所有 nav-item 上的 active 类
-        item.classList.remove('active');
-    });
+    allNavItems.forEach(item => item.classList.remove('active'));
 
-    // 【关键步骤 2：添加新激活状态】
+    // 添加当前高亮 (前提是你的 HTML 里 nav-item 的 id 是 "b-nav-xxx")
     const targetNav = document.getElementById(`b-nav-${activePageId}`);
     if (targetNav) {
-        // 仅将 active 类添加到当前点击的 Tab
         targetNav.classList.add('active');
     }
 }
@@ -562,60 +557,6 @@ function initializeApp() {
 
     console.log('✅ 应用初始化完成');
 }
-function initScrollIndicators() {
-    const track = document.getElementById('scrollTrack');
-    const dotsContainer = document.getElementById('scrollDots');
-
-    // 核心修复点：检查元素是否存在，防止报错。
-    if (!track || !dotsContainer) {
-        // console.warn('滚动指示器元素未找到，跳过初始化。');
-        return;
-    }
-
-    // 检查是否已经绑定过，如果已经绑定，先解绑（可选，但推荐）
-    // track.removeEventListener('scroll', track.scrollHandler); 
-
-    const cards = track.querySelectorAll('.scroll-card');
-    const cardCount = cards.length;
-
-    // 1. 动态生成圆点
-    dotsContainer.innerHTML = '';
-    if (cardCount === 0) return; // 如果没有卡片，不渲染圆点
-
-    for (let i = 0; i < cardCount; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (i === 0) dot.classList.add('active');
-        dotsContainer.appendChild(dot);
-    }
-
-    const dots = dotsContainer.querySelectorAll('.dot');
-    const cardWidth = cards[0].offsetWidth + 12; // 卡片宽 + gap
-
-    // 2. 监听滚动事件，更新圆点
-    const scrollHandler = () => {
-        const scrollLeft = track.scrollLeft;
-        const index = Math.round(scrollLeft / cardWidth);
-
-        dots.forEach((dot, i) => {
-            if (i === index) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-    };
-
-    // 绑定事件
-    track.addEventListener('scroll', scrollHandler);
-    // track.scrollHandler = scrollHandler; // 存储 handler 以便后续解绑
-}
-
-// 如果该元素是静态在首页，保留一次初始化调用
-document.addEventListener('DOMContentLoaded', () => {
-    // 如果是首页静态内容，延时调用确保图片和布局完成
-    setTimeout(initScrollIndicators, 100);
-});
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', initializeApp);
 
