@@ -254,32 +254,29 @@
                         </div>
                     </div>
 
+                    <!-- 搜索栏 -->
+                    <div class="search-bar-container">
+                        <div class="search-bar">
+                            <i class="fas fa-search search-bar__icon"></i>
+                            <input type="text" id="home-search-input" class="search-bar__input"
+                                placeholder="搜索民宿、美食、活动..." onkeypress="if(event.key === 'Enter') performSearch()">
+                            <button type="button" onclick="performSearch()" class="search-bar__btn">
+                                搜索
+                            </button>
+                        </div>
+                        <!-- 热门搜索标签 -->
+                        <div class="search-tags">
+                            <span class="search-tag" onclick="quickSearch('悬空民宿')">悬空民宿</span>
+                            <span class="search-tag" onclick="quickSearch('半坡餐饮')">半坡餐饮</span>
+                            <span class="search-tag" onclick="quickSearch('一桌餐')">一桌餐</span>
+                            <span class="search-tag" onclick="quickSearch('半坡讲谈')">半坡讲谈</span>
+                            <span class="search-tag" onclick="quickSearch('特产')">特产</span>
+                        </div>
+                    </div>
+
                     <!-- 主体内容区域 -->
                     <main class="pb-20 px-4">
-                        <!-- 导航六边形模块 -->
-                        <section class="mt-6 mb-6">
-                            <div class="flex items-center justify-center gap-2 flex-wrap">
-                                <!-- 悬空民宿 -->
-                                <div onclick="showPage('discussion')" class="hexagon-nav-item bg-[#5B9BD5] cursor-pointer hover:opacity-90 transition-opacity">
-                                    <span class="hexagon-nav-text">悬空民宿</span>
-                                </div>
 
-                                <!-- 民俗展示 -->
-                                <div onclick="showPage('classics')" class="hexagon-nav-item bg-[#5B9BD5] cursor-pointer hover:opacity-90 transition-opacity">
-                                    <span class="hexagon-nav-text">民俗展示</span>
-                                </div>
-
-                                <!-- 我要预订 -->
-                                <div onclick="alert('预订功能开发中')" class="hexagon-nav-item bg-[#FFD700] cursor-pointer hover:opacity-90 transition-opacity">
-                                    <span class="hexagon-nav-text text-[#333]">我要预订</span>
-                                </div>
-
-                                <!-- 我要投资 -->
-                                <div onclick="alert('投资功能开发中')" class="hexagon-nav-item bg-[#5B9BD5] cursor-pointer hover:opacity-90 transition-opacity">
-                                    <span class="hexagon-nav-text">我要投资</span>
-                                </div>
-                            </div>
-                        </section>
 
                         <!-- 愿景使命价值观 -->
                         <section class="mt-6 mb-6 bg-white rounded-2xl p-6 shadow-sm">
@@ -309,24 +306,59 @@
                                     <span class="text-2xl font-bold text-[#C04851] min-w-[80px]">价值观</span>
                                     <div class="flex-1">
                                         <div class="grid grid-cols-3 gap-3 mb-3">
-                                            <span class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">舍得</span>
-                                            <span class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">归真</span>
-                                            <span class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">开创</span>
+                                            <span
+                                                class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">舍得</span>
+                                            <span
+                                                class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">归真</span>
+                                            <span
+                                                class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">开创</span>
                                         </div>
                                         <div class="grid grid-cols-4 gap-3">
-                                            <span class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">学习</span>
-                                            <span class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">智慧</span>
-                                            <span class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">健康</span>
-                                            <span class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">合作</span>
+                                            <span
+                                                class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">学习</span>
+                                            <span
+                                                class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">智慧</span>
+                                            <span
+                                                class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">健康</span>
+                                            <span
+                                                class="text-center py-2 bg-[#F9F7F2] rounded-lg text-gray-700">合作</span>
                                         </div>
                                         <div class="text-center mt-3">
-                                            <span class="inline-block py-2 px-4 bg-[#F9F7F2] rounded-lg text-gray-700">坦然</span>
+                                            <span
+                                                class="inline-block py-2 px-4 bg-[#F9F7F2] rounded-lg text-gray-700">坦然</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
+                        <!-- 导航六边形模块 -->
+                        <section class="mt-6 mb-6">
+                            <div class="flex items-center justify-center gap-2 flex-wrap">
+                                <!-- 悬空民宿 -->
+                                <div onclick="showPage('discussion')"
+                                    class="hexagon-nav-item bg-[#5B9BD5] cursor-pointer hover:opacity-90 transition-opacity">
+                                    <span class="hexagon-nav-text">悬空民宿</span>
+                                </div>
 
+                                <!-- 民俗展示 -->
+                                <div onclick="showPage('classics')"
+                                    class="hexagon-nav-item bg-[#5B9BD5] cursor-pointer hover:opacity-90 transition-opacity">
+                                    <span class="hexagon-nav-text">民俗展示</span>
+                                </div>
+
+                                <!-- 我要预订 -->
+                                <div onclick="alert('预订功能开发中')"
+                                    class="hexagon-nav-item bg-[#FFD700] cursor-pointer hover:opacity-90 transition-opacity">
+                                    <span class="hexagon-nav-text text-[#333]">我要预订</span>
+                                </div>
+
+                                <!-- 我要投资 -->
+                                <div onclick="alert('投资功能开发中')"
+                                    class="hexagon-nav-item bg-[#5B9BD5] cursor-pointer hover:opacity-90 transition-opacity">
+                                    <span class="hexagon-nav-text">我要投资</span>
+                                </div>
+                            </div>
+                        </section>
                         <!-- 经典展示 - 雅致留白 -->
                         <section class="mt-4">
                             <!-- 板块标题 -->

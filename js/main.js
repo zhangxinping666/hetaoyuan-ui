@@ -606,4 +606,82 @@ window.openFamilyPark = openFamilyPark;
 window.openEventPlanning = openEventPlanning;
 window.openFarming = openFarming;
 
+// ==========================================
+// 搜索功能
+// ==========================================
+
+// 搜索关键词映射到页面/功能
+const searchMapping = {
+    '悬空民宿': () => showPage('discussion'),
+    '民宿': () => showPage('discussion'),
+    '住宿': () => showPage('discussion'),
+    '半坡餐饮': () => openBanpoDining(),
+    '餐饮': () => openBanpoDining(),
+    '美食': () => openBanpoDining(),
+    '一桌餐': () => openOneTableMeal(),
+    '团队餐': () => openTeamMeal(),
+    '团餐': () => openTeamMeal(),
+    '半坡讲谈': () => openBanpoTalks(),
+    '讲谈': () => showPage('classics'),
+    '讲座': () => openBanpoTalks(),
+    '文艺创作': () => openLiteraryCreation(),
+    '创作': () => openLiteraryCreation(),
+    '耕读': () => openFarmingReading(),
+    '特产': () => openSpecialty(),
+    '核桃': () => openSpecialty(),
+    '休闲游': () => openLeisureTour(),
+    '旅游': () => openLeisureTour(),
+    '红色路线': () => openRedRoute(),
+    '亲子': () => openFamilyPark(),
+    '活动': () => openEventPlanning(),
+    '定制': () => showPage('customize'),
+    '百农': () => loadSubPage('bainong'),
+    '关山': () => loadSubPage('guanshan'),
+    '回龙': () => loadSubPage('huilong'),
+    '抗战': () => loadSubPage('kangzhan')
+};
+
+// 执行搜索
+window.performSearch = function() {
+    const input = document.getElementById('home-search-input');
+    if (!input) return;
+
+    const keyword = input.value.trim();
+
+    if (!keyword) {
+        alert('请输入搜索关键词');
+        return;
+    }
+
+    // 查找匹配的关键词
+    let found = false;
+    for (let key in searchMapping) {
+        if (keyword.includes(key) || key.includes(keyword)) {
+            searchMapping[key]();
+            input.value = ''; // 清空搜索框
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        alert(`未找到"${keyword}"相关内容\n\n可以搜索：悬空民宿、半坡餐饮、一桌餐、半坡讲谈、特产、休闲游等`);
+    }
+};
+
+// 快速搜索（点击标签）
+window.quickSearch = function(keyword) {
+    const input = document.getElementById('home-search-input');
+    if (input) {
+        input.value = keyword;
+    }
+
+    if (searchMapping[keyword]) {
+        searchMapping[keyword]();
+        if (input) input.value = ''; // 清空搜索框
+    } else {
+        performSearch();
+    }
+};
+
 document.addEventListener('DOMContentLoaded', initializeApp);
