@@ -555,16 +555,22 @@ function initializeApp() {
     renderLatticeGrid();
     renderServiceGrid();
 
+    // 初始化新版首页 (V2.2)
+    if (window.initHomePage) {
+        window.initHomePage();
+    }
+
     console.log('✅ 应用初始化完成');
 }
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', initializeApp);
 
-// 暴露函数给 HTML 行内 onclick 使用
+// 暴露函数和数据给 HTML 行内 onclick 使用
 window.handleCategoryClick = handleCategoryClick;
 window.handleServiceClick = handleServiceClick;
 window.loadSubPage = loadSubPage;
 window.goBack = goBack;
+window.categories = categories;  // 暴露 categories 数据
 
 // 暴露详情页跳转函数
 window.openBanpoDining = openBanpoDining;
