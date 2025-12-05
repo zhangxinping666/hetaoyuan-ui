@@ -225,7 +225,7 @@ function showStaticPage(pageName) {
 
     // 控制底部导航显示
     const bottomNav = document.querySelector('.bottom-nav');
-    const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
+    const rootPages = ['home', 'classics', 'customize'];
 
     if (bottomNav) {
         if (rootPages.includes(pageName)) {
@@ -268,9 +268,10 @@ function showStaticPage(pageName) {
 // 定义页面类型
 const PAGE_TYPES = {
     // 静态页面 - 已在 index.html 中定义
-    STATIC: ['home', 'classics', 'customize', 'discussion', 'profile'],
+    STATIC: ['home'],
     // 动态页面 - 需要从 pages/ 目录加载
     DYNAMIC: [
+        'classics', 'customize', 'discussion', 'profile',
         'bainong', 'guanshan', 'huilong', 'kangzhan',
         'one-table-meal', 'team-meal', 'specialty', 'event-planning',
         'farming', 'family-park', 'leisure-tour', 'red-route',
@@ -281,20 +282,30 @@ const PAGE_TYPES = {
 function showPage(pageId) {
     console.log('切换到页面:', pageId);
 
+    // 检查是否是动态页面
+    if (PAGE_TYPES.DYNAMIC.includes(pageId)) {
+        // 如果是动态页面，使用 loadSubPage 加载
+        const existingPage = document.getElementById(pageId);
+        if (existingPage) {
+            // 页面已加载，直接显示
+            showStaticPage(pageId);
+        } else {
+            // 页面未加载，动态加载
+            loadSubPage(pageId);
+        }
+        return;
+    }
+
     // 1. 隐藏所有页面
     const allPages = document.querySelectorAll('.page');
     allPages.forEach(page => {
         page.classList.remove('active');
-        // 这里的 display: none 是为了防止隐藏的页面占位或干扰滚动
-        // 如果你的 CSS .page.active 已经处理了 display，这行可省略
-        // page.style.display = 'none'; 
     });
 
     // 2. 显示目标页面 (如果页面存在)
     const targetPage = document.getElementById(pageId);
     if (targetPage) {
         targetPage.classList.add('active');
-        // targetPage.style.display = 'block';
         targetPage.scrollTop = 0; // 切换时回到顶部
     } else {
         // 如果页面不存在（还没写），临时动态生成一个占位，防止点击没反应
@@ -343,7 +354,7 @@ function showStaticPage(pageName) {
 
     // 控制底部导航显示
     const bottomNav = document.querySelector('.bottom-nav');
-    const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
+    const rootPages = ['home', 'classics', 'customize'];
 
     if (bottomNav) {
         if (rootPages.includes(pageName)) {
@@ -389,11 +400,20 @@ async function loadSubPage(pageName) {
             return;
         }
 
-        // 强制隐藏底部导航（二级页面）
+        // 控制底部导航显示（根据页面类型）
+        const rootPages = ['home', 'classics', 'customize'];
         const bottomNav = document.querySelector('.bottom-nav');
         if (bottomNav) {
-            bottomNav.style.display = 'none';
-            bottomNav.classList.add('hidden');
+            if (rootPages.includes(pageName)) {
+                // 一级页面：显示底部导航
+                bottomNav.style.display = 'flex';
+                bottomNav.style.visibility = 'visible';
+                bottomNav.classList.remove('hidden');
+            } else {
+                // 二级页面：隐藏底部导航
+                bottomNav.style.display = 'none';
+                bottomNav.classList.add('hidden');
+            }
         }
 
         // 隐藏当前页面
@@ -461,7 +481,7 @@ function updateNavActiveState(pageName) {
 
 function updateNavButtons(pageName) {
     // 一级页面列表 - 显示底部导航
-    const rootPages = ['home', 'discussion', 'classics', 'customize', 'profile'];
+    const rootPages = ['home', 'classics', 'customize'];
 
     // 控制底部导航栏显示/隐藏
     const bottomNav = document.querySelector('.bottom-nav');
