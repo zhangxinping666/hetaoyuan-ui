@@ -256,7 +256,7 @@
 
                     <!-- 搜索栏 -->
                     <div class="search-bar-container z-100">
-                        <div class="search-bar z-100">
+                        <div class="search-bar z-1000">
                             <i class="fas fa-search search-bar__icon"></i>
                             <input type="text" id="home-search-input" class="search-bar__input"
                                 placeholder="搜索民宿、美食、活动..." onkeypress="if(event.key === 'Enter') performSearch()">
@@ -280,6 +280,8 @@
 
                             <!-- 愿景与使命 -->
                             <div class="space-y-3 mb-5 relative z-10">
+                                <a href="javascript:void(0)" onclick="showBanpoText()"
+                                    class="section-header__link">半坡等闲</a>
                                 <!-- 愿景 -->
                                 <div
                                     class="bg-white p-3 rounded-lg border-l-4 border-[#C04851] shadow-sm flex items-start gap-3">
@@ -314,6 +316,7 @@
                             <!-- 价值观 (紧凑布局) -->
                             <div class="relative z-1">
                                 <div class="flex items-center gap-2 mb-3 justify-center">
+                                    
                                     <div class="h-[1px] w-8 bg-[#D7CCC8]"></div>
                                     <h3 class="text-sm font-bold text-[#3E2723] font-serif tracking-widest">价值观</h3>
                                     <div class="h-[1px] w-8 bg-[#D7CCC8]"></div>
@@ -366,8 +369,7 @@
                             <div class="section-header">
                                 <div class="section-header__bar"></div>
                                 <h2 class="section-header__title">经典展示</h2>
-                                <a href="javascript:void(0)" onclick="showBanpoText()"
-                                    class="section-header__link">半坡等闲</a>
+                                
                             </div>
                             <!-- 直接使用 Grid，去掉深色容器 -->
                             <div class="lattice-grid" id="lattice-grid">

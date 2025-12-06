@@ -31,41 +31,99 @@ function handleCategoryClick(categoryId) {
 }
 
 // ==========================================
-// 2. 首页：服务百宝格配置 (Service Icons)
+// 2. 首页：服务百宝格配置
 // ==========================================
+
 const services = [
-    { id: 'one-table', name: '一桌餐', icon: 'bowl', isHot: true },
-    { id: 'team-meal', name: '团队餐', icon: 'group' },
-    { id: 'leisure-tour', name: '休闲游览', icon: 'mountain' },
-    { id: 'red-route', name: '红色路线', icon: 'flag' },
-    { id: 'specialty', name: '半坡特产', icon: 'gift' },
-    { id: 'family-park', name: '亲情乐园', icon: 'smile' },
-    { id: 'event-planning', name: '活动策划', icon: 'scroll' },
-    { id: 'farming', name: '种养认领', icon: 'sprout', isHot: true }
+    {
+        id: 'one-table',
+        name: '一桌餐',
+        desc: '林间野趣 · 顺时而食',
+        image: 'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?q=80&w=200&auto=format&fit=crop',
+        badge: '热推',
+        badgeType: 'hot'
+    },
+    {
+        id: 'team-meal',
+        name: '团队餐',
+        desc: '高端定制 · 尊贵礼遇',
+        image: 'https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=200&auto=format&fit=crop',
+        badge: null
+    },
+    {
+        id: 'leisure-tour',
+        name: '休闲游览',
+        desc: '行到水穷 · 坐看云起',
+        image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=200&auto=format&fit=crop',
+        badge: null
+    },
+    {
+        id: 'red-route',
+        name: '红色路线',
+        desc: '追寻足迹 · 薪火相传',
+        image: 'https://images.unsplash.com/photo-1542226601-38275531fa43?q=80&w=200&auto=format&fit=crop',
+        badge: null
+    },
+    {
+        id: 'specialty',
+        name: '半坡特产',
+        desc: '太行馈赠 · 地道风味',
+        image: 'https://images.unsplash.com/photo-1596913755018-80df2651475c?q=80&w=200&auto=format&fit=crop',
+        badge: null
+    },
+    {
+        id: 'family-park',
+        name: '亲情乐园',
+        desc: '寓教于乐 · 亲子时光',
+        image: 'https://images.unsplash.com/photo-1472162072942-cd5147eb3902?q=80&w=200&auto=format&fit=crop',
+        badge: null
+    },
+    {
+        id: 'event-plan',
+        name: '活动策划',
+        desc: '创意无限 · 精彩纷呈',
+        image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=200&auto=format&fit=crop',
+        badge: null
+    },
+    {
+        id: 'farming',
+        name: '种养认领',
+        desc: '归园田居 · 悠然自得',
+        image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=200&auto=format&fit=crop',
+        badge: '上新',
+        badgeType: 'new'
+    }
 ];
 
-const iconSVGs = {
-    bowl: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M6 14 Q6 20 10 23 Q16 26 22 23 Q26 20 26 14 L6 14 Z"/><rect x="27" y="8" width="2" height="4" rx="1"/><rect x="23" y="6" width="2" height="4" rx="1"/></svg>`,
-    group: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="11" r="3.5"/><circle cx="9" cy="18" r="3"/><circle cx="23" cy="18" r="3"/><path d="M13 14 L13 18 L9 18" stroke-width="2" stroke="currentColor" fill="none"/><path d="M19 14 L19 18 L23 18" stroke-width="2" stroke="currentColor" fill="none"/></svg>`,
-    mountain: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M4 24 L12 10 L16 16 L20 8 L28 24 Z"/></svg>`,
-    flag: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="6" width="2" height="22" rx="1"/><path d="M9 6 Q14 8 19 6 L19 14 Q14 16 9 14 Z"/></svg>`,
-    gift: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="16" width="12" height="10" rx="1"/><path d="M10 16 L10 12 Q10 10 12 10 L20 10 Q22 10 22 12 L22 16 Z"/><rect x="15.5" y="10" width="1" height="16"/><circle cx="13" cy="13" r="1.5"/></svg>`,
-    smile: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="10"/><circle cx="12" cy="14" r="1.8" fill="#fff"/><circle cx="20" cy="14" r="1.8" fill="#fff"/><path d="M11 18 Q16 21 21 18" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg>`,
-    scroll: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M10 8 Q8 8 8 10 L8 22 Q8 24 10 24 L22 24 Q24 24 24 22 L24 10 Q24 8 22 8 Z"/><rect x="11" y="12" width="10" height="1.5" rx="0.5" fill="#fff"/><rect x="11" y="15.5" width="10" height="1.5" rx="0.5" fill="#fff"/><rect x="11" y="19" width="7" height="1.5" rx="0.5" fill="#fff"/></svg>`,
-    sprout: `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="14" width="2" height="10" rx="1"/><path d="M16 14 Q12 10 8 12 Q10 16 16 14 Z"/><path d="M16 14 Q20 10 24 12 Q22 16 16 14 Z"/><rect x="12" y="23" width="8" height="2" rx="1"/></svg>`
-};
-
+// 2. 渲染函数
 function renderServiceGrid() {
+    console.log('🎨 渲染定制服务模块...');
     const gridContainer = document.getElementById('service-grid');
-    if (!gridContainer) return;
+
+    if (!gridContainer) {
+        console.warn('❌ 找不到 service-grid 容器');
+        return;
+    }
+
     gridContainer.innerHTML = services.map(service => `
-        <div class="service-grid__item" onclick="handleServiceClick('${service.id}')" data-id="${service.id}">
-            ${service.isHot ? '<span class="service-grid__hot-badge">热</span>' : ''}
-            <div class="service-grid__icon">${iconSVGs[service.icon]}</div>
-            <span class="service-grid__label">${service.name}</span>
+        <div class="customize-card" onclick="handleServiceClick('${service.id}')">
+            <div class="customize-card__image">
+                <img src="${service.image}" alt="${service.name}" onerror="this.src='https://via.placeholder.com/100'">
+                ${service.badge ? `<span class="customize-card__badge customize-card__badge--${service.badgeType}">${service.badge}</span>` : ''}
+            </div>
+            <div class="customize-card__content">
+                <h3 class="customize-card__title">${service.name}</h3>
+                <p class="customize-card__desc">${service.desc}</p>
+            </div>
+            <div class="customize-card__arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
         </div>
     `).join('');
+
+    console.log('✅ 服务卡片渲染完成，共', services.length, '个服务');
 }
+
 
 function handleServiceClick(serviceId) {
     console.log('点击服务:', serviceId);
