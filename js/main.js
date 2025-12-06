@@ -590,7 +590,7 @@ function initializeApp() {
 
     // 渲染首页内容
     renderLatticeGrid();
-    renderServiceGrid();
+    // renderServiceGrid(); // 已移到customize页面，不再在首页渲染
 
     // 初始化新版首页 (V2.2)
     if (window.initHomePage) {
