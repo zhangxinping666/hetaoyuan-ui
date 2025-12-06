@@ -256,7 +256,7 @@
 
                     <!-- 搜索栏 -->
                     <div class="search-bar-container z-100">
-                        <div class="search-bar">
+                        <div class="search-bar z-100">
                             <i class="fas fa-search search-bar__icon"></i>
                             <input type="text" id="home-search-input" class="search-bar__input"
                                 placeholder="搜索民宿、美食、活动..." onkeypress="if(event.key === 'Enter') performSearch()">
@@ -271,90 +271,91 @@
 
 
                         <!-- 愿景使命价值观 - 适老化大字版 -->
+                        <!-- 愿景使命价值观 - 精致紧凑版 -->
                         <section
-                            class="mt-8 mb-8 bg-[#FFFBF0] rounded-2xl p-6 shadow-lg border-2 border-[#E6DCC8] relative overflow-hidden">
-                            <!-- 背景装饰：淡化处理，避免干扰阅读 -->
+                            class="mt-4 mb-6 bg-[#FFFBF0] rounded-xl p-4 shadow-sm border border-[#E6DCC8] relative overflow-hidden">
+                            <!-- 背景装饰：缩小尺寸，更低调 -->
                             <div
-                                class="absolute -right-6 -top-10 text-[10rem] text-[#8B1E1E]/5 font-serif select-none pointer-events-none font-bold">
+                                class="absolute -right-2 -top-4 text-[6rem] text-[#8B1E1E]/5 font-serif select-none pointer-events-none font-bold">
                                 核
                             </div>
 
                             <!-- 愿景与使命 -->
-                            <div class="space-y-6 mb-8 relative z-10">
+                            <div class="space-y-3 mb-5 relative z-10">
                                 <!-- 愿景 -->
-                                <div class="bg-white p-5 rounded-xl border-l-8 border-[#C04851] shadow-sm">
-                                    <h3 class="text-xl font-bold text-[#8B1E1E] mb-3 font-serif flex items-center">
-                                        <div
-                                            class="w-10 h-10 bg-[#FEE2E2] rounded-full flex items-center justify-center mr-3 text-[#C04851]">
-                                            <i class="fas fa-eye text-xl"></i>
-                                        </div>
-                                        愿 景
-                                    </h3>
-                                    <p class="text-[#4E342E] text-lg font-bold leading-loose text-justify pl-1">
-                                        让食材回归本真的味道<br>
-                                        让生命绽放积极的价值
-                                    </p>
+                                <div
+                                    class="bg-white p-3 rounded-lg border-l-4 border-[#C04851] shadow-sm flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 bg-[#FEE2E2] rounded-full flex items-center justify-center shrink-0 text-[#C04851] mt-0.5">
+                                        <i class="fas fa-eye text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-bold text-[#8B1E1E] mb-1 font-serif">愿 景</h3>
+                                        <p class="text-[#4E342E] text-xs leading-relaxed text-justify">
+                                            让食材回归本真的味道，让生命绽放积极的价值。
+                                        </p>
+                                    </div>
                                 </div>
 
                                 <!-- 使命 -->
-                                <div class="bg-white p-5 rounded-xl border-l-8 border-[#C5A065] shadow-sm">
-                                    <h3 class="text-xl font-bold text-[#9D783E] mb-3 font-serif flex items-center">
-                                        <div
-                                            class="w-10 h-10 bg-[#FEF3C7] rounded-full flex items-center justify-center mr-3 text-[#C5A065]">
-                                            <i class="fas fa-bullhorn text-xl"></i>
-                                        </div>
-                                        使 命
-                                    </h3>
-                                    <p class="text-[#4E342E] text-lg font-bold leading-loose text-justify pl-1">
-                                        倡导勤奋的生活态度<br>
-                                        创造温馨的交流平台
-                                    </p>
+                                <div
+                                    class="bg-white p-3 rounded-lg border-l-4 border-[#C5A065] shadow-sm flex items-start gap-3">
+                                    <div
+                                        class="w-8 h-8 bg-[#FEF3C7] rounded-full flex items-center justify-center shrink-0 text-[#C5A065] mt-0.5">
+                                        <i class="fas fa-bullhorn text-xs"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-sm font-bold text-[#9D783E] mb-1 font-serif">使 命</h3>
+                                        <p class="text-[#4E342E] text-xs leading-relaxed text-justify">
+                                            倡导勤奋的生活态度，创造温馨的交流平台。
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- 价值观 (大字块状布局) -->
-                            <div class="relative z-10">
-                                <div class="flex items-center gap-3 mb-6 justify-center">
-                                    <div class="h-[2px] w-12 bg-[#D7CCC8]"></div>
-                                    <h3 class="text-2xl font-bold text-[#3E2723] font-serif tracking-widest">价值观</h3>
-                                    <div class="h-[2px] w-12 bg-[#D7CCC8]"></div>
+                            <!-- 价值观 (紧凑布局) -->
+                            <div class="relative z-1">
+                                <div class="flex items-center gap-2 mb-3 justify-center">
+                                    <div class="h-[1px] w-8 bg-[#D7CCC8]"></div>
+                                    <h3 class="text-sm font-bold text-[#3E2723] font-serif tracking-widest">价值观</h3>
+                                    <div class="h-[1px] w-8 bg-[#D7CCC8]"></div>
                                 </div>
 
-                                <div class="space-y-4">
-                                    <!-- 核心层：大色块，高对比度 -->
-                                    <div class="grid grid-cols-3 gap-3">
+                                <div class="space-y-2">
+                                    <!-- 核心层：字号缩小，间距收紧 -->
+                                    <div class="grid grid-cols-3 gap-2">
                                         <div
-                                            class="aspect-[4/3] bg-[#F9F1F0] border-2 border-[#EACCCB] rounded-xl flex items-center justify-center text-[#C04851] text-xl font-bold shadow-sm">
+                                            class="bg-[#F9F1F0] border border-[#EACCCB] rounded-lg py-1.5 text-center text-[#C04851] text-xs font-bold shadow-sm">
                                             舍得</div>
                                         <div
-                                            class="aspect-[4/3] bg-[#F9F1F0] border-2 border-[#EACCCB] rounded-xl flex items-center justify-center text-[#C04851] text-xl font-bold shadow-sm">
+                                            class="bg-[#F9F1F0] border border-[#EACCCB] rounded-lg py-1.5 text-center text-[#C04851] text-xs font-bold shadow-sm">
                                             归真</div>
                                         <div
-                                            class="aspect-[4/3] bg-[#F9F1F0] border-2 border-[#EACCCB] rounded-xl flex items-center justify-center text-[#C04851] text-xl font-bold shadow-sm">
+                                            class="bg-[#F9F1F0] border border-[#EACCCB] rounded-lg py-1.5 text-center text-[#C04851] text-xs font-bold shadow-sm">
                                             开创</div>
                                     </div>
 
-                                    <!-- 践行层：清晰的大字列表 -->
-                                    <div class="grid grid-cols-2 gap-3">
+                                    <!-- 践行层：每行4个，小巧精致 -->
+                                    <div class="grid grid-cols-4 gap-2">
                                         <div
-                                            class="bg-white border-2 border-[#E0D6C6] rounded-xl py-3 text-center text-[#5D4037] text-lg font-bold shadow-sm">
+                                            class="bg-white border border-[#E0D6C6] rounded-lg py-1.5 text-center text-[#5D4037] text-[10px] font-medium">
                                             学习</div>
                                         <div
-                                            class="bg-white border-2 border-[#E0D6C6] rounded-xl py-3 text-center text-[#5D4037] text-lg font-bold shadow-sm">
+                                            class="bg-white border border-[#E0D6C6] rounded-lg py-1.5 text-center text-[#5D4037] text-[10px] font-medium">
                                             智慧</div>
                                         <div
-                                            class="bg-white border-2 border-[#E0D6C6] rounded-xl py-3 text-center text-[#5D4037] text-lg font-bold shadow-sm">
+                                            class="bg-white border border-[#E0D6C6] rounded-lg py-1.5 text-center text-[#5D4037] text-[10px] font-medium">
                                             健康</div>
                                         <div
-                                            class="bg-white border-2 border-[#E0D6C6] rounded-xl py-3 text-center text-[#5D4037] text-lg font-bold shadow-sm">
+                                            class="bg-white border border-[#E0D6C6] rounded-lg py-1.5 text-center text-[#5D4037] text-[10px] font-medium">
                                             合作</div>
                                     </div>
 
-                                    <!-- 境界层：醒目大按钮风格 -->
-                                    <div class="pt-4 flex justify-center">
+                                    <!-- 境界层：胶囊按钮风格 -->
+                                    <div class="pt-2 flex justify-center">
                                         <div
-                                            class="w-full py-4 bg-[#3E4E5E] text-white rounded-xl text-2xl font-serif font-bold text-center shadow-lg border-2 border-[#E8E4DC] tracking-[0.5em] flex items-center justify-center">
-                                            <span class="mr-[-0.5em]">坦然</span>
+                                            class="px-8 py-1.5 bg-[#3E4E5E] text-white rounded-full text-xs font-serif font-bold text-center shadow-sm border border-[#E8E4DC] tracking-[0.3em]">
+                                            <span class="mr-[-0.3em]">坦然</span>
                                         </div>
                                     </div>
                                 </div>
