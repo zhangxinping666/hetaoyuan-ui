@@ -179,7 +179,7 @@
     // 4. 初始化入口
     // ==========================================
     window.initGuanshanPage = function() {
-        console.log('⛰️ 关山篇页面初始化');
+        console.log(' 关山篇页面初始化');
         renderMountainGrid();
         renderWaterGrid();
         renderBentoGrid();

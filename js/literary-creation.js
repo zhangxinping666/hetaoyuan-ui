@@ -261,7 +261,7 @@
         renderModernCreations();
         renderGallery();
         renderAudioPlayer();
-        console.log('✅ 所有模块加载完成');
+        console.log(' 所有模块加载完成');
     };
 
     // 自动检测并初始化

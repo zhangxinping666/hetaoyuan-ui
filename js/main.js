@@ -97,11 +97,11 @@ const services = [
 
 // 2. 渲染函数
 function renderServiceGrid() {
-    console.log('🎨 渲染定制服务模块...');
+    console.log(' 渲染定制服务模块...');
     const gridContainer = document.getElementById('service-grid');
 
     if (!gridContainer) {
-        console.warn('❌ 找不到 service-grid 容器');
+        console.warn(' 找不到 service-grid 容器');
         return;
     }
 
@@ -121,7 +121,7 @@ function renderServiceGrid() {
         </div>
     `).join('');
 
-    console.log('✅ 服务卡片渲染完成，共', services.length, '个服务');
+    console.log(' 服务卡片渲染完成，共', services.length, '个服务');
 }
 
 
@@ -187,8 +187,8 @@ function loadScript(url) {
         }
         const script = document.createElement('script');
         script.src = url;
-        script.onload = () => { console.log(`✅ 脚本加载成功: ${url}`); resolve(); };
-        script.onerror = () => { console.error(`❌ 脚本加载失败: ${url}`); reject(new Error(`Script load error`)); };
+        script.onload = () => { console.log(` 脚本加载成功: ${url}`); resolve(); };
+        script.onerror = () => { console.error(` 脚本加载失败: ${url}`); reject(new Error(`Script load error`)); };
         document.body.appendChild(script);
     });
 }
@@ -197,10 +197,10 @@ async function loadPageScript(pageName) {
         // 尝试加载对应的 JavaScript 文件
         const scriptUrl = `js/${pageName}.js`;
         await loadScript(scriptUrl);
-        console.log(`✅ 页面脚本加载成功: ${pageName}`);
+        console.log(` 页面脚本加载成功: ${pageName}`);
     } catch (error) {
         // 如果没有对应的 JS 文件，不报错，只是记录
-        console.log(`ℹ️ 页面 ${pageName} 没有对应的 JS 文件，跳过加载`);
+        console.log(`ℹ 页面 ${pageName} 没有对应的 JS 文件，跳过加载`);
     }
 }
 // ==========================================
@@ -208,11 +208,11 @@ async function loadPageScript(pageName) {
 // ==========================================
 async function loadSubPage(pageName) {
     try {
-        console.log('🔄 加载动态页面:', pageName);
+        console.log(' 加载动态页面:', pageName);
 
         const screen = document.querySelector('.screen');
         if (!screen) {
-            console.error('❌ 找不到 .screen 容器');
+            console.error(' 找不到 .screen 容器');
             return;
         }
 
@@ -266,7 +266,7 @@ async function loadSubPage(pageName) {
         newPage.scrollTop = 0;
 
     } catch (error) {
-        console.error('❌ 加载页面失败:', error);
+        console.error(' 加载页面失败:', error);
         alert(`页面加载失败: ${error.message}`);
         // 回退到首页
         showStaticPage('home');
@@ -274,11 +274,11 @@ async function loadSubPage(pageName) {
 }
 
 function showStaticPage(pageName) {
-    console.log('📄 切换静态页面:', pageName);
+    console.log(' 切换静态页面:', pageName);
 
     const screen = document.querySelector('.screen');
     if (!screen) {
-        console.error('❌ 找不到 .screen 容器');
+        console.error(' 找不到 .screen 容器');
         return;
     }
 
@@ -311,7 +311,7 @@ function showStaticPage(pageName) {
         // 滚动到顶部
         targetPage.scrollTop = 0;
     } else {
-        console.error('❌ 找不到页面:', pageName);
+        console.error(' 找不到页面:', pageName);
         return;
     }
 
@@ -408,7 +408,7 @@ function updateBottomNav(activePageId) {
 function showStaticPage(pageName) {
     const screen = document.querySelector('.screen');
     if (!screen) {
-        console.error('❌ 找不到 .screen 容器');
+        console.error(' 找不到 .screen 容器');
         return;
     }
 
@@ -441,7 +441,7 @@ function showStaticPage(pageName) {
         // 滚动到顶部
         targetPage.scrollTop = 0;
     } else {
-        console.error('❌ 找不到页面:', pageName);
+        console.error(' 找不到页面:', pageName);
         return;
     }
 
@@ -455,7 +455,7 @@ async function loadSubPage(pageName) {
 
         const screen = document.querySelector('.screen');
         if (!screen) {
-            console.error('❌ 找不到 .screen 容器');
+            console.error(' 找不到 .screen 容器');
             return;
         }
 
@@ -531,7 +531,7 @@ async function loadSubPage(pageName) {
         newPage.scrollTop = 0;
 
     } catch (error) {
-        console.error('❌ 加载页面失败:', error);
+        console.error(' 加载页面失败:', error);
         // 回退到首页
         showStaticPage('home');
     }
@@ -655,7 +655,7 @@ function initializeApp() {
         window.initHomePage();
     }
 
-    console.log('✅ 应用初始化完成');
+    console.log(' 应用初始化完成');
 }
 // 页面加载完成后初始化
 document.addEventListener('DOMContentLoaded', initializeApp);

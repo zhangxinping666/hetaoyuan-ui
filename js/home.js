@@ -1,6 +1,6 @@
 // js/home.js - 首页逻辑
 (function() {
-    console.log('🏠 首页脚本加载中...');
+    console.log(' 首页脚本加载中...');
 
     // ==========================================
     // 1. 渲染窗棂格栅
@@ -8,7 +8,7 @@
     function renderClassicsGrid() {
         const container = document.getElementById('home-classics-grid');
         if (!container) {
-            console.warn('⚠️ 找不到 #home-classics-grid 容器');
+            console.warn(' 找不到 #home-classics-grid 容器');
             return;
         }
 
@@ -70,13 +70,13 @@
     // 3. 打开分类页面
     // ==========================================
     window.openCategory = function(categoryId) {
-        console.log('📂 打开分类:', categoryId);
+        console.log(' 打开分类:', categoryId);
         
         // 调用 main.js 中的路由函数
         if (window.loadSubPage) {
             window.loadSubPage(categoryId);
         } else {
-            console.error('❌ 找不到 loadSubPage 函数');
+            console.error(' 找不到 loadSubPage 函数');
             alert(`即将打开：${categoryId}`);
         }
     };
@@ -112,7 +112,7 @@
     // 5. 初始化
     // ==========================================
     window.initHomePage = function() {
-        console.log('✅ 初始化首页...');
+        console.log(' 初始化首页...');
         renderClassicsGrid();
         initSearchBarScroll();
     };

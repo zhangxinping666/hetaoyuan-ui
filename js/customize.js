@@ -66,11 +66,11 @@
 
   // 2. 渲染函数
   function renderServiceGrid() {
-    console.log('🎨 渲染定制服务模块...');
+    console.log(' 渲染定制服务模块...');
     const gridContainer = document.getElementById('service-grid');
 
     if (!gridContainer) {
-      console.warn('❌ 找不到 service-grid 容器');
+      console.warn(' 找不到 service-grid 容器');
       return;
     }
 
@@ -90,7 +90,7 @@
         </div>
     `).join('');
 
-    console.log('✅ 服务卡片渲染完成，共', services.length, '个服务');
+    console.log(' 服务卡片渲染完成，共', services.length, '个服务');
   }
 
   // ==========================================
@@ -126,7 +126,7 @@
   // 4. 初始化入口
   // ==========================================
   window.initCustomizePage = function () {
-    console.log('🎨 定制服务页面初始化');
+    console.log(' 定制服务页面初始化');
     renderServiceGrid();
   };
 
