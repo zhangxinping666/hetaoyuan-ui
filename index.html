@@ -370,37 +370,36 @@
                             </div>
                         </section>
 
+                        <!-- 首页 - 悬空民宿精选入口 -->
+                        <section class="mt-6 mb-6 px-1">
+                            <!-- 修改点1：onclick 改为 'xuankong' -->
+                            <div class="relative w-full h-32 rounded-2xl overflow-hidden shadow-md cursor-pointer group"
+                                onclick="showPage('xuankong')">
 
-                    </main>
-                    <!-- 首页 - 悬空民宿精选入口 -->
-                    <section class="mt-6 mb-6 px-1">
-                        <!-- 修改点1：onclick 改为 'xuankong' -->
-                        <div class="relative w-full h-32 rounded-2xl overflow-hidden shadow-md cursor-pointer group"
-                            onclick="showPage('xuankong')">
+                                <!-- 修改点2：修复了 img 标签的语法错误 -->
+                                <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600" alt="悬空民宿"
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
 
-                            <!-- 修改点2：修复了 img 标签的语法错误 -->
-                            <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?w=600" alt="悬空民宿"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-
-                            <!-- 遮罩与文字内容 -->
-                            <div class="absolute inset-0 bg-black/40 flex items-center justify-between px-6">
-                                <div>
-                                    <h3 class="text-2xl font-bold text-white font-serif mb-1">悬空民宿</h3>
-                                    <p class="text-white/80 text-xs">住在风景里 · 睡在云端上</p>
+                                <!-- 遮罩与文字内容 -->
+                                <div class="absolute inset-0 bg-black/40 flex items-center justify-between px-6">
+                                    <div>
+                                        <h3 class="text-2xl font-bold text-white font-serif mb-1">悬空民宿</h3>
+                                        <p class="text-white/80 text-xs">住在风景里 · 睡在云端上</p>
+                                    </div>
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-white/20 backdrop-blur border border-white/50 flex items-center justify-center text-white">
+                                        <i class="fas fa-angle-right"></i>
+                                    </div>
                                 </div>
+
+                                <!-- 装饰标签 -->
                                 <div
-                                    class="w-10 h-10 rounded-full bg-white/20 backdrop-blur border border-white/50 flex items-center justify-center text-white">
-                                    <i class="fas fa-angle-right"></i>
+                                    class="absolute top-0 right-0 bg-[#FFD700] text-[#3E4E5E] text-[10px] font-bold px-2 py-1 rounded-bl-lg">
+                                    热门预订
                                 </div>
                             </div>
-
-                            <!-- 装饰标签 -->
-                            <div
-                                class="absolute top-0 right-0 bg-[#FFD700] text-[#3E4E5E] text-[10px] font-bold px-2 py-1 rounded-bl-lg">
-                                热门预订
-                            </div>
-                        </div>
-                    </section>
+                        </section>
+                    </main>
                 </div>
 
                 <!-- 底部导航栏 -->
