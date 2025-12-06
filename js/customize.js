@@ -48,7 +48,7 @@
       badge: null
     },
     {
-      id: 'event-plan',
+      id: 'event-planning',
       name: '活动策划',
       desc: '创意无限 · 精彩纷呈',
       image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=200&auto=format&fit=crop',
