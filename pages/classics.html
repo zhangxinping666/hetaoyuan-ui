@@ -5,23 +5,26 @@
 
     <div class="flex-1 overflow-y-auto pb-24 hide-scrollbar">
         <!-- 探讨沟通 - 网格平铺版 -->
-        <section class="mt-6 px-4 mb-10">
+        <section class="mt-6 px-4 mb-10 max-w-md mx-auto">
             <!-- 板块标题 -->
             <div class="flex items-center mb-4">
                 <div class="w-1 h-4 bg-[#8B1E1E] mr-2 rounded-full"></div>
                 <h2 class="text-lg font-bold text-[#3E4E5E] font-serif">探讨沟通</h2>
             </div>
 
-            <!-- 网格布局容器 (2列) -->
-            <div class="grid grid-cols-2 gap-3">
+            <!-- 布局容器：改为 grid-cols-1 实现独占一行 -->
+            <div class="grid grid-cols-1 gap-4">
 
                 <!-- 卡片1: 半坡餐饮 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E8E4DC] group cursor-pointer active:scale-95 transition-transform"
+                <!-- 增加 flex 让内容变为左右布局 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E8E4DC] group cursor-pointer active:scale-95 transition-transform flex h-28"
                     onclick="openBanpoDining()">
-                    <div class="h-28 relative overflow-hidden bg-gray-100">
+
+                    <!-- 左侧图片区域：固定宽度 w-36, 高度撑满 h-full, 防止压缩 shrink-0 -->
+                    <div class="w-36 h-full relative overflow-hidden bg-gray-100 shrink-0">
                         <!-- 标签 -->
                         <span
-                            class="absolute top-2 right-2 bg-[#C04851]/90 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded z-10">养生</span>
+                            class="absolute top-2 left-2 bg-[#C04851]/90 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded z-10 shadow-sm">养生</span>
                         <!-- 图片 -->
                         <img title="img" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
@@ -29,66 +32,80 @@
                         <!-- 渐变遮罩 -->
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
                     </div>
-                    <div class="p-3">
-                        <h3 class="text-sm font-bold text-[#3E4E5E] mb-1">半坡餐饮</h3>
-                        <p class="text-[10px] text-gray-500 line-clamp-2 leading-relaxed">食在半坡，寻古溯源。品尝黄帝内经中的养生智慧。</p>
+
+                    <!-- 右侧文字区域：flex-1 占满剩余空间, flex-col 垂直居中 -->
+                    <div class="p-3 flex-1 flex flex-col justify-center">
+                        <h3
+                            class="text-base font-bold text-[#3E4E5E] mb-1.5 group-hover:text-[#8B1E1E] transition-colors">
+                            半坡餐饮</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">食在半坡，寻古溯源。品尝黄帝内经中的养生智慧。</p>
                     </div>
                 </div>
 
                 <!-- 卡片2: 半坡讲谈 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E8E4DC] group cursor-pointer active:scale-95 transition-transform"
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E8E4DC] group cursor-pointer active:scale-95 transition-transform flex h-28"
                     onclick="openBanpoTalks()">
-                    <div class="h-28 relative overflow-hidden bg-gray-100">
+
+                    <div class="w-36 h-full relative overflow-hidden bg-gray-100 shrink-0">
                         <span
-                            class="absolute top-2 right-2 bg-[#3E7A5E]/90 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded z-10">讲座</span>
+                            class="absolute top-2 left-2 bg-[#3E7A5E]/90 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded z-10 shadow-sm">讲座</span>
                         <img title="img" src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             onerror="this.src='https://via.placeholder.com/200'">
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
                     </div>
-                    <div class="p-3">
-                        <h3 class="text-sm font-bold text-[#3E4E5E] mb-1 flex items-center">
+
+                    <div class="p-3 flex-1 flex flex-col justify-center">
+                        <h3
+                            class="text-base font-bold text-[#3E4E5E] mb-1.5 flex items-center group-hover:text-[#8B1E1E] transition-colors">
                             半坡讲谈
-                            <i class="fas fa-volume-high text-[10px] text-[#C04851] ml-1 opacity-60"></i>
+                            <i class="fas fa-volume-high text-xs text-[#C04851] ml-2 opacity-80"></i>
                         </h3>
-                        <p class="text-[10px] text-gray-500 line-clamp-2 leading-relaxed">知在半坡，大家讲坛。医学讲座与书画课堂。</p>
+                        <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">知在半坡，大家讲坛。医学讲座与书画课堂，传承文化。</p>
                     </div>
                 </div>
 
                 <!-- 卡片3: 文艺创作 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E8E4DC] group cursor-pointer active:scale-95 transition-transform"
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E8E4DC] group cursor-pointer active:scale-95 transition-transform flex h-28"
                     onclick="openLiteraryCreation()">
-                    <div class="h-28 relative overflow-hidden bg-gray-100">
+
+                    <div class="w-36 h-full relative overflow-hidden bg-gray-100 shrink-0">
                         <span
-                            class="absolute top-2 right-2 bg-[#5D4037]/90 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded z-10">有声</span>
+                            class="absolute top-2 left-2 bg-[#5D4037]/90 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded z-10 shadow-sm">有声</span>
                         <img title="img" src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=400"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             onerror="this.src='https://via.placeholder.com/200'">
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
                     </div>
-                    <div class="p-3">
-                        <h3 class="text-sm font-bold text-[#3E4E5E] mb-1 flex items-center">
+
+                    <div class="p-3 flex-1 flex flex-col justify-center">
+                        <h3
+                            class="text-base font-bold text-[#3E4E5E] mb-1.5 flex items-center group-hover:text-[#8B1E1E] transition-colors">
                             文艺创作
-                            <i class="fas fa-music text-[10px] text-[#C04851] ml-1 opacity-60"></i>
+                            <i class="fas fa-music text-xs text-[#C04851] ml-2 opacity-80"></i>
                         </h3>
-                        <p class="text-[10px] text-gray-500 line-clamp-2 leading-relaxed">乐在半坡，歌咏畅欢。经典名篇与有声欣赏。</p>
+                        <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">乐在半坡，歌咏畅欢。经典名篇与有声欣赏。</p>
                     </div>
                 </div>
 
                 <!-- 卡片4: 耕读有伴 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E8E4DC] group cursor-pointer active:scale-95 transition-transform"
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-[#E8E4DC] group cursor-pointer active:scale-95 transition-transform flex h-28"
                     onclick="openFarmingReading()">
-                    <div class="h-28 relative overflow-hidden bg-gray-100">
+
+                    <div class="w-36 h-full relative overflow-hidden bg-gray-100 shrink-0">
                         <span
-                            class="absolute top-2 right-2 bg-[#AF8F6F]/90 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded z-10">体验</span>
+                            class="absolute top-2 left-2 bg-[#AF8F6F]/90 backdrop-blur-sm text-white text-[10px] px-2 py-0.5 rounded z-10 shadow-sm">体验</span>
                         <img title="img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                             onerror="this.src='https://via.placeholder.com/200'">
                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
                     </div>
-                    <div class="p-3">
-                        <h3 class="text-sm font-bold text-[#3E4E5E] mb-1">耕读有伴</h3>
-                        <p class="text-[10px] text-gray-500 line-clamp-2 leading-relaxed">劳在半坡，耕读传家。亲手种植，体验采菊东篱。</p>
+
+                    <div class="p-3 flex-1 flex flex-col justify-center">
+                        <h3
+                            class="text-base font-bold text-[#3E4E5E] mb-1.5 group-hover:text-[#8B1E1E] transition-colors">
+                            耕读有伴</h3>
+                        <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">劳在半坡，耕读传家。亲手种植，体验采菊东篱下。</p>
                     </div>
                 </div>
 
