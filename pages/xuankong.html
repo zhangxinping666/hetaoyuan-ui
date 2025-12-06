@@ -1,0 +1,112 @@
+<div id="discussion" class="page active">
+    <div class="relative h-64 overflow-hidden">
+        <img title="img" src="https://images.unsplash.com/photo-1626302599709-f399f6cb7d93?w=800&h=600&fit=crop" 
+             class="w-full h-full object-cover filter brightness-75"
+             onerror="this.src='https://via.placeholder.com/800x600/3E4E5E/fff?text=悬空民宿'">
+        
+        <div class="absolute inset-0 bg-gradient-to-t from-[#F9F6F2] via-transparent to-black/30"></div>
+
+        <div class="absolute top-0 left-0 w-full p-4 flex justify-between items-center z-20">
+            <button title="img" onclick="goBack()" class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <div class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-xs">
+                <i class="fas fa-cloud mr-1"></i> 云端·半坡
+            </div>
+        </div>
+
+        <div class="absolute bottom-6 left-6 z-10 text-[#3E4E5E]">
+            <h1 class="text-3xl font-bold font-serif mb-1 drop-shadow-sm text-stone-800">悬空民宿</h1>
+            <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 bg-[#C04851] text-white text-[10px] rounded">峭壁奇观</span>
+                <span class="text-xs text-stone-600 font-serif">/ 枕云而眠，梦回太行</span>
+            </div>
+        </div>
+    </div>
+
+    <main class="px-5 -mt-6 relative z-10 pb-20">
+        
+        <div class="bg-white rounded-2xl shadow-lg p-2 grid grid-cols-3 gap-2 mb-6 border border-[#E8E4DC]">
+            
+            <div onclick="showPage('classics')" class="flex flex-col items-center justify-center py-4 rounded-xl hover:bg-stone-50 transition-colors cursor-pointer group">
+                <div class="w-12 h-12 rounded-full bg-[#E3F2FD] text-[#1565C0] flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform shadow-sm">
+                    <i class="fas fa-masks-theater"></i>
+                </div>
+                <span class="text-xs font-bold text-stone-600">民俗展示</span>
+            </div>
+
+            <div onclick="alert('投资合作洽谈中...')" class="flex flex-col items-center justify-center py-4 rounded-xl hover:bg-stone-50 transition-colors cursor-pointer group">
+                <div class="w-12 h-12 rounded-full bg-[#FFEBEE] text-[#C62828] flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform shadow-sm">
+                    <i class="fas fa-coins"></i>
+                </div>
+                <span class="text-xs font-bold text-stone-600">我要投资</span>
+            </div>
+
+            <div onclick="window.bookRoom()" class="flex flex-col items-center justify-center py-4 rounded-xl bg-[#FFF8E1] border border-[#FFECB3] cursor-pointer group relative overflow-hidden">
+                <div class="absolute -right-2 -top-2 w-8 h-8 bg-[#FFC107] rotate-45 transform"></div>
+                <div class="w-12 h-12 rounded-full bg-[#FFC107] text-white flex items-center justify-center text-xl mb-2 group-hover:scale-110 transition-transform shadow-md z-10">
+                    <i class="fas fa-bed"></i>
+                </div>
+                <span class="text-xs font-bold text-[#8D6E63] z-10">我要预订</span>
+            </div>
+        </div>
+
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-bold text-stone-800 font-serif border-l-4 border-[#3E4E5E] pl-3">雅舍一览</h2>
+                <span class="text-xs text-gray-400">共 6 间悬崖客房</span>
+            </div>
+
+            <div class="space-y-4" id="room-list">
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-stone-100 group cursor-pointer" onclick="window.bookRoom('cloud')">
+                    <div class="h-40 relative">
+                        <img title="img" src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?w=600" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
+                            <h3 class="text-white font-serif text-lg">云栖·听风</h3>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur text-[#3E4E5E] text-xs font-bold px-2 py-1 rounded">¥880/晚</div>
+                    </div>
+                    <div class="p-3 flex justify-between items-center">
+                        <div class="flex gap-2 text-xs text-gray-500">
+                            <span><i class="fas fa-maximize mr-1"></i>45㎡</span>
+                            <span><i class="fas fa-user-group mr-1"></i>宜住2人</span>
+                            <span><i class="fas fa-wifi mr-1"></i>WIFI</span>
+                        </div>
+                        <button class="bg-[#3E4E5E] text-white text-xs px-3 py-1.5 rounded hover:bg-[#2c3742]">预订</button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-stone-100 group cursor-pointer" onclick="window.bookRoom('stone')">
+                    <div class="h-40 relative">
+                        <img title="img" src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=600" class="w-full h-full object-cover">
+                        <div class="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/70 to-transparent">
+                            <h3 class="text-white font-serif text-lg">石语·观山</h3>
+                        </div>
+                        <div class="absolute top-3 right-3 bg-white/90 backdrop-blur text-[#3E4E5E] text-xs font-bold px-2 py-1 rounded">¥1280/晚</div>
+                    </div>
+                    <div class="p-3 flex justify-between items-center">
+                        <div class="flex gap-2 text-xs text-gray-500">
+                            <span><i class="fas fa-maximize mr-1"></i>60㎡</span>
+                            <span><i class="fas fa-users mr-1"></i>家庭房</span>
+                            <span><i class="fas fa-hot-tub-person mr-1"></i>浴缸</span>
+                        </div>
+                        <button class="bg-[#3E4E5E] text-white text-xs px-3 py-1.5 rounded hover:bg-[#2c3742]">预订</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="booking-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4" onclick="window.closeBookingModal()">
+        <div class="bg-[#FDFBF7] rounded-xl w-full max-w-sm overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <div class="p-6 text-center">
+                <div class="w-16 h-16 bg-[#E8F5E9] rounded-full flex items-center justify-center mx-auto mb-4 text-[#2E7D32]">
+                    <i class="fas fa-check text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-stone-800 font-serif mb-2">预订申请已提交</h3>
+                <p class="text-sm text-gray-500 mb-6">我们的管家将在 15 分钟内联系您确认房态。</p>
+                <button onclick="window.closeBookingModal()" class="w-full py-3 bg-[#3E4E5E] text-white rounded-lg font-bold">我知道了</button>
+            </div>
+        </div>
+    </div>
+</div>

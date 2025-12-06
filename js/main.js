@@ -106,6 +106,7 @@ function openFamilyPark() { loadSubPage('family-park'); }
 function openEventPlanning() { loadSubPage('event-planning'); }
 function openFarming() { loadSubPage('farming'); }
 function openHuiLong() { loadSubPage('huilong'); }
+function openXuankong() { loadSubPage('xuankong'); }
 
 // 首页弹窗控制
 function showBanpoText() {
@@ -271,6 +272,7 @@ const PAGE_TYPES = {
     STATIC: ['home'],
     // 动态页面 - 需要从 pages/ 目录加载
     DYNAMIC: [
+        'xuankong',
         'classics', 'customize', 'discussion', 'profile',
         'bainong', 'guanshan', 'huilong', 'kangzhan',
         'one-table-meal', 'team-meal', 'specialty', 'event-planning',
@@ -392,7 +394,6 @@ function showStaticPage(pageName) {
 
 async function loadSubPage(pageName) {
     try {
-        console.log('🔄 加载动态页面:', pageName);
 
         const screen = document.querySelector('.screen');
         if (!screen) {
@@ -403,6 +404,15 @@ async function loadSubPage(pageName) {
         // 控制底部导航显示（根据页面类型）
         const rootPages = ['home', 'classics', 'customize'];
         const bottomNav = document.querySelector('.bottom-nav');
+        if (bottomNav) {
+            if (pageName === 'xuankong') {
+                bottomNav.style.display = 'flex';
+                bottomNav.classList.remove('hidden');
+            } else {
+                bottomNav.style.display = 'none';
+                bottomNav.classList.add('hidden');
+            }
+        }
         if (bottomNav) {
             if (rootPages.includes(pageName)) {
                 // 一级页面：显示底部导航
@@ -445,6 +455,10 @@ async function loadSubPage(pageName) {
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
         `;
+        if (pageName === 'xuankong') {
+            newPage.style.paddingBottom = '60px';
+        }
+
         newPage.innerHTML = html;
 
         screen.appendChild(newPage);
@@ -471,12 +485,15 @@ function updateNavActiveState(pageName) {
     navItems.forEach(item => {
         item.classList.remove('active');
     });
+    let navId = pageName;
+    if (pageName === 'xuankong') navId = 'discussion';
 
-    // 激活对应的导航项
-    const targetNavItem = document.getElementById(`b-nav-${pageName}`);
+    // 把下面这行的变量名改成 navId
+    const targetNavItem = document.getElementById(`b-nav-${navId}`);
     if (targetNavItem) {
         targetNavItem.classList.add('active');
     }
+
 }
 
 function updateNavButtons(pageName) {
@@ -605,7 +622,7 @@ window.openSpecialty = openSpecialty;
 window.openFamilyPark = openFamilyPark;
 window.openEventPlanning = openEventPlanning;
 window.openFarming = openFarming;
-
+window.openXuankong = openXuankong;
 // ==========================================
 // 搜索功能
 // ==========================================
@@ -642,7 +659,7 @@ const searchMapping = {
 };
 
 // 执行搜索
-window.performSearch = function() {
+window.performSearch = function () {
     const input = document.getElementById('home-search-input');
     if (!input) return;
 
@@ -670,7 +687,7 @@ window.performSearch = function() {
 };
 
 // 快速搜索（点击标签）
-window.quickSearch = function(keyword) {
+window.quickSearch = function (keyword) {
     const input = document.getElementById('home-search-input');
     if (input) {
         input.value = keyword;
