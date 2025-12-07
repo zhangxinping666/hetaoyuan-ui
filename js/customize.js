@@ -16,7 +16,7 @@
       id: 'team-meal',
       name: '团队餐',
       desc: '高端定制 · 尊贵礼遇',
-      image: 'https://images.unsplash.com/photo-1519225421980-715cb0202128?q=80&w=200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=200&h=200&fit=crop',
       badge: null
     },
     {
@@ -30,14 +30,14 @@
       id: 'red-route',
       name: '红色路线',
       desc: '追寻足迹 · 薪火相传',
-      image: 'https://images.unsplash.com/photo-1542226601-38275531fa43?q=80&w=200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1464207687429-7505649dae38?w=200&h=200&fit=crop',
       badge: null
     },
     {
       id: 'specialty',
       name: '半坡特产',
       desc: '太行馈赠 · 地道风味',
-      image: 'https://images.unsplash.com/photo-1596913755018-80df2651475c?q=80&w=200&auto=format&fit=crop',
+      image: 'https://images.unsplash.com/photo-1588432815959-c5a1b6c74b83?w=200&h=200&fit=crop',
       badge: null
     },
     {

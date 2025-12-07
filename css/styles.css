@@ -95,21 +95,6 @@
     flex: 1;
 }
 
-.section-header__link {
-    font-family: 'Noto Serif SC', serif;
-    font-size: 13px;
-    color: var(--cinnabar);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    padding: 4px 8px;
-    border-radius: 4px;
-}
-
-.section-header__link:hover {
-    background: rgba(192, 72, 81, 0.1);
-    transform: translateX(-2px);
-}
-
 /* ========== 经典展示 - 雅致留白 ========== */
 
 /* 2x2 Grid 布局 - 去掉深色底座 */
@@ -4347,7 +4332,7 @@
     background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(249,247,242,0.95));
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 1000;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
 }
