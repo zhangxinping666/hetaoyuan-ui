@@ -68,7 +68,7 @@ const services = [
         id: 'specialty',
         name: '半坡特产',
         desc: '太行馈赠 · 地道风味',
-        image: 'https://images.unsplash.com/photo-1596913755018-80df2651475c?q=80&w=200&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop',
         badge: null
     },
     {

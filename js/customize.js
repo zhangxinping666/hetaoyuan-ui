@@ -37,7 +37,7 @@
       id: 'specialty',
       name: '半坡特产',
       desc: '太行馈赠 · 地道风味',
-      image: 'https://images.unsplash.com/photo-1588432815959-c5a1b6c74b83?w=200&h=200&fit=crop',
+      image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop',
       badge: null
     },
     {
